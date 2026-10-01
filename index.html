@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Clube</title>
+    
     <!-- Ícones e configuração para App de Telemóvel -->
+    <link rel="apple-touch-icon" href="logo.png">
     <link rel="apple-touch-icon" href="logo.jpg">
+    <link rel="apple-touch-icon" href="logo.jpeg">
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <link rel="icon" type="image/jpeg" href="logo.jpeg">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -90,7 +95,7 @@
         .saldo-negativo { background: #ffebee; color: var(--red-loss); }
         .saldo-neutro { background: #f5f5f5; color: var(--text-muted); }
 
-        /* TESOURARIA E SORTEIO */
+        /* TESOURARIA & SORTEIO... */
         .dashboard-saldos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
         .saldo-card { background: white; padding: 15px; border-radius: var(--border-radius); box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
         .saldo-card.total { grid-column: span 2; background: var(--primary-blue); color: white; }
@@ -179,13 +184,17 @@
         .cat-item { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid #eee; font-size: 14px; }
         .cat-item:last-child { border-bottom: none; }
         .cat-item button { color: red; background: none; border: none; font-weight: bold; cursor: pointer; }
+
+        /* POST-IT ANIVERSÁRIO */
+        .post-it-content { background-color: #fffacb; border-left: 5px solid #ffeb3b; padding: 20px; border-radius: 4px; box-shadow: 2px 4px 10px rgba(0,0,0,0.1); width: 90%; max-width: 340px;}
+        .post-it-content h3 { margin: 0 0 15px 0; color: #d32f2f; display: flex; align-items: center; gap: 8px;}
     </style>
 </head>
 <body>
 
 <div class="app-header">
     <div class="header-title-area">
-        <img src="logo.jpg" alt="Logotipo" class="header-logo" onerror="this.style.display='none'">
+        <img src="logo.png" alt="Logotipo" class="header-logo" onerror="if(!this.dataset.t1){this.dataset.t1=1; this.src='logo.jpg';}else if(!this.dataset.t2){this.dataset.t2=1; this.src='logo.jpeg';}else{this.style.display='none';}">
         <h1 id="appNameDisplay">A carregar...</h1>
     </div>
     <select class="ano-selector" id="selectAnoBase" onchange="mudarAnoBase()"></select>
@@ -247,7 +256,7 @@
             <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #eee; margin-bottom: 15px;">
                 <h4 style="margin: 0 0 10px 0; font-size: 14px; color: var(--primary-blue);">+ Convidado Extra Hoje</h4>
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="nomeConvidadoJogo" placeholder="Nome" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 6px;">
+                    <input type="text" id="nomeConvidadoJogo" placeholder="Nome do Convidado" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 6px;">
                     <button class="btn-primary auto" style="padding: 8px 12px;" onclick="adicionarConvidadoJogo()">Adicionar (Azul)</button>
                 </div>
             </div>
@@ -286,12 +295,10 @@
 
                 <div style="display: flex; gap: 10px; text-align: left; margin-bottom: 15px; margin-top: 15px;">
                     <div style="flex: 1; background: rgba(0, 122, 255, 0.05); padding: 10px; border-radius: 8px;">
-                        <h4 style="margin: 0 0 10px 0; color: var(--primary-blue); font-size: 14px;">🔵 Equipa Azul</h4>
                         <div class="linha-jogo-header"><span>Jogador</span><div class="input-col-group"><span title="Golos">Gls</span><span title="Auto Golos">AG</span></div></div>
                         <div id="interfaceJogoAzul"></div>
                     </div>
                     <div style="flex: 1; background: rgba(255, 59, 48, 0.05); padding: 10px; border-radius: 8px;">
-                        <h4 style="margin: 0 0 10px 0; color: var(--red-loss); font-size: 14px;">🔴 Equipa Ver.</h4>
                         <div class="linha-jogo-header"><span>Jogador</span><div class="input-col-group"><span title="Golos">Gls</span><span title="Auto Golos">AG</span></div></div>
                         <div id="interfaceJogoVermelha"></div>
                     </div>
@@ -363,6 +370,18 @@
     </div>
 </div>
 
+<!-- MODAL ANIVERSÁRIOS -->
+<div id="modalAniversario" class="modal">
+    <div class="post-it-content">
+        <h3>🎉 Dia de Festa!</h3>
+        <p style="font-size:13px; color:var(--text-main); margin-bottom:15px;">Hoje é dia de aniversário na equipa:</p>
+        <div id="listaAniversariantes"></div>
+        <div class="modal-actions" style="margin-top: 15px;">
+            <button class="btn-cancel" style="width:100%;" onclick="fecharModal('modalAniversario')">Fechar</button>
+        </div>
+    </div>
+</div>
+
 <div id="modalSaldoInicial" class="modal"><div class="modal-content"><h3>Saldo Inicial / Transporte</h3><div><label>Data</label><input type="date" id="siData"></div><div><label>Descrição</label><input type="text" id="siDesc" value="Transporte do exercício anterior"></div><div><label>Valor (€)</label><input type="number" id="siValor" step="0.1"></div><div><label>Onde está o dinheiro?</label><select id="siMetodo"><option value="Dinheiro">Caixa (Dinheiro)</option><option value="MB Way">MB Way</option><option value="Transferência">Banco (Transferência)</option><option value="Outros">Outros</option></select></div><div class="modal-actions"><button class="btn-cancel" onclick="fecharModal('modalSaldoInicial')">Cancelar</button><button class="btn-success auto" onclick="confirmarSaldoInicial()">Gravar</button></div></div></div>
 <div id="modalLancarDivida" class="modal"><div class="modal-content"><h3 id="tituloModalDivida">Lançar Dívida</h3><div><label>Data</label><input type="date" id="divData"></div><div><label>Descrição</label><input type="text" id="divDesc"></div><div><label>Valor (€)</label><input type="number" id="divValor" step="0.1"></div><div class="modal-actions"><button class="btn-cancel" onclick="fecharModal('modalLancarDivida')">Cancelar</button><button class="btn-warning auto" onclick="confirmarDivida()">Registar Dívida</button></div></div></div>
 <div id="modalPagamento" class="modal"><div class="modal-content"><h3 id="tituloModalPagamento">Registar Pagamento</h3><div><label>Data</label><input type="date" id="pagData"></div><div style="background: #f9f9f9; padding: 10px; border-radius: 8px; border: 1px solid #eee;"><div style="margin-bottom: 8px;"><label>Mês de Ref.</label><input type="month" id="pagRefMes"></div><div><label>Data do Jogo</label><input type="date" id="pagRefJogo"></div></div><div><label>Valor (€)</label><input type="number" id="pagValor" step="0.1"></div><div><label>Método</label><select id="pagMetodo"><option value="Dinheiro">Dinheiro</option><option value="MB Way">MB Way</option><option value="Transferência">Transferência</option><option value="Outros">Outros</option></select></div><div class="modal-actions"><button class="btn-cancel" onclick="fecharModal('modalPagamento')">Cancelar</button><button class="btn-primary auto" onclick="confirmarPagamento()">Confirmar</button></div></div></div>
@@ -418,10 +437,48 @@
         document.getElementById('appNameDisplay').innerText = nomeClube;
         setupAnos();
         const dadosGuardados = localStorage.getItem('futsal_atletas');
-        if (dadosGuardados) gerarCartoes(JSON.parse(dadosGuardados));
-        else mostrarImportacao();
+        if (dadosGuardados) {
+            gerarCartoes(JSON.parse(dadosGuardados));
+            verificarAniversarios();
+        } else {
+            mostrarImportacao();
+        }
         atualizarTesouraria(); atualizarSelectCategorias();
         document.getElementById('dataJogoAtual').value = hojeISO();
+    }
+
+    function verificarAniversarios() {
+        let dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
+        let hoje = new Date();
+        let diaHoje = hoje.getDate();
+        let mesHoje = hoje.getMonth(); // 0 a 11
+
+        let aniversariantes = dadosAtletas.filter(a => {
+            if(!a['DATA NASCIMENTO']) return false;
+            // Garantir que a data é lida corretamente do Excel
+            let dn = new Date(a['DATA NASCIMENTO']);
+            if(isNaN(dn)) return false;
+            return dn.getDate() === diaHoje && dn.getMonth() === mesHoje;
+        });
+
+        if(aniversariantes.length > 0) {
+            let chaveMostrado = 'aniv_visto_' + hojeISO();
+            if(!sessionStorage.getItem(chaveMostrado)) {
+                let html = '';
+                aniversariantes.forEach(a => {
+                    let dn = new Date(a['DATA NASCIMENTO']);
+                    let idade = hoje.getFullYear() - dn.getFullYear();
+                    html += `
+                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed #ccc; padding:10px 0;">
+                            <div style="font-size: 14px;"><strong>${a['NOME']}</strong> faz ${idade} anos! 🎂</div>
+                            <button class="btn-success" style="width:auto; padding:6px 10px; margin:0; font-size:12px;" onclick="abrirWhatsAppLink('${a['CONTACTO']}', 'Muitos parabéns ${a['NOME']}! 🥳 Grande abraço de toda a equipa do ${nomeClube}!')">📲 Mensagem</button>
+                        </div>`;
+                });
+                document.getElementById('listaAniversariantes').innerHTML = html;
+                document.getElementById('modalAniversario').style.display = 'flex';
+                sessionStorage.setItem(chaveMostrado, 'sim');
+            }
+        }
     }
 
     function setupAnos() {
@@ -439,7 +496,6 @@
         if(ecra === 'tesouraria') atualizarTesouraria(); if(ecra === 'sorteio') carregarListaSorteio();
     }
 
-    // --- EXCEL E CARTÕES (COM NOVAS ESTATÍSTICAS) ---
     function mostrarImportacao() { document.getElementById('areaImportacao').style.display = 'block'; }
     function calcularIdade(dataNasc) {
         if (!dataNasc) return '--'; const dn = new Date(dataNasc); const h = new Date(); let i = h.getFullYear() - dn.getFullYear();
@@ -456,6 +512,7 @@
             });
             localStorage.setItem('futsal_atletas', JSON.stringify(atletas)); gerarCartoes(atletas);
             document.getElementById('areaImportacao').style.display = 'none'; 
+            verificarAniversarios();
         };
         reader.readAsArrayBuffer(f);
     }
@@ -470,51 +527,37 @@
 
     function gerarCartoes(atletas) {
         const container = document.getElementById('cartoesContainer'); container.innerHTML = ''; 
-        
         let jogosRegistados = jogosMensais.filter(j => j.data.startsWith(anoAtual.toString())).length;
         let maxPresencas = Math.max(...atletas.map(a => parseInt(a.PRESENCAS) || 0), 0);
         let totalJogosAno = Math.max(jogosRegistados, maxPresencas);
 
         atletas.forEach(a => {
-            const nome = a['NOME'] || 'Desconhecido';
-            const idade = calcularIdade(a['DATA NASCIMENTO']);
-            const est = a['ESTATUTO'] || 'Não definido';
-            const foto = a['FOTO'] || ''; 
-            
+            const nome = a['NOME'] || 'Desconhecido'; const idade = calcularIdade(a['DATA NASCIMENTO']); const est = a['ESTATUTO'] || 'Não definido'; const foto = a['FOTO'] || ''; 
             let cor = 'status-mensalidade'; if (est.toLowerCase().includes('por jogo')) cor = 'status-por-jogo'; if (est.toLowerCase().includes('convidado')) cor = 'status-convidado';
             let htmlF = foto ? `<img src="fotos/${foto}" class="photo-real">` : `<div class="photo-placeholder"><span>${nome.charAt(0)}</span></div>`;
-            let saldo = obterSaldoAtleta(nome);
-            let badgeSaldo = saldo > 0 ? `<div class="saldo-indicador saldo-negativo">A Pagar: ${saldo.toFixed(2)}€</div>` : (saldo < 0 ? `<div class="saldo-indicador saldo-positivo">Crédito de: ${Math.abs(saldo).toFixed(2)}€</div>` : `<div class="saldo-indicador saldo-neutro">Contas em dia</div>`);
+            let saldo = obterSaldoAtleta(nome); let badgeSaldo = saldo > 0 ? `<div class="saldo-indicador saldo-negativo">A Pagar: ${saldo.toFixed(2)}€</div>` : (saldo < 0 ? `<div class="saldo-indicador saldo-positivo">Crédito de: ${Math.abs(saldo).toFixed(2)}€</div>` : `<div class="saldo-indicador saldo-neutro">Contas em dia</div>`);
 
-            let pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0);
-            let ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0;
-            let ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0;
+            let pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0); let ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0; let ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0;
 
             container.innerHTML += `
                 <div class="athlete-card">
                     <div class="card-header">
                         ${htmlF}
-                        <div class="athlete-info">
-                            <h2>${nome}</h2><p class="age">${idade} anos</p>
-                            <span class="badge ${cor}">${est}</span>
-                        </div>
+                        <div class="athlete-info"><h2>${nome}</h2><p class="age">${idade} anos</p><span class="badge ${cor}">${est}</span></div>
                         <a onclick="abrirWhatsAppLink('${a['CONTACTO']}','Olá ${nome}, tudo bem?')" class="btn-whatsapp">💬</a>
                     </div>
                     <div class="stats-section">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <h3 style="margin:0;">Estatísticas (${anoAtual})</h3>
-                            <button class="btn-icon" style="background:transparent; font-size:14px;" title="Editar Estatísticas" onclick="abrirModalEditarStats('${nome}')">✏️</button>
+                            <h3 style="margin:0;">Estatísticas (${anoAtual})</h3><button class="btn-icon" style="background:transparent; font-size:14px;" title="Editar Estatísticas" onclick="abrirModalEditarStats('${nome}')">✏️</button>
                         </div>
                         <div class="stats-grid">
                             <div class="stat-box"><span class="stat-value">${a.PRESENCAS || 0}</span><span class="stat-label">Presen</span></div>
                             <div class="stat-box stat-g"><span class="stat-value">${a.GOLOS || 0}</span><span class="stat-label">Golos</span></div>
                             <div class="stat-box stat-ag"><span class="stat-value">${a.AG || 0}</span><span class="stat-label">AG</span></div>
                             <div class="stat-box stat-pts"><span class="stat-value">${pts}</span><span class="stat-label">Pts/Rank</span></div>
-                            
                             <div class="stat-box stat-v"><span class="stat-value">${a.VITORIAS || 0}</span><span class="stat-label">Vit.</span></div>
                             <div class="stat-box stat-e"><span class="stat-value">${a.EMPATES || 0}</span><span class="stat-label">Emp.</span></div>
                             <div class="stat-box stat-d"><span class="stat-value">${a.DERROTAS || 0}</span><span class="stat-label">Der.</span></div>
-                            
                             <div class="stat-box" style="background:#e3f2fd;"><span class="stat-value">${ifreq}%</span><span class="stat-label" title="Índice de Frequência">IF</span></div>
                             <div class="stat-box" style="background:#e8f5e9;"><span class="stat-value">${ivit}%</span><span class="stat-label" title="Índice de Vitórias">IV</span></div>
                         </div>
@@ -532,8 +575,7 @@
     }
 
     function abrirModalEditarStats(nome) {
-        let dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
-        let atleta = dadosAtletas.find(a => a['NOME'] === nome); if(!atleta) return;
+        let dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || []; let atleta = dadosAtletas.find(a => a['NOME'] === nome); if(!atleta) return;
         document.getElementById('tituloModalStats').innerText = 'Estatísticas: ' + nome; document.getElementById('editStatNome').value = nome;
         document.getElementById('editStatP').value = atleta.PRESENCAS || 0; document.getElementById('editStatG').value = atleta.GOLOS || 0;
         document.getElementById('editStatAG').value = atleta.AG || 0; document.getElementById('editStatV').value = atleta.VITORIAS || 0;
@@ -550,15 +592,12 @@
         }
     }
 
-    // --- ALGORITMO E INTERFACE DE JOGO ---
     function carregarListaSorteio() {
         if (equipasMensais && equipasMensais.azul.length > 0) {
-            document.getElementById('areaSorteioCheckboxes').style.display = 'none';
-            desenharEquipasMemoria(); renderizarJogosMensais(); document.getElementById('areaResultadosSorteio').style.display = 'block';
+            document.getElementById('areaSorteioCheckboxes').style.display = 'none'; desenharEquipasMemoria(); renderizarJogosMensais(); document.getElementById('areaResultadosSorteio').style.display = 'block';
         } else {
             document.getElementById('areaSorteioCheckboxes').style.display = 'block'; document.getElementById('areaResultadosSorteio').style.display = 'none';
-            const listaUI = document.getElementById('listaJogadoresSorteio'); listaUI.innerHTML = ''; 
-            const dadosGuardados = localStorage.getItem('futsal_atletas');
+            const listaUI = document.getElementById('listaJogadoresSorteio'); listaUI.innerHTML = ''; const dadosGuardados = localStorage.getItem('futsal_atletas');
             if (!dadosGuardados) return listaUI.innerHTML = '<p style="text-align:center; color:#999;">Importa o Excel primeiro.</p>';
             JSON.parse(dadosGuardados).forEach((a, index) => { listaUI.innerHTML += `<label class="jogador-checkbox" for="chk_s_${index}">${a['NOME']} <input type="checkbox" id="chk_s_${index}" class="chk-presenca" data-nome="${a['NOME']}" data-nivel="${a['NÍVEL'] || 1}" onchange="atualizarContagemSorteio()" checked></label>`; });
             atualizarContagemSorteio();
@@ -575,10 +614,9 @@
     }
 
     function adicionarConvidadoJogo() {
-        const nome = document.getElementById('nomeConvidadoJogo').value.trim();
-        if(!nome) return alert('Introduza o nome.'); if(!equipasMensais) return;
-        equipasMensais.azul.push(nome + ' (Extra)'); equipasMensais.azul.sort((a,b) => a.localeCompare(b));
-        localStorage.setItem('futsal_equipas_mensais', JSON.stringify(equipasMensais)); document.getElementById('nomeConvidadoJogo').value = ''; desenharEquipasMemoria();
+        const nome = document.getElementById('nomeConvidadoJogo').value.trim(); if(!nome) return alert('Introduza o nome.'); if(!equipasMensais) return;
+        equipasMensais.azul.push(nome + ' (Extra)'); equipasMensais.azul.sort((a,b) => a.localeCompare(b)); localStorage.setItem('futsal_equipas_mensais', JSON.stringify(equipasMensais));
+        document.getElementById('nomeConvidadoJogo').value = ''; desenharEquipasMemoria();
     }
 
     function atualizarContagemSorteio() { document.getElementById('contagemPresencas').innerText = `${document.querySelectorAll('.chk-presenca:checked').length} selecionados`; }
@@ -612,16 +650,13 @@
         });
     }
 
-    // Drag & Drop
     function iniciarDrag(event) { event.dataTransfer.setData("text", event.target.id); event.target.classList.add('dragging'); setTimeout(() => event.target.style.opacity = "0.5", 0); }
     document.addEventListener("dragend", (event) => { if(event.target.classList.contains('jogador-sorteado')) { event.target.classList.remove('dragging'); event.target.style.opacity = "1"; } });
     function permitirDrop(event) { event.preventDefault(); }
-    
     function receberDrop(event, boxId) {
         event.preventDefault(); const data = event.dataTransfer.getData("text"); const elemento = document.getElementById(data);
         if (elemento) {
-            const lista = document.getElementById(boxId).querySelector('.lista-jogadores') || document.getElementById(boxId);
-            lista.appendChild(elemento); elemento.style.opacity = "1";
+            const lista = document.getElementById(boxId).querySelector('.lista-jogadores') || document.getElementById(boxId); lista.appendChild(elemento); elemento.style.opacity = "1";
             if(boxId === 'boxAusentes') { elemento.style.background = 'rgba(0,0,0,0.08)'; elemento.style.color = '#444'; } else { elemento.style.background = 'rgba(255,255,255,0.2)'; elemento.style.color = 'white'; }
             equipasMensais.azul = Array.from(document.querySelectorAll('#listaEquipaAzul .jogador-sorteado')).map(el => el.getAttribute('data-nome'));
             equipasMensais.vermelha = Array.from(document.querySelectorAll('#listaEquipaVermelha .jogador-sorteado')).map(el => el.getAttribute('data-nome'));
@@ -650,15 +685,11 @@
         if (isNaN(golosAzul) || isNaN(golosVermelha)) return alert("Insira o resultado final global.");
         
         let statsDoJogo = []; let somaIndAzul = 0; let somaIndVermelha = 0;
-
         document.querySelectorAll('.chk-jogou').forEach(chk => {
             const nome = chk.getAttribute('data-nome'); const jogou = chk.checked; const equipa = chk.getAttribute('data-equipa');
             const golosInd = jogou ? parseInt(document.querySelector(`.input-golo[data-nome="${nome}"]`).value) || 0 : 0;
             const agInd = jogou ? parseInt(document.querySelector(`.input-ag[data-nome="${nome}"]`).value) || 0 : 0;
-            
-            if(jogou && equipa === 'azul') somaIndAzul += golosInd;
-            if(jogou && equipa === 'vermelha') somaIndVermelha += golosInd;
-            
+            if(jogou && equipa === 'azul') somaIndAzul += golosInd; if(jogou && equipa === 'vermelha') somaIndVermelha += golosInd;
             let resColetivo = '';
             if(jogou) {
                 if(equipa === 'azul') { if(golosAzul > golosVermelha) resColetivo = 'V'; else if(golosAzul === golosVermelha) resColetivo = 'E'; else resColetivo = 'D'; } 
@@ -667,11 +698,7 @@
             statsDoJogo.push({ nome, jogou, golos: golosInd, ag: agInd, equipa, resultado: resColetivo });
         });
 
-        // Validação leve para golos individuais não ultrapassarem o resultado global
-        if (somaIndAzul > golosAzul || somaIndVermelha > golosVermelha) {
-            return alert("Número de golos individuais excede o resultado global registado. Verifica os golos.");
-        }
-
+        if (somaIndAzul > golosAzul || somaIndVermelha > golosVermelha) return alert("Número de golos individuais excede o resultado global registado. Verifica os golos.");
         if(!confirm(`Resultado: Azul ${golosAzul} - ${golosVermelha} Vermelha.\nGravar jogo e atualizar cartões?`)) return;
 
         let dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
@@ -679,24 +706,18 @@
             if(s.jogou) {
                 let atleta = dadosAtletas.find(a => a['NOME'] === s.nome);
                 if(atleta) {
-                    atleta.PRESENCAS = (atleta.PRESENCAS || 0) + 1;
-                    atleta.GOLOS = (atleta.GOLOS || 0) + s.golos;
-                    atleta.AG = (atleta.AG || 0) + s.ag;
-                    if(s.resultado === 'V') atleta.VITORIAS = (atleta.VITORIAS || 0) + 1;
-                    if(s.resultado === 'E') atleta.EMPATES = (atleta.EMPATES || 0) + 1;
-                    if(s.resultado === 'D') atleta.DERROTAS = (atleta.DERROTAS || 0) + 1;
+                    atleta.PRESENCAS = (atleta.PRESENCAS || 0) + 1; atleta.GOLOS = (atleta.GOLOS || 0) + s.golos; atleta.AG = (atleta.AG || 0) + s.ag;
+                    if(s.resultado === 'V') atleta.VITORIAS = (atleta.VITORIAS || 0) + 1; if(s.resultado === 'E') atleta.EMPATES = (atleta.EMPATES || 0) + 1; if(s.resultado === 'D') atleta.DERROTAS = (atleta.DERROTAS || 0) + 1;
                 }
             }
         });
         localStorage.setItem('futsal_atletas', JSON.stringify(dadosAtletas)); gerarCartoes(dadosAtletas);
-
         jogosMensais.push({ id: gerarId(), data: dataJogo, golosA: golosAzul, golosV: golosVermelha, detalhesAtletas: statsDoJogo.filter(s => s.jogou) });
         localStorage.setItem('futsal_jogos_mensais', JSON.stringify(jogosMensais)); renderizarJogosMensais();
         
         document.querySelectorAll('.input-golo').forEach(inp => inp.value = ''); document.querySelectorAll('.input-ag').forEach(inp => inp.value = '');
         document.getElementById('golosAzul').value = ''; document.getElementById('golosVermelha').value = '';
-        document.querySelectorAll('.chk-jogou').forEach(chk => chk.checked = true);
-        alert("Jogo guardado com sucesso!");
+        document.querySelectorAll('.chk-jogou').forEach(chk => chk.checked = true); alert("Jogo guardado com sucesso!");
     }
 
     function abrirModalEditarJogo(idJogo) {
@@ -710,34 +731,21 @@
         let idJogo = document.getElementById('editJogoId').value; let jogo = jogosMensais.find(j => j.id === idJogo); if(!jogo) return;
         let novosGolosA = parseInt(document.getElementById('editJogoGolosA').value); let novosGolosV = parseInt(document.getElementById('editJogoGolosV').value); let novaData = document.getElementById('editJogoData').value;
         if (isNaN(novosGolosA) || isNaN(novosGolosV)) return alert("Valores inválidos.");
-
         let dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
-        // 1. Rollback apenas dos V/E/D
         if(jogo.detalhesAtletas) {
             jogo.detalhesAtletas.forEach(ja => {
                 let atleta = dadosAtletas.find(a => a['NOME'] === ja.nome);
-                if(atleta) {
-                    if(ja.resultado === 'V') atleta.VITORIAS = Math.max(0, (atleta.VITORIAS || 0) - 1);
-                    if(ja.resultado === 'E') atleta.EMPATES = Math.max(0, (atleta.EMPATES || 0) - 1);
-                    if(ja.resultado === 'D') atleta.DERROTAS = Math.max(0, (atleta.DERROTAS || 0) - 1);
-                }
+                if(atleta) { if(ja.resultado === 'V') atleta.VITORIAS = Math.max(0, (atleta.VITORIAS || 0) - 1); if(ja.resultado === 'E') atleta.EMPATES = Math.max(0, (atleta.EMPATES || 0) - 1); if(ja.resultado === 'D') atleta.DERROTAS = Math.max(0, (atleta.DERROTAS || 0) - 1); }
             });
         }
-        // 2. Atualizar Jogo
         jogo.data = novaData; jogo.golosA = novosGolosA; jogo.golosV = novosGolosV;
-        // 3. Reatribuir V/E/D
         if(jogo.detalhesAtletas) {
             jogo.detalhesAtletas.forEach(ja => {
                 let resColetivo = '';
                 if(ja.equipa === 'azul') { if(novosGolosA > novosGolosV) resColetivo = 'V'; else if(novosGolosA === novosGolosV) resColetivo = 'E'; else resColetivo = 'D'; } 
                 else { if(novosGolosV > novosGolosA) resColetivo = 'V'; else if(novosGolosV === novosGolosA) resColetivo = 'E'; else resColetivo = 'D'; }
-                ja.resultado = resColetivo;
-                let atleta = dadosAtletas.find(a => a['NOME'] === ja.nome);
-                if(atleta) {
-                    if(resColetivo === 'V') atleta.VITORIAS = (atleta.VITORIAS || 0) + 1;
-                    if(resColetivo === 'E') atleta.EMPATES = (atleta.EMPATES || 0) + 1;
-                    if(resColetivo === 'D') atleta.DERROTAS = (atleta.DERROTAS || 0) + 1;
-                }
+                ja.resultado = resColetivo; let atleta = dadosAtletas.find(a => a['NOME'] === ja.nome);
+                if(atleta) { if(resColetivo === 'V') atleta.VITORIAS = (atleta.VITORIAS || 0) + 1; if(resColetivo === 'E') atleta.EMPATES = (atleta.EMPATES || 0) + 1; if(resColetivo === 'D') atleta.DERROTAS = (atleta.DERROTAS || 0) + 1; }
             });
         }
         localStorage.setItem('futsal_jogos_mensais', JSON.stringify(jogosMensais)); localStorage.setItem('futsal_atletas', JSON.stringify(dadosAtletas));
@@ -748,85 +756,46 @@
         if(!confirm("Atenção! Quer apagar este jogo? As estatísticas dos jogadores presentes (P/V/E/D/G/AG) serão revertidas.")) return;
         let jogoIndex = jogosMensais.findIndex(j => j.id === idJogo); if(jogoIndex === -1) return;
         let jogo = jogosMensais[jogoIndex]; let dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
-        
         if(jogo.detalhesAtletas) {
             jogo.detalhesAtletas.forEach(ja => {
                 let atleta = dadosAtletas.find(a => a['NOME'] === ja.nome);
                 if(atleta) {
-                    atleta.PRESENCAS = Math.max(0, (atleta.PRESENCAS || 0) - 1);
-                    atleta.GOLOS = Math.max(0, (atleta.GOLOS || 0) - (ja.golos || 0));
-                    atleta.AG = Math.max(0, (atleta.AG || 0) - (ja.ag || 0));
-                    if(ja.resultado === 'V') atleta.VITORIAS = Math.max(0, (atleta.VITORIAS || 0) - 1);
-                    if(ja.resultado === 'E') atleta.EMPATES = Math.max(0, (atleta.EMPATES || 0) - 1);
-                    if(ja.resultado === 'D') atleta.DERROTAS = Math.max(0, (atleta.DERROTAS || 0) - 1);
+                    atleta.PRESENCAS = Math.max(0, (atleta.PRESENCAS || 0) - 1); atleta.GOLOS = Math.max(0, (atleta.GOLOS || 0) - (ja.golos || 0)); atleta.AG = Math.max(0, (atleta.AG || 0) - (ja.ag || 0));
+                    if(ja.resultado === 'V') atleta.VITORIAS = Math.max(0, (atleta.VITORIAS || 0) - 1); if(ja.resultado === 'E') atleta.EMPATES = Math.max(0, (atleta.EMPATES || 0) - 1); if(ja.resultado === 'D') atleta.DERROTAS = Math.max(0, (atleta.DERROTAS || 0) - 1);
                 }
             });
         }
-        jogosMensais.splice(jogoIndex, 1);
-        localStorage.setItem('futsal_jogos_mensais', JSON.stringify(jogosMensais)); localStorage.setItem('futsal_atletas', JSON.stringify(dadosAtletas));
+        jogosMensais.splice(jogoIndex, 1); localStorage.setItem('futsal_jogos_mensais', JSON.stringify(jogosMensais)); localStorage.setItem('futsal_atletas', JSON.stringify(dadosAtletas));
         gerarCartoes(dadosAtletas); renderizarJogosMensais(); alert("Jogo apagado e estatísticas revertidas.");
     }
 
     function limparEquipasMensais() {
-        if(confirm("Mês terminado? Isto vai apagar as equipas fixas e o histórico de jogos para começares de novo.")) {
-            localStorage.removeItem('futsal_equipas_mensais'); localStorage.removeItem('futsal_jogos_mensais');
-            equipasMensais = null; jogosMensais = []; carregarListaSorteio();
-        }
+        if(confirm("Mês terminado? Isto vai apagar as equipas fixas e o histórico de jogos para começares de novo.")) { localStorage.removeItem('futsal_equipas_mensais'); localStorage.removeItem('futsal_jogos_mensais'); equipasMensais = null; jogosMensais = []; carregarListaSorteio(); }
     }
 
-    // --- PDF E WHATSAPP ESTATISTICAS AVANÇADAS ---
+    // --- PDF E WHATSAPP ---
     function exportarStatsPDF() {
         const dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || []; if(dadosAtletas.length === 0) return alert('Sem atletas.');
-        const { jsPDF } = window.jspdf; const doc = new jsPDF();
-        doc.setFontSize(16); doc.text(`Estatísticas - ${nomeClube}`, 14, 15);
-        
+        const { jsPDF } = window.jspdf; const doc = new jsPDF(); doc.setFontSize(16); doc.text(`Estatísticas - ${nomeClube}`, 14, 15);
         let jogosRegistados = jogosMensais.filter(j => j.data.startsWith(anoAtual.toString())).length;
         let maxPresencas = Math.max(...dadosAtletas.map(a => parseInt(a.PRESENCAS) || 0), 0);
         let totalJogosAno = Math.max(jogosRegistados, maxPresencas);
-        
-        dadosAtletas.forEach(a => {
-            a.pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0);
-            a.ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0;
-            a.ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0;
-        });
-
+        dadosAtletas.forEach(a => { a.pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0); a.ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0; a.ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0; });
         dadosAtletas.sort((a,b) => b.pts - a.pts || (b.GOLOS||0) - (a.GOLOS||0) || (a.NOME||'').localeCompare(b.NOME||''));
-        
-        const tableBody = dadosAtletas.map(a => [ 
-            a.NOME, a.PRESENCAS||0, a.VITORIAS||0, a.EMPATES||0, a.DERROTAS||0, a.AG||0, `${a.ifreq}%`, a.pts, `${a.ivit}%`, a.GOLOS||0 
-        ]);
-
-        doc.autoTable({ 
-            startY: 25, 
-            head: [['Nome', 'Pres.', 'Vit.', 'Emp.', 'Der.', 'AG', 'IF', 'Pts', 'IV', 'Gols']], 
-            body: tableBody, 
-            headStyles: { fillColor: [0, 122, 255] },
-            styles: { fontSize: 8 }
-        });
+        const tableBody = dadosAtletas.map(a => [ a.NOME, a.PRESENCAS||0, a.VITORIAS||0, a.EMPATES||0, a.DERROTAS||0, a.AG||0, `${a.ifreq}%`, a.pts, `${a.ivit}%`, a.GOLOS||0 ]);
+        doc.autoTable({ startY: 25, head: [['Nome', 'Pres.', 'Vit.', 'Emp.', 'Der.', 'AG', 'IF', 'Pts', 'IV', 'Gols']], body: tableBody, headStyles: { fillColor: [0, 122, 255] }, styles: { fontSize: 8 } });
         doc.save(`Estatisticas_${nomeClube.replace(/\s+/g, '')}.pdf`);
     }
 
     function partilharStatsWA() {
         const dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || []; if(dadosAtletas.length === 0) return;
-        
         let jogosRegistados = jogosMensais.filter(j => j.data.startsWith(anoAtual.toString())).length;
         let maxPresencas = Math.max(...dadosAtletas.map(a => parseInt(a.PRESENCAS) || 0), 0);
         let totalJogosAno = Math.max(jogosRegistados, maxPresencas);
-
-        dadosAtletas.forEach(a => { 
-            a.pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0); 
-            a.ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0;
-            a.ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0;
-        });
+        dadosAtletas.forEach(a => { a.pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0); a.ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0; a.ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0; });
         dadosAtletas.sort((a,b) => b.pts - a.pts || (b.GOLOS||0) - (a.GOLOS||0) || (a.NOME||'').localeCompare(b.NOME||''));
-        
         let texto = `🏆 *RANKING ${nomeClube.toUpperCase()}* 🏆%0A%0A`;
-        dadosAtletas.forEach((a, idx) => {
-            if((a.PRESENCAS||0) > 0) {
-                texto += `*${idx+1}º ${a.NOME}* - ${a.pts} Pts%0A`;
-                texto += `P:${a.PRESENCAS||0} | V:${a.VITORIAS||0} | E:${a.EMPATES||0} | D:${a.DERROTAS||0} | ⚽ ${a.GOLOS||0} | AG:${a.AG||0} | IF:${a.ifreq}% | IV:${a.ivit}%%0A%0A`;
-            }
-        });
+        dadosAtletas.forEach((a, idx) => { if((a.PRESENCAS||0) > 0) { texto += `*${idx+1}º ${a.NOME}* - ${a.pts} Pts%0A`; texto += `P:${a.PRESENCAS||0} | V:${a.VITORIAS||0} | E:${a.EMPATES||0} | D:${a.DERROTAS||0} | ⚽ ${a.GOLOS||0} | AG:${a.AG||0} | IF:${a.ifreq}% | IV:${a.ivit}%%0A%0A`; } });
         window.open(`https://wa.me/?text=${texto}`, '_blank');
     }
 
@@ -848,7 +817,6 @@
 
     function abrirModalDivida(nome) { atletaAtual.nome = nome; document.getElementById('tituloModalDivida').innerText = 'Dívida: ' + nome; document.getElementById('divData').value = hojeISO(); document.getElementById('divDesc').value = ''; document.getElementById('divValor').value = ''; document.getElementById('modalLancarDivida').style.display = 'flex'; }
     function confirmarDivida() { const v = parseFloat(document.getElementById('divValor').value); const desc = document.getElementById('divDesc').value; if (!v || v <= 0 || !desc) return alert("Preencha descrição e valor."); gravarTransacao('divida_atleta', desc, v, '-', document.getElementById('divData').value, atletaAtual.nome); fecharModal('modalLancarDivida'); }
-
     function abrirModalPagamento(nome, cont) { atletaAtual = { nome, contacto: cont }; document.getElementById('tituloModalPagamento').innerText = 'Pagamento: ' + nome; document.getElementById('pagData').value = hojeISO(); document.getElementById('modalPagamento').style.display = 'flex'; }
     function confirmarPagamento() {
         const v = parseFloat(document.getElementById('pagValor').value); if (!v || v <= 0) return alert("Valor inválido.");
@@ -863,7 +831,6 @@
         abrirWhatsAppLink(atletaAtual.contacto, `⚽ ${nomeClube} - Recibo ⚽%0AOlá, ${atletaAtual.nome}! Confirmamos a receção de ${v.toFixed(2)}€ via ${metodo}.${detalheWhatsApp}${textoSaldo}%0AAté ao próximo jogo!`);
         fecharModal('modalPagamento');
     }
-
     function abrirHistoricoAtleta(nome) {
         const lista = document.getElementById('listaHistoricoAtleta'); lista.innerHTML = '';
         let movs = transacoes.filter(t => (t.atleta === nome) || (t.tipo === 'entrada' && t.descricao.startsWith('Pagamento: ' + nome)));
@@ -878,7 +845,6 @@
         }
         document.getElementById('tituloModalHistorico').innerText = 'Conta Corrente: ' + nome; document.getElementById('modalHistoricoAtleta').style.display = 'flex';
     }
-
     function abrirModalReceitaAvulsa() { document.getElementById('recData').value = hojeISO(); document.getElementById('modalReceitaAvulsa').style.display = 'flex'; }
     function confirmarReceitaAvulsa() { gravarTransacao('entrada', document.getElementById('recDesc').value || 'Receita Extra', parseFloat(document.getElementById('recValor').value), document.getElementById('recMetodo').value, document.getElementById('recData').value); fecharModal('modalReceitaAvulsa'); }
     function abrirModalDespesa() { document.getElementById('despData').value = hojeISO(); document.getElementById('modalDespesa').style.display = 'flex'; }
@@ -954,4 +920,3 @@
 
 </body>
 </html>
-
