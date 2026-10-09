@@ -4,13 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Clube</title>
-    
-    <!-- Ícones e configuração para App de Telemóvel -->
-    <link rel="apple-touch-icon" href="https://cmflores2008.github.io/Gestao_Futsal_sabado/logo.jpg">
-    <link rel="icon" href="https://cmflores2008.github.io/Gestao_Futsal_sabado/logo.jpg">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Clube">
 
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -58,15 +51,18 @@
         .btn-cancel { background: #f5f5f5; color: var(--text-main); border: none; padding: 10px 15px; border-radius: 8px; font-weight: 600; cursor: pointer; }
         .btn-historico { background: #f9f9f9; border: 1px solid #eee; padding: 8px; border-radius: 8px; width: 100%; margin-top: 8px; font-weight: bold; color: var(--text-muted); cursor: pointer; font-size: 13px; }
         
-        /* EQUIPA E STATS */
+        /* EQUIPA E STATS COM A FOTO CORRIGIDA */
         .import-section { background: white; padding: 20px; border-radius: var(--border-radius); text-align: center; display: none; margin-bottom: 20px; }
         .import-section input[type="file"] { margin-top: 10px; padding: 10px; width: 100%; }
         .cards-container { display: flex; flex-direction: column; gap: 15px; }
         .athlete-card { background-color: var(--card-bg); border-radius: var(--border-radius); box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; position: relative; }
         .card-header { display: flex; align-items: center; padding: 15px; border-bottom: 1px solid #eeeeee; position: relative; }
+        
+        /* RESTAURO DA FOTO DE 60px */
         .photo-placeholder { width: 60px; height: 60px; background-color: #e0e0e0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: #999; margin-right: 15px; flex-shrink: 0; }
         .photo-real { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-right: 15px; flex-shrink: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .athlete-info h2 { margin: 0 0 4px 0; font-size: 18px; }
+        
+        .athlete-info h2 { margin: 0 0 4px 0; font-size: 18px; display: flex; align-items: center; gap: 8px;}
         .athlete-info .age { margin: 0 0 8px 0; font-size: 13px; color: var(--text-muted); }
         .badge { padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; }
         .status-mensalidade { background-color: #e3f2fd; color: #1976d2; }
@@ -165,7 +161,6 @@
         .jogo-mes-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; align-items: center; }
         .jogo-mes-item:last-child { border-bottom: none; }
 
-        /* BACKUP SECTION */
         .backup-section { background: white; border-radius: var(--border-radius); box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 15px; margin-top: 20px; text-align: center; }
 
         /* MODAIS */
@@ -191,7 +186,7 @@
 
 <div class="app-header">
     <div class="header-title-area">
-        <img src="logo.png" alt="Logotipo" class="header-logo" onerror="if(!this.dataset.t1){this.dataset.t1=1; this.src='logo.jpg';}else if(!this.dataset.t2){this.dataset.t2=1; this.src='logo.jpeg';}else{this.style.display='none';}">
+        <img src="icone_clube.jpg" alt="Logotipo" class="header-logo" onerror="if(!this.dataset.t1){this.dataset.t1=1; this.src='logo.png';}else if(!this.dataset.t2){this.dataset.t2=1; this.src='logo.jpg';}else if(!this.dataset.t3){this.dataset.t3=1; this.src='https://cmflores2008.github.io/Gestao_Futsal_sabado/icone_clube.jpg';}else{this.style.display='none';}">
         <h1 id="appNameDisplay">A carregar...</h1>
     </div>
     <select class="ano-selector" id="selectAnoBase" onchange="mudarAnoBase()"></select>
@@ -205,25 +200,27 @@
 
 <div class="container-central">
     
-    <!-- 1. EQUIPA -->
     <div id="ecra-equipa" class="ecra ativo">
         <div style="display: flex; gap: 10px; margin-bottom: 15px;">
             <button class="btn-small" style="flex: 1; padding: 10px; background: #e3f2fd; color: var(--primary-blue);" onclick="exportarStatsPDF()">📄 PDF Estatísticas</button>
             <button class="btn-small" style="flex: 1; padding: 10px; background: #e8f5e9; color: var(--green-win);" onclick="partilharStatsWA()">📲 WhatsApp Rank</button>
         </div>
 
-        <button class="btn-small" style="margin-bottom: 15px; width: 100%; padding: 10px;" onclick="mostrarImportacao()">+ Atualizar Tabela Excel</button>
+        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+            <button class="btn-primary" style="flex: 1; padding: 10px;" onclick="abrirModalAtleta()">+ Adicionar Atleta</button>
+            <button class="btn-small" style="flex: 1; padding: 10px;" onclick="mostrarImportacao()">+ Importar Excel</button>
+        </div>
         
         <div class="import-section" id="areaImportacao">
-            <h3>Carregar Equipa</h3>
-            <label for="inputExcel">Selecione o ficheiro <b>elementos_clube.xlsx</b>:</label>
-            <input type="file" id="inputExcel" accept=".xlsx, .xls" onchange="lerExcel(event)" />
+            <h3>Carregar Equipa (Excel)</h3>
+            <label for="inputExcel">Selecione o ficheiro <b>Gestão grupo desportivo FUTSAL@SABADO</b>:</label>
+            <input type="file" id="inputExcel" accept=".xlsx, .xls, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel, */*" onchange="lerExcel(event)" />
+            <button class="btn-cancel" style="margin-top: 10px;" onclick="document.getElementById('areaImportacao').style.display='none'">Fechar</button>
         </div>
 
         <div id="cartoesContainer" class="cards-container"></div>
     </div>
 
-    <!-- 2. SORTEIO & JOGO -->
     <div id="ecra-sorteio" class="ecra">
         
         <div id="areaSorteioCheckboxes">
@@ -313,7 +310,6 @@
         </div>
     </div>
 
-    <!-- 3. TESOURARIA E BACKUP -->
     <div id="ecra-tesouraria" class="ecra">
         <div class="dashboard-saldos">
             <div class="saldo-card total"><h4>Saldo Total</h4><p class="valor" id="saldoTotal">0,00 €</p></div>
@@ -349,25 +345,46 @@
             <p style="font-size:12px; color:#777;">Guarda uma cópia de segurança dos teus dados.</p>
             <div style="display:flex; gap:10px; margin-bottom:20px;">
                 <button class="btn-primary" style="flex:1;" onclick="exportarBackup()">📥 Fazer Backup</button>
-                <input type="file" id="inputBackup" style="display:none" onchange="importarBackup(event)" accept=".json">
+                <input type="file" id="inputBackup" style="display:none" onchange="importarBackup(event)" accept=".json, application/json, text/plain, */*">
                 <button class="btn-cancel" style="flex:1;" onclick="document.getElementById('inputBackup').click()">📤 Restaurar</button>
             </div>
-            <button class="btn-reset" style="margin-top:0;" onclick="limparDadosSistema()">🗑️ Formatar Tudo (Começar de Novo)</button>
+            <button class="btn-reset" style="margin-top:0; width: 100%; color: var(--red-loss); border: none; padding: 10px; border-radius: 8px; font-weight: bold; background: #ffebee;" onclick="limparDadosSistema()">🗑️ Formatar Tudo (Começar de Novo)</button>
         </div>
     </div>
 </div>
 
-<!-- ================= MODAIS ================= -->
 <div id="modalSetup" class="modal">
     <div class="modal-content">
         <h3 style="color: var(--primary-blue); text-align: center;">Bem-vindo! ⚽</h3>
-        <p style="font-size: 14px; text-align: center; color: var(--text-muted);">Indica o nome do teu clube ou grupo desportivo. Este nome aparecerá nos relatórios.</p>
+        <p style="font-size: 14px; text-align: center; color: var(--text-muted);">Indica o nome do teu clube ou grupo desportivo.</p>
         <div><label>Nome do Clube / Grupo</label><input type="text" id="inputNomeClube" placeholder="Ex: Grupo de Sábado"></div>
         <div class="modal-actions"><button class="btn-primary auto" style="width: 100%;" onclick="guardarNomeClube()">Começar a Usar</button></div>
     </div>
 </div>
 
-<!-- MODAL ANIVERSÁRIOS -->
+<div id="modalAtleta" class="modal">
+    <div class="modal-content">
+        <h3 id="tituloModalAtleta">Novo Atleta</h3>
+        <input type="hidden" id="atletaNomeOriginal">
+        <div><label>Nome do Atleta</label><input type="text" id="atletaNome"></div>
+        <div><label>Data de Nascimento</label><input type="date" id="atletaDataNasc"></div>
+        <div><label>Contacto (Telemóvel)</label><input type="text" id="atletaContacto"></div>
+        <div><label>Estatuto</label><select id="atletaEstatuto">
+            <option value="Mensalidade">Mensalidade</option>
+            <option value="Por Jogo">Por Jogo</option>
+            <option value="Convidado">Convidado</option>
+        </select></div>
+        <div><label>Nível Sorteio (1 a 5)</label><input type="number" id="atletaNivel" min="1" max="5" value="3"></div>
+        <div class="modal-actions" style="justify-content: space-between;">
+            <button class="btn-icon" id="btnApagarAtleta" style="color: red; display: none;" onclick="apagarAtletaManual()">🗑️ Apagar</button>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn-cancel" onclick="fecharModal('modalAtleta')">Cancelar</button>
+                <button class="btn-primary auto" onclick="guardarAtletaManual()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="modalAniversario" class="modal">
     <div class="post-it-content">
         <h3>🎉 Dia de Festa!</h3>
@@ -381,12 +398,57 @@
 
 <div id="modalSaldoInicial" class="modal"><div class="modal-content"><h3>Saldo Inicial / Transporte</h3><div><label>Data</label><input type="date" id="siData"></div><div><label>Descrição</label><input type="text" id="siDesc" value="Transporte do exercício anterior"></div><div><label>Valor (€)</label><input type="number" id="siValor" step="0.1"></div><div><label>Onde está o dinheiro?</label><select id="siMetodo"><option value="Dinheiro">Caixa (Dinheiro)</option><option value="MB Way">MB Way</option><option value="Transferência">Banco (Transferência)</option><option value="Outros">Outros</option></select></div><div class="modal-actions"><button class="btn-cancel" onclick="fecharModal('modalSaldoInicial')">Cancelar</button><button class="btn-success auto" onclick="confirmarSaldoInicial()">Gravar</button></div></div></div>
 <div id="modalLancarDivida" class="modal"><div class="modal-content"><h3 id="tituloModalDivida">Lançar Dívida</h3><div><label>Data</label><input type="date" id="divData"></div><div><label>Descrição</label><input type="text" id="divDesc"></div><div><label>Valor (€)</label><input type="number" id="divValor" step="0.1"></div><div class="modal-actions"><button class="btn-cancel" onclick="fecharModal('modalLancarDivida')">Cancelar</button><button class="btn-warning auto" onclick="confirmarDivida()">Registar Dívida</button></div></div></div>
-<div id="modalPagamento" class="modal"><div class="modal-content"><h3 id="tituloModalPagamento">Registar Pagamento</h3><div><label>Data</label><input type="date" id="pagData"></div><div style="background: #f9f9f9; padding: 10px; border-radius: 8px; border: 1px solid #eee;"><div style="margin-bottom: 8px;"><label>Mês de Ref.</label><input type="month" id="pagRefMes"></div><div><label>Data do Jogo</label><input type="date" id="pagRefJogo"></div></div><div><label>Valor (€)</label><input type="number" id="pagValor" step="0.1"></div><div><label>Método</label><select id="pagMetodo"><option value="Dinheiro">Dinheiro</option><option value="MB Way">MB Way</option><option value="Transferência">Transferência</option><option value="Outros">Outros</option></select></div><div class="modal-actions"><button class="btn-cancel" onclick="fecharModal('modalPagamento')">Cancelar</button><button class="btn-primary auto" onclick="confirmarPagamento()">Confirmar</button></div></div></div>
-<div id="modalHistoricoAtleta" class="modal"><div class="modal-content"><h3 id="tituloModalHistorico">Conta Corrente</h3><div id="listaHistoricoAtleta" style="max-height: 250px; overflow-y: auto;"></div><div class="modal-actions"><button class="btn-cancel" onclick="fecharModal('modalHistoricoAtleta')">Fechar</button></div></div></div>
+
+<div id="modalPagamento" class="modal">
+    <div class="modal-content">
+        <h3 id="tituloModalPagamento">Registar Pagamento</h3>
+        <div><label>Data</label><input type="date" id="pagData"></div>
+        <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; border: 1px solid #eee;">
+            <div style="margin-bottom: 8px;"><label>Mês de Ref.</label><input type="month" id="pagRefMes"></div>
+            <div style="margin-bottom: 8px;"><label>Data do Jogo</label><input type="date" id="pagRefJogo"></div>
+            <div><label>Outros Pagamentos</label><input type="text" id="pagRefOutros" placeholder="Ex: Equipamento, Multa..."></div>
+        </div>
+        <div><label>Valor (€)</label><input type="number" id="pagValor" step="0.1"></div>
+        <div><label>Método</label><select id="pagMetodo">
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="MB Way">MB Way</option>
+            <option value="Transferência">Transferência</option>
+            <option value="Outros">Outros</option>
+        </select></div>
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="fecharModal('modalPagamento')">Cancelar</button>
+            <button class="btn-primary auto" onclick="confirmarPagamento()">Confirmar</button>
+        </div>
+    </div>
+</div>
+
+<div id="modalHistoricoAtleta" class="modal">
+    <div class="modal-content">
+        <h3 id="tituloModalHistorico">Conta Corrente</h3>
+        <div id="listaHistoricoAtleta" style="flex: 1; overflow-y: auto; padding-right: 5px;"></div>
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="fecharModal('modalHistoricoAtleta')">Fechar</button>
+        </div>
+    </div>
+</div>
+
 <div id="modalReceitaAvulsa" class="modal"><div class="modal-content"><h3>Receita Extra</h3><div><label>Data</label><input type="date" id="recData"></div><div><label>Descrição</label><input type="text" id="recDesc"></div><div><label>Valor (€)</label><input type="number" id="recValor" step="0.1"></div><div><label>Método</label><select id="recMetodo"><option value="Dinheiro">Dinheiro</option><option value="MB Way">MB Way</option><option value="Transferência">Transferência</option><option value="Outros">Outros</option></select></div><div class="modal-actions"><button class="btn-cancel" onclick="fecharModal('modalReceitaAvulsa')">Cancelar</button><button class="btn-success auto" onclick="confirmarReceitaAvulsa()">Registar</button></div></div></div>
 <div id="modalDespesa" class="modal"><div class="modal-content"><h3>Registar Despesa</h3><div><label>Data</label><input type="date" id="despData"></div><div><label>Categoria</label><div class="input-group-modal"><select id="despDesc"></select><button class="btn-small" onclick="abrirModalCategorias()">⚙️</button></div></div><div><label>Valor (€)</label><input type="number" id="despValor" step="0.1"></div><div><label>Retirado de:</label><select id="despMetodo"><option value="Dinheiro">Dinheiro</option><option value="MB Way">MB Way</option><option value="Transferência">Transferência</option><option value="Outros">Outros</option></select></div><div class="modal-actions"><button class="btn-cancel" onclick="fecharModal('modalDespesa')">Cancelar</button><button class="btn-danger auto" onclick="confirmarDespesa()">Registar Saída</button></div></div></div>
 <div id="modalEditarT" class="modal"><div class="modal-content"><h3>Editar Movimento</h3><input type="hidden" id="editId"><input type="hidden" id="editTipo"><div><label>Data</label><input type="date" id="editData"></div><div><label>Descrição</label><input type="text" id="editDesc"></div><div><label>Valor (€)</label><input type="number" id="editValor" step="0.1"></div><div><label>Método</label><select id="editMetodo"><option value="Dinheiro">Dinheiro</option><option value="MB Way">MB Way</option><option value="Transferência">Transferência</option><option value="Outros">Outros</option><option value="-">-</option></select></div><div class="modal-actions"><button class="btn-cancel" onclick="fecharModal('modalEditarT')">Cancelar</button><button class="btn-primary auto" onclick="guardarEdicaoT()">Atualizar</button></div></div></div>
-<div id="modalEditarJogo" class="modal"><div class="modal-content"><h3>Editar Resultado</h3><input type="hidden" id="editJogoId"><p style="font-size: 12px; color: #777;">As Vitórias/Empates/Derrotas dos jogadores em campo serão corrigidas.</p><div><label>Data</label><input type="date" id="editJogoData"></div><div style="display: flex; gap: 15px;"><div style="flex:1"><label style="color: var(--primary-blue);">Golos Azul</label><input type="number" id="editJogoGolosA" min="0"></div><div style="flex:1"><label style="color: var(--red-loss);">Golos Vermelha</label><input type="number" id="editJogoGolosV" min="0"></div></div><div class="modal-actions"><button class="btn-cancel" onclick="fecharModal('modalEditarJogo')">Cancelar</button><button class="btn-primary auto" onclick="guardarEdicaoJogo()">Atualizar</button></div></div></div>
+
+<div id="modalEditarJogo" class="modal">
+    <div class="modal-content">
+        <h3>Editar Resultado</h3>
+        <input type="hidden" id="editJogoId">
+        <p style="font-size: 12px; color: #777;">As Vitórias/Empates/Derrotas serão corrigidas.</p>
+        <div><label>Data</label><input type="date" id="editJogoData"></div>
+        <div style="display: flex; gap: 15px;">
+            <div style="flex:1"><label style="color: var(--primary-blue);">Golos Azul</label><input type="number" id="editJogoGolosA" min="0"></div>
+            <div style="flex:1"><label style="color: var(--red-loss);">Golos Vermelha</label><input type="number" id="editJogoGolosV" min="0"></div>
+        </div>
+        <div class="modal-actions"><button class="btn-cancel" onclick="fecharModal('modalEditarJogo')">Cancelar</button><button class="btn-primary auto" onclick="guardarEdicaoJogo()">Atualizar</button></div>
+    </div>
+</div>
 
 <div id="modalEditarStats" class="modal">
     <div class="modal-content">
@@ -418,6 +480,50 @@
     function hojeISO() { return new Date().toISOString().split('T')[0]; }
     function formatarDataPT(iso) { if(!iso) return ''; const p = iso.split('-'); return `${p[2]}/${p[1]}/${p[0]}`; }
 
+    // =========================================================================
+    // FUNÇÃO DE DOWNLOAD DIRETO E BASE64 (A funcionar perfeitamente)
+    // =========================================================================
+    async function partilharFicheiro(blob, nomeFicheiro, mimeType) {
+        try {
+            if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.Filesystem) {
+                try {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = async function() {
+                        const base64data = reader.result.split(',')[1];
+                        const savedFile = await window.Capacitor.Plugins.Filesystem.writeFile({
+                            path: nomeFicheiro,
+                            data: base64data,
+                            directory: 'CACHE'
+                        });
+                        await window.Capacitor.Plugins.Share.share({
+                            title: nomeFicheiro,
+                            url: savedFile.uri
+                        });
+                    };
+                    return;
+                } catch (e) {
+                    console.log("Capacitor share indisponível, a forçar download direto.");
+                }
+            }
+            
+            const reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = function() {
+                const base64data = reader.result;
+                const a = document.createElement('a'); 
+                a.href = base64data; 
+                a.download = nomeFicheiro;
+                document.body.appendChild(a); 
+                a.click(); 
+                document.body.removeChild(a);
+            };
+        } catch (error) {
+            alert("Erro ao processar ficheiro: " + error.message);
+        }
+    }
+    // =========================================================================
+
     document.addEventListener('DOMContentLoaded', () => {
         if (!nomeClube) document.getElementById('modalSetup').style.display = 'flex';
         else iniciarApp();
@@ -446,13 +552,9 @@
 
     function verificarAniversarios() {
         let dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
-        let hoje = new Date();
-        let diaHoje = hoje.getDate();
-        let mesHoje = hoje.getMonth(); // 0 a 11
-
+        let hoje = new Date(); let diaHoje = hoje.getDate(); let mesHoje = hoje.getMonth();
         let aniversariantes = dadosAtletas.filter(a => {
             if(!a['DATA NASCIMENTO']) return false;
-            // Garantir que a data é lida corretamente do Excel
             let dn = new Date(a['DATA NASCIMENTO']);
             if(isNaN(dn)) return false;
             return dn.getDate() === diaHoje && dn.getMonth() === mesHoje;
@@ -463,13 +565,8 @@
             if(!sessionStorage.getItem(chaveMostrado)) {
                 let html = '';
                 aniversariantes.forEach(a => {
-                    let dn = new Date(a['DATA NASCIMENTO']);
-                    let idade = hoje.getFullYear() - dn.getFullYear();
-                    html += `
-                        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed #ccc; padding:10px 0;">
-                            <div style="font-size: 14px;"><strong>${a['NOME']}</strong> faz ${idade} anos! 🎂</div>
-                            <button class="btn-success" style="width:auto; padding:6px 10px; margin:0; font-size:12px;" onclick="abrirWhatsAppLink('${a['CONTACTO']}', 'Muitos parabéns ${a['NOME']}! 🥳 Grande abraço de toda a equipa do ${nomeClube}!')">📲 Mensagem</button>
-                        </div>`;
+                    let dn = new Date(a['DATA NASCIMENTO']); let idade = hoje.getFullYear() - dn.getFullYear();
+                    html += `<div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed #ccc; padding:10px 0;"><div style="font-size: 14px;"><strong>${a['NOME']}</strong> faz ${idade} anos! 🎂</div><button class="btn-success" style="width:auto; padding:6px 10px; margin:0; font-size:12px;" onclick="abrirWhatsAppLink('${a['CONTACTO']}', 'Muitos parabéns ${a['NOME']}! 🥳 Grande abraço de toda a equipa do ${nomeClube}!')">📲 Mensagem</button></div>`;
                 });
                 document.getElementById('listaAniversariantes').innerHTML = html;
                 document.getElementById('modalAniversario').style.display = 'flex';
@@ -503,15 +600,91 @@
         reader.onload = function(e) {
             const w = XLSX.read(new Uint8Array(e.target.result), {type: 'array'});
             const atletas = XLSX.utils.sheet_to_json(w.Sheets[w.SheetNames[0]], { raw: false });
-            atletas.forEach(a => {
-                a.PRESENCAS = a.PRESENCAS || 0; a.VITORIAS = a.VITORIAS || 0; a.EMPATES = a.EMPATES || 0; 
-                a.DERROTAS = a.DERROTAS || 0; a.GOLOS = a.GOLOS || 0; a.AG = a.AG || 0;
-            });
+            atletas.forEach(a => { a.PRESENCAS = a.PRESENCAS || 0; a.VITORIAS = a.VITORIAS || 0; a.EMPATES = a.EMPATES || 0; a.DERROTAS = a.DERROTAS || 0; a.GOLOS = a.GOLOS || 0; a.AG = a.AG || 0; });
             localStorage.setItem('futsal_atletas', JSON.stringify(atletas)); gerarCartoes(atletas);
-            document.getElementById('areaImportacao').style.display = 'none'; 
-            verificarAniversarios();
+            document.getElementById('areaImportacao').style.display = 'none'; verificarAniversarios();
+        }; reader.readAsArrayBuffer(f);
+    }
+
+    // Função de fechar modais com reset aos campos de pagamento
+    function fecharModal(id) {
+        document.getElementById(id).style.display = 'none';
+        if(id === 'modalPagamento') {
+            document.getElementById('pagRefMes').value = '';
+            document.getElementById('pagRefJogo').value = '';
+            document.getElementById('pagRefOutros').value = '';
+            document.getElementById('pagValor').value = '';
+        }
+    }
+
+    function abrirModalAtleta(nomeOriginal = '') {
+        document.getElementById('atletaNomeOriginal').value = nomeOriginal;
+        let btnApagar = document.getElementById('btnApagarAtleta');
+        if(nomeOriginal) {
+            document.getElementById('tituloModalAtleta').innerText = 'Editar Dados: ' + nomeOriginal;
+            let atletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
+            let atleta = atletas.find(a => a['NOME'] === nomeOriginal);
+            if(atleta) {
+                document.getElementById('atletaNome').value = atleta['NOME'] || '';
+                let dt = atleta['DATA NASCIMENTO'];
+                if(dt && dt.includes('/')) { let p = dt.split('/'); document.getElementById('atletaDataNasc').value = `${p[2]}-${p[1]}-${p[0]}`; }
+                else if(dt && dt.includes('-') && dt.split('-')[0].length === 2) { let p = dt.split('-'); document.getElementById('atletaDataNasc').value = `${p[2]}-${p[1]}-${p[0]}`; }
+                else { document.getElementById('atletaDataNasc').value = dt || ''; }
+                document.getElementById('atletaContacto').value = atleta['CONTACTO'] || '';
+                document.getElementById('atletaEstatuto').value = atleta['ESTATUTO'] || 'Mensalidade';
+                document.getElementById('atletaNivel').value = atleta['NÍVEL'] || 3;
+            }
+            btnApagar.style.display = 'block';
+        } else {
+            document.getElementById('tituloModalAtleta').innerText = 'Novo Atleta';
+            document.getElementById('atletaNome').value = ''; document.getElementById('atletaDataNasc').value = '';
+            document.getElementById('atletaContacto').value = ''; document.getElementById('atletaEstatuto').value = 'Mensalidade';
+            document.getElementById('atletaNivel').value = 3;
+            btnApagar.style.display = 'none';
+        }
+        document.getElementById('modalAtleta').style.display = 'flex';
+    }
+
+    function guardarAtletaManual() {
+        let nomeOriginal = document.getElementById('atletaNomeOriginal').value;
+        let novoNome = document.getElementById('atletaNome').value.trim();
+        if(!novoNome) return alert("O Nome é obrigatório.");
+        
+        let novoAtleta = {
+            'NOME': novoNome,
+            'DATA NASCIMENTO': document.getElementById('atletaDataNasc').value,
+            'CONTACTO': document.getElementById('atletaContacto').value,
+            'ESTATUTO': document.getElementById('atletaEstatuto').value,
+            'NÍVEL': parseInt(document.getElementById('atletaNivel').value) || 3
         };
-        reader.readAsArrayBuffer(f);
+
+        let atletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
+        if(nomeOriginal) {
+            let index = atletas.findIndex(a => a['NOME'] === nomeOriginal);
+            if(index !== -1) {
+                novoAtleta.PRESENCAS = atletas[index].PRESENCAS || 0; novoAtleta.GOLOS = atletas[index].GOLOS || 0; novoAtleta.AG = atletas[index].AG || 0;
+                novoAtleta.VITORIAS = atletas[index].VITORIAS || 0; novoAtleta.EMPATES = atletas[index].EMPATES || 0; novoAtleta.DERROTAS = atletas[index].DERROTAS || 0;
+                atletas[index] = novoAtleta;
+                
+                if(nomeOriginal !== novoNome) {
+                    transacoes.forEach(t => { if(t.atleta === nomeOriginal) t.atleta = novoNome; if(t.descricao.includes(nomeOriginal)) t.descricao = t.descricao.replace(nomeOriginal, novoNome); });
+                    localStorage.setItem('futsal_transacoes', JSON.stringify(transacoes));
+                }
+            }
+        } else {
+            novoAtleta.PRESENCAS = 0; novoAtleta.GOLOS = 0; novoAtleta.AG = 0; novoAtleta.VITORIAS = 0; novoAtleta.EMPATES = 0; novoAtleta.DERROTAS = 0;
+            atletas.push(novoAtleta);
+        }
+        
+        localStorage.setItem('futsal_atletas', JSON.stringify(atletas)); gerarCartoes(atletas); fecharModal('modalAtleta');
+    }
+
+    function apagarAtletaManual() {
+        let nome = document.getElementById('atletaNomeOriginal').value;
+        if(!confirm(`Tem a certeza que quer apagar permanentemente os dados e estatísticas do atleta ${nome}?`)) return;
+        let atletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
+        atletas = atletas.filter(a => a['NOME'] !== nome);
+        localStorage.setItem('futsal_atletas', JSON.stringify(atletas)); gerarCartoes(atletas); fecharModal('modalAtleta');
     }
 
     function obterSaldoAtleta(nome) {
@@ -529,9 +702,13 @@
         let totalJogosAno = Math.max(jogosRegistados, maxPresencas);
 
         atletas.forEach(a => {
-            const nome = a['NOME'] || 'Desconhecido'; const idade = calcularIdade(a['DATA NASCIMENTO']); const est = a['ESTATUTO'] || 'Não definido'; const foto = a['FOTO'] || ''; 
-            let cor = 'status-mensalidade'; if (est.toLowerCase().includes('por jogo')) cor = 'status-por-jogo'; if (est.toLowerCase().includes('convidado')) cor = 'status-convidado';
+            const nome = a['NOME'] || 'Desconhecido'; const idade = calcularIdade(a['DATA NASCIMENTO']); const est = a['ESTATUTO'] || 'Não definido'; 
+            
+            // FOTO RESTAURADA COM A TAG <img> EXATA PARA CARREGAR AS IMAGENS DA PASTA "fotos/"
+            const foto = a['FOTO'] || '';
             let htmlF = foto ? `<img src="fotos/${foto}" class="photo-real">` : `<div class="photo-placeholder"><span>${nome.charAt(0)}</span></div>`;
+            
+            let cor = 'status-mensalidade'; if (est.toLowerCase().includes('por jogo')) cor = 'status-por-jogo'; if (est.toLowerCase().includes('convidado')) cor = 'status-convidado';
             let saldo = obterSaldoAtleta(nome); let badgeSaldo = saldo > 0 ? `<div class="saldo-indicador saldo-negativo">A Pagar: ${saldo.toFixed(2)}€</div>` : (saldo < 0 ? `<div class="saldo-indicador saldo-positivo">Crédito de: ${Math.abs(saldo).toFixed(2)}€</div>` : `<div class="saldo-indicador saldo-neutro">Contas em dia</div>`);
 
             let pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0); let ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0; let ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0;
@@ -540,7 +717,10 @@
                 <div class="athlete-card">
                     <div class="card-header">
                         ${htmlF}
-                        <div class="athlete-info"><h2>${nome}</h2><p class="age">${idade} anos</p><span class="badge ${cor}">${est}</span></div>
+                        <div class="athlete-info">
+                            <h2>${nome} <button class="btn-icon" style="background:transparent; font-size:16px; margin-left:5px;" title="Editar Dados" onclick="abrirModalAtleta('${nome}')">✏️</button></h2>
+                            <p class="age">${idade} anos</p><span class="badge ${cor}">${est}</span>
+                        </div>
                         <a onclick="abrirWhatsAppLink('${a['CONTACTO']}','Olá ${nome}, tudo bem?')" class="btn-whatsapp">💬</a>
                     </div>
                     <div class="stats-section">
@@ -579,6 +759,7 @@
         document.getElementById('editStatE').value = atleta.EMPATES || 0; document.getElementById('editStatD').value = atleta.DERROTAS || 0;
         document.getElementById('modalEditarStats').style.display = 'flex';
     }
+    
     function guardarStatsManuais() {
         let nome = document.getElementById('editStatNome').value; let dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || []; let atleta = dadosAtletas.find(a => a['NOME'] === nome);
         if(atleta) {
@@ -590,12 +771,15 @@
     }
 
     function carregarListaSorteio() {
-        if (equipasMensais && equipasMensais.azul.length > 0) {
+        if (equipasMensais && equipasMensais.azul && equipasMensais.azul.length > 0) {
+            if(!equipasMensais.azulBase) equipasMensais.azulBase = [...equipasMensais.azul];
+            if(!equipasMensais.vermelhaBase) equipasMensais.vermelhaBase = [...equipasMensais.vermelha];
+            
             document.getElementById('areaSorteioCheckboxes').style.display = 'none'; desenharEquipasMemoria(); renderizarJogosMensais(); document.getElementById('areaResultadosSorteio').style.display = 'block';
         } else {
             document.getElementById('areaSorteioCheckboxes').style.display = 'block'; document.getElementById('areaResultadosSorteio').style.display = 'none';
             const listaUI = document.getElementById('listaJogadoresSorteio'); listaUI.innerHTML = ''; const dadosGuardados = localStorage.getItem('futsal_atletas');
-            if (!dadosGuardados) return listaUI.innerHTML = '<p style="text-align:center; color:#999;">Importa o Excel primeiro.</p>';
+            if (!dadosGuardados) return listaUI.innerHTML = '<p style="text-align:center; color:#999;">Sem atletas.</p>';
             JSON.parse(dadosGuardados).forEach((a, index) => { listaUI.innerHTML += `<label class="jogador-checkbox" for="chk_s_${index}">${a['NOME']} <input type="checkbox" id="chk_s_${index}" class="chk-presenca" data-nome="${a['NOME']}" data-nivel="${a['NÍVEL'] || 1}" onchange="atualizarContagemSorteio()" checked></label>`; });
             atualizarContagemSorteio();
         }
@@ -612,7 +796,10 @@
 
     function adicionarConvidadoJogo() {
         const nome = document.getElementById('nomeConvidadoJogo').value.trim(); if(!nome) return alert('Introduza o nome.'); if(!equipasMensais) return;
-        equipasMensais.azul.push(nome + ' (Extra)'); equipasMensais.azul.sort((a,b) => a.localeCompare(b)); localStorage.setItem('futsal_equipas_mensais', JSON.stringify(equipasMensais));
+        let nomeF = nome + ' (Extra)';
+        equipasMensais.azul.push(nomeF); equipasMensais.azul.sort((a,b) => a.localeCompare(b)); 
+        equipasMensais.azulBase.push(nomeF); equipasMensais.azulBase.sort((a,b) => a.localeCompare(b));
+        localStorage.setItem('futsal_equipas_mensais', JSON.stringify(equipasMensais));
         document.getElementById('nomeConvidadoJogo').value = ''; desenharEquipasMemoria();
     }
 
@@ -625,7 +812,12 @@
         let equipaAzul = []; let equipaVermelha = []; let somaNivelAzul = 0; let somaNivelVermelha = 0;
         selecionados.forEach(jogador => { if (somaNivelAzul <= somaNivelVermelha) { equipaAzul.push(jogador.nome); somaNivelAzul += jogador.nivel; } else { equipaVermelha.push(jogador.nome); somaNivelVermelha += jogador.nivel; } });
         equipaAzul.sort((a,b) => a.localeCompare(b)); equipaVermelha.sort((a,b) => a.localeCompare(b));
-        equipasMensais = { azul: equipaAzul, vermelha: equipaVermelha, ausentes: [] }; localStorage.setItem('futsal_equipas_mensais', JSON.stringify(equipasMensais));
+        
+        equipasMensais = { 
+            azulBase: [...equipaAzul], vermelhaBase: [...equipaVermelha],
+            azul: [...equipaAzul], vermelha: [...equipaVermelha], ausentes: [] 
+        }; 
+        localStorage.setItem('futsal_equipas_mensais', JSON.stringify(equipasMensais));
         document.getElementById('areaSorteioCheckboxes').style.display = 'none'; desenharEquipasMemoria(); renderizarJogosMensais(); document.getElementById('areaResultadosSorteio').style.display = 'block';
     }
 
@@ -703,8 +895,12 @@
             if(s.jogou) {
                 let atleta = dadosAtletas.find(a => a['NOME'] === s.nome);
                 if(atleta) {
-                    atleta.PRESENCAS = (atleta.PRESENCAS || 0) + 1; atleta.GOLOS = (atleta.GOLOS || 0) + s.golos; atleta.AG = (atleta.AG || 0) + s.ag;
-                    if(s.resultado === 'V') atleta.VITORIAS = (atleta.VITORIAS || 0) + 1; if(s.resultado === 'E') atleta.EMPATES = (atleta.EMPATES || 0) + 1; if(s.resultado === 'D') atleta.DERROTAS = (atleta.DERROTAS || 0) + 1;
+                    atleta.PRESENCAS = (atleta.PRESENCAS || 0) + 1; 
+                    atleta.GOLOS = (atleta.GOLOS || 0) + s.golos; 
+                    atleta.AG = (atleta.AG || 0) + s.ag;
+                    if(s.resultado === 'V') atleta.VITORIAS = (atleta.VITORIAS || 0) + 1; 
+                    if(s.resultado === 'E') atleta.EMPATES = (atleta.EMPATES || 0) + 1; 
+                    if(s.resultado === 'D') atleta.DERROTAS = (atleta.DERROTAS || 0) + 1;
                 }
             }
         });
@@ -714,7 +910,16 @@
         
         document.querySelectorAll('.input-golo').forEach(inp => inp.value = ''); document.querySelectorAll('.input-ag').forEach(inp => inp.value = '');
         document.getElementById('golosAzul').value = ''; document.getElementById('golosVermelha').value = '';
-        document.querySelectorAll('.chk-jogou').forEach(chk => chk.checked = true); alert("Jogo guardado com sucesso!");
+        document.querySelectorAll('.chk-jogou').forEach(chk => chk.checked = true);
+        
+        // DEVOLVER OS AUSENTES ÀS EQUIPAS ORIGINAIS DA BANCADA
+        equipasMensais.azul = [...(equipasMensais.azulBase || equipasMensais.azul)];
+        equipasMensais.vermelha = [...(equipasMensais.vermelhaBase || equipasMensais.vermelha)];
+        equipasMensais.ausentes = [];
+        localStorage.setItem('futsal_equipas_mensais', JSON.stringify(equipasMensais));
+        desenharEquipasMemoria();
+        
+        alert("Jogo guardado com sucesso! Os jogadores regressaram às suas equipas iniciais.");
     }
 
     function abrirModalEditarJogo(idJogo) {
@@ -770,64 +975,77 @@
         if(confirm("Mês terminado? Isto vai apagar as equipas fixas e o histórico de jogos para começares de novo.")) { localStorage.removeItem('futsal_equipas_mensais'); localStorage.removeItem('futsal_jogos_mensais'); equipasMensais = null; jogosMensais = []; carregarListaSorteio(); }
     }
 
-    // --- PDF E WHATSAPP ---
-    function exportarStatsPDF() {
-        const dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || []; if(dadosAtletas.length === 0) return alert('Sem atletas.');
-        const { jsPDF } = window.jspdf; const doc = new jsPDF(); doc.setFontSize(16); doc.text(`Estatísticas - ${nomeClube}`, 14, 15);
-        let jogosRegistados = jogosMensais.filter(j => j.data.startsWith(anoAtual.toString())).length;
-        let maxPresencas = Math.max(...dadosAtletas.map(a => parseInt(a.PRESENCAS) || 0), 0);
-        let totalJogosAno = Math.max(jogosRegistados, maxPresencas);
-        dadosAtletas.forEach(a => { a.pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0); a.ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0; a.ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0; });
-        dadosAtletas.sort((a,b) => b.pts - a.pts || (b.GOLOS||0) - (a.GOLOS||0) || (a.NOME||'').localeCompare(b.NOME||''));
-        const tableBody = dadosAtletas.map(a => [ a.NOME, a.PRESENCAS||0, a.VITORIAS||0, a.EMPATES||0, a.DERROTAS||0, a.AG||0, `${a.ifreq}%`, a.pts, `${a.ivit}%`, a.GOLOS||0 ]);
-        doc.autoTable({ startY: 25, head: [['Nome', 'Pres.', 'Vit.', 'Emp.', 'Der.', 'AG', 'IF', 'Pts', 'IV', 'Gols']], body: tableBody, headStyles: { fillColor: [0, 122, 255] }, styles: { fontSize: 8 } });
-        doc.save(`Estatisticas_${nomeClube.replace(/\s+/g, '')}.pdf`);
+    // ==========================================
+    // SECÇÃO TESOURARIA
+    // ==========================================
+    function abrirModalDivida(n) { atletaAtual.nome = n; document.getElementById('modalLancarDivida').style.display = 'flex'; document.getElementById('divData').value = hojeISO(); }
+    function confirmarDivida() { gravarTransacao('divida_atleta', document.getElementById('divDesc').value, parseFloat(document.getElementById('divValor').value), '-', document.getElementById('divData').value, atletaAtual.nome); fecharModal('modalLancarDivida'); }
+    function abrirModalPagamento(n) { atletaAtual.nome = n; document.getElementById('modalPagamento').style.display = 'flex'; document.getElementById('pagData').value = hojeISO(); }
+    
+    // FUNÇÃO COM O NOVO CAMPO DE PAGAMENTO
+    function confirmarPagamento() { 
+        const v = parseFloat(document.getElementById('pagValor').value); 
+        if (!v || v <= 0) return alert("Valor inválido."); 
+        
+        const dataRegisto = document.getElementById('pagData').value; 
+        const metodo = document.getElementById('pagMetodo').value; 
+        const refMes = document.getElementById('pagRefMes').value; 
+        const refJogo = document.getElementById('pagRefJogo').value; 
+        const refOutros = document.getElementById('pagRefOutros').value.trim();
+
+        let detalheDesc = ''; 
+        let detalheWhatsApp = '';
+
+        if (refOutros) {
+            detalheDesc = ` (Ref: ${refOutros})`;
+            detalheWhatsApp = `%0A• Referência: ${refOutros}`;
+        } else if (refMes) { 
+            let p = refMes.split('-');
+            if(p.length === 2) {
+                detalheDesc = ` (Ref: Mês ${p[1]}/${p[0]})`; 
+                detalheWhatsApp = `%0A• Referência: Mês ${p[1]}/${p[0]}`; 
+            }
+        } else if (refJogo) { 
+            let p = refJogo.split('-');
+            if(p.length === 3) {
+                detalheDesc = ` (Ref: Jogo ${p[2]}/${p[1]}/${p[0]})`; 
+                detalheWhatsApp = `%0A• Referência: Jogo de ${p[2]}/${p[1]}/${p[0]}`; 
+            }
+        }
+
+        gravarTransacao('entrada', `Pagamento: ${atletaAtual.nome}${detalheDesc}`, v, metodo, dataRegisto, atletaAtual.nome); 
+
+        let saldoAtual = obterSaldoAtleta(atletaAtual.nome); 
+        let textoSaldo = saldoAtual > 0 ? `%0A• Saldo Pendente a pagar: ${saldoAtual.toFixed(2)}€` : (saldoAtual < 0 ? `%0A• Ficas com um crédito de: ${Math.abs(saldoAtual).toFixed(2)}€` : `%0A• Contas em dia! Obrigado.`); 
+        
+        abrirWhatsAppLink(atletaAtual.contacto, `⚽ ${nomeClube} - Recibo ⚽%0AOlá, ${atletaAtual.nome}! Confirmamos a receção de ${v.toFixed(2)}€ via ${metodo}.${detalheWhatsApp}${textoSaldo}%0AAté ao próximo jogo!`); 
+        
+        fecharModal('modalPagamento'); 
     }
 
-    function partilharStatsWA() {
-        const dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || []; if(dadosAtletas.length === 0) return;
-        let jogosRegistados = jogosMensais.filter(j => j.data.startsWith(anoAtual.toString())).length;
-        let maxPresencas = Math.max(...dadosAtletas.map(a => parseInt(a.PRESENCAS) || 0), 0);
-        let totalJogosAno = Math.max(jogosRegistados, maxPresencas);
-        dadosAtletas.forEach(a => { a.pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0); a.ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0; a.ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0; });
-        dadosAtletas.sort((a,b) => b.pts - a.pts || (b.GOLOS||0) - (a.GOLOS||0) || (a.NOME||'').localeCompare(b.NOME||''));
-        let texto = `🏆 *RANKING ${nomeClube.toUpperCase()}* 🏆%0A%0A`;
-        dadosAtletas.forEach((a, idx) => { if((a.PRESENCAS||0) > 0) { texto += `*${idx+1}º ${a.NOME}* - ${a.pts} Pts%0A`; texto += `P:${a.PRESENCAS||0} | V:${a.VITORIAS||0} | E:${a.EMPATES||0} | D:${a.DERROTAS||0} | ⚽ ${a.GOLOS||0} | AG:${a.AG||0} | IF:${a.ifreq}% | IV:${a.ivit}%%0A%0A`; } });
-        window.open(`https://wa.me/?text=${texto}`, '_blank');
+    function abrirModalReceitaAvulsa() { document.getElementById('modalReceitaAvulsa').style.display = 'flex'; document.getElementById('recData').value = hojeISO(); }
+    function confirmarReceitaAvulsa() { gravarTransacao('entrada', document.getElementById('recDesc').value, parseFloat(document.getElementById('recValor').value), document.getElementById('recMetodo').value, document.getElementById('recData').value); fecharModal('modalReceitaAvulsa'); }
+    function abrirModalDespesa() { document.getElementById('modalDespesa').style.display = 'flex'; document.getElementById('despData').value = hojeISO(); }
+    function confirmarDespesa() { gravarTransacao('saida', document.getElementById('despDesc').value, parseFloat(document.getElementById('despValor').value), document.getElementById('despMetodo').value, document.getElementById('despData').value); fecharModal('modalDespesa'); }
+
+    function gravarTransacao(t, desc, v, m, d, a = null) { transacoes.push({ id: gerarId(), data: d, tipo: t, descricao: desc, valor: v, metodo: m, atleta: a }); salvarEAtualizar(); }
+    function salvarEAtualizar() { transacoes.sort((a,b) => a.data.localeCompare(b.data)); localStorage.setItem('futsal_transacoes', JSON.stringify(transacoes)); atualizarTesouraria(); const d = localStorage.getItem('futsal_atletas'); if (d) gerarCartoes(JSON.parse(d)); }
+
+    function atualizarTesouraria() {
+        let saldos = { Total: 0, Dinheiro: 0, 'MB Way': 0, Transferência: 0, Outros: 0 };
+        const listaDOM = document.getElementById('listaExtrato'); listaDOM.innerHTML = '';
+        let tAno = transacoes.filter(t => t.data.startsWith(anoAtual.toString()) && t.tipo !== 'divida_atleta');
+        tAno.forEach(t => { let m = t.tipo === 'entrada' ? 1 : -1; saldos.Total += (t.valor * m); if(saldos[t.metodo] !== undefined) saldos[t.metodo] += (t.valor * m); });
+        
+        let listaInvertida = [...tAno].reverse();
+        if(listaInvertida.length === 0) listaDOM.innerHTML = '<p style="text-align:center; color:#999; font-size:13px;">Sem movimentos neste ano.</p>';
+        listaInvertida.forEach(t => {
+            let corCSS = t.tipo === 'entrada' ? 'var(--green-win)' : 'var(--red-loss)'; let s = t.tipo === 'entrada' ? '+' : '-';
+            listaDOM.innerHTML += `<div class="transacao-item"><div><div class="t-desc">${t.descricao}</div><div style="font-size:11px; color:#777;">${formatarDataPT(t.data)} • ${t.metodo}</div></div><div style="color:${corCSS}; font-weight:bold;">${s}${t.valor.toFixed(2)}€</div><div class="t-acoes"><button class="btn-icon" onclick="abrirEditarTransacao('${t.id}')">✏️</button><button class="btn-icon" onclick="apagarTransacao('${t.id}')">❌</button></div></div>`;
+        });
+        document.getElementById('saldoTotal').innerText = saldos.Total.toFixed(2) + ' €'; document.getElementById('saldoDinheiro').innerText = saldos.Dinheiro.toFixed(2) + ' €'; document.getElementById('saldoMBWay').innerText = saldos['MB Way'].toFixed(2) + ' €'; document.getElementById('saldoTransferencia').innerText = saldos.Transferência.toFixed(2) + ' €'; document.getElementById('saldoOutros').innerText = saldos.Outros.toFixed(2) + ' €';
     }
 
-    function partilharSorteioWhatsApp() {
-        if(!equipasMensais || equipasMensais.azul.length === 0) return;
-        let azuis = [...equipasMensais.azul].sort((a,b) => a.localeCompare(b)); let vermelhos = [...equipasMensais.vermelha].sort((a,b) => a.localeCompare(b));
-        let texto = `⚽ *EQUIPAS ${nomeClube.toUpperCase()}* ⚽%0A%0A🔵 *EQUIPA AZUL (${azuis.length}):*%0A${azuis.map(n => `• ${n}`).join('%0A')}%0A%0A🔴 *EQUIPA VERMELHA (${vermelhos.length}):*%0A${vermelhos.map(n => `• ${n}`).join('%0A')}%0A%0A_Bons jogos!_`;
-        window.open(`https://wa.me/?text=${texto}`, '_blank');
-    }
-
-    // --- FINANÇAS E BACKUP ---
-    function abrirModalSaldoInicial() { document.getElementById('siData').value = hojeISO(); document.getElementById('siDesc').value = 'Transporte do exercício anterior'; document.getElementById('siValor').value = ''; document.getElementById('modalSaldoInicial').style.display = 'flex'; }
-    function confirmarSaldoInicial() { const desc = document.getElementById('siDesc').value || 'Saldo Inicial'; const v = parseFloat(document.getElementById('siValor').value); if (!v || v <= 0) return alert("Valor inválido."); gravarTransacao('entrada', desc, v, document.getElementById('siMetodo').value, document.getElementById('siData').value); fecharModal('modalSaldoInicial'); }
-    function exportarBackup() { const dados = JSON.stringify(localStorage); const blob = new Blob([dados], { type: "application/json" }); const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = url; a.download = `Backup_${nomeClube.replace(/\s+/g, '')}_${hojeISO()}.json`; document.body.appendChild(a); a.click(); document.body.removeChild(a); }
-    function importarBackup(event) { const file = event.target.files[0]; if(!file) return; const reader = new FileReader(); reader.onload = function(e) { try { const dados = JSON.parse(e.target.result); localStorage.clear(); for (let key in dados) { localStorage.setItem(key, dados[key]); } alert("Backup restaurado com sucesso!"); window.location.reload(); } catch (err) { alert("Ficheiro inválido."); } }; reader.readAsText(file); }
-
-    function fecharModal(id) { document.getElementById(id).style.display = 'none'; if(id === 'modalPagamento') { document.getElementById('pagRefMes').value = ''; document.getElementById('pagRefJogo').value = ''; document.getElementById('pagValor').value = ''; } }
-    function gerarId() { return Date.now().toString() + Math.floor(Math.random()*1000); }
-
-    function abrirModalDivida(nome) { atletaAtual.nome = nome; document.getElementById('tituloModalDivida').innerText = 'Dívida: ' + nome; document.getElementById('divData').value = hojeISO(); document.getElementById('divDesc').value = ''; document.getElementById('divValor').value = ''; document.getElementById('modalLancarDivida').style.display = 'flex'; }
-    function confirmarDivida() { const v = parseFloat(document.getElementById('divValor').value); const desc = document.getElementById('divDesc').value; if (!v || v <= 0 || !desc) return alert("Preencha descrição e valor."); gravarTransacao('divida_atleta', desc, v, '-', document.getElementById('divData').value, atletaAtual.nome); fecharModal('modalLancarDivida'); }
-    function abrirModalPagamento(nome, cont) { atletaAtual = { nome, contacto: cont }; document.getElementById('tituloModalPagamento').innerText = 'Pagamento: ' + nome; document.getElementById('pagData').value = hojeISO(); document.getElementById('modalPagamento').style.display = 'flex'; }
-    function confirmarPagamento() {
-        const v = parseFloat(document.getElementById('pagValor').value); if (!v || v <= 0) return alert("Valor inválido.");
-        const dataRegisto = document.getElementById('pagData').value; const metodo = document.getElementById('pagMetodo').value;
-        const refMes = document.getElementById('pagRefMes').value; const refJogo = document.getElementById('pagRefJogo').value;
-        let detalheDesc = ''; let detalheWhatsApp = '';
-        if (refMes) { detalheDesc = ` (Ref: Mês ${refMes.split('-')[1]}/${refMes.split('-')[0]})`; detalheWhatsApp = `%0A• Referência: Mês ${refMes.split('-')[1]}/${refMes.split('-')[0]}`; } 
-        else if (refJogo) { detalheDesc = ` (Ref: Jogo ${refJogo.split('-')[2]}/${refJogo.split('-')[1]}/${refJogo.split('-')[0]})`; detalheWhatsApp = `%0A• Referência: Jogo de ${refJogo.split('-')[2]}/${refJogo.split('-')[1]}/${refJogo.split('-')[0]}`; }
-        gravarTransacao('entrada', `Pagamento: ${atletaAtual.nome}${detalheDesc}`, v, metodo, dataRegisto, atletaAtual.nome);
-        let saldoAtual = obterSaldoAtleta(atletaAtual.nome);
-        let textoSaldo = saldoAtual > 0 ? `%0A• Saldo Pendente a pagar: ${saldoAtual.toFixed(2)}€` : (saldoAtual < 0 ? `%0A• Ficas com um crédito de: ${Math.abs(saldoAtual).toFixed(2)}€` : `%0A• Contas em dia! Obrigado.`);
-        abrirWhatsAppLink(atletaAtual.contacto, `⚽ ${nomeClube} - Recibo ⚽%0AOlá, ${atletaAtual.nome}! Confirmamos a receção de ${v.toFixed(2)}€ via ${metodo}.${detalheWhatsApp}${textoSaldo}%0AAté ao próximo jogo!`);
-        fecharModal('modalPagamento');
-    }
     function abrirHistoricoAtleta(nome) {
         const lista = document.getElementById('listaHistoricoAtleta'); lista.innerHTML = '';
         let movs = transacoes.filter(t => (t.atleta === nome) || (t.tipo === 'entrada' && t.descricao.startsWith('Pagamento: ' + nome)));
@@ -842,37 +1060,10 @@
         }
         document.getElementById('tituloModalHistorico').innerText = 'Conta Corrente: ' + nome; document.getElementById('modalHistoricoAtleta').style.display = 'flex';
     }
-    function abrirModalReceitaAvulsa() { document.getElementById('recData').value = hojeISO(); document.getElementById('modalReceitaAvulsa').style.display = 'flex'; }
-    function confirmarReceitaAvulsa() { gravarTransacao('entrada', document.getElementById('recDesc').value || 'Receita Extra', parseFloat(document.getElementById('recValor').value), document.getElementById('recMetodo').value, document.getElementById('recData').value); fecharModal('modalReceitaAvulsa'); }
-    function abrirModalDespesa() { document.getElementById('despData').value = hojeISO(); document.getElementById('modalDespesa').style.display = 'flex'; }
-    function confirmarDespesa() { gravarTransacao('saida', document.getElementById('despDesc').value, parseFloat(document.getElementById('despValor').value), document.getElementById('despMetodo').value, document.getElementById('despData').value); fecharModal('modalDespesa'); }
-    function atualizarSelectCategorias() { const sel = document.getElementById('despDesc'); sel.innerHTML = ''; categoriasDespesa.forEach(c => { let opt = document.createElement('option'); opt.value = c; opt.innerText = c; sel.appendChild(opt); }); }
-    function abrirModalCategorias() { desenharListaCategorias(); document.getElementById('modalCategorias').style.display = 'flex'; }
-    function desenharListaCategorias() { const ul = document.getElementById('listaCatUI'); ul.innerHTML = ''; categoriasDespesa.forEach((c, i) => { ul.innerHTML += `<li class="cat-item"><span>${c}</span><button onclick="removerCategoria(${i})">X</button></li>`; }); }
-    function addCategoria() { const val = document.getElementById('novaCat').value.trim(); if(val && !categoriasDespesa.includes(val)) { categoriasDespesa.push(val); localStorage.setItem('futsal_cat_despesas', JSON.stringify(categoriasDespesa)); desenharListaCategorias(); } }
-    function removerCategoria(idx) { categoriasDespesa.splice(idx, 1); localStorage.setItem('futsal_cat_despesas', JSON.stringify(categoriasDespesa)); desenharListaCategorias(); }
-    function fecharModalCategorias() { atualizarSelectCategorias(); fecharModal('modalCategorias'); }
 
-    function gravarTransacao(tipo, desc, valor, metodo, data, atleta = null) { transacoes.push({ id: gerarId(), data: data, tipo: tipo, descricao: desc, valor: valor, metodo: metodo, atleta: atleta }); salvarEAtualizar(); }
     function apagarTransacao(id) { if(confirm('Apagar este movimento?')) { transacoes = transacoes.filter(t => t.id !== id); salvarEAtualizar(); if(document.getElementById('modalHistoricoAtleta').style.display === 'flex') abrirHistoricoAtleta(document.getElementById('tituloModalHistorico').innerText.replace('Conta Corrente: ', '')); } }
     function abrirEditarTransacao(id) { const t = transacoes.find(x => x.id === id); if(!t) return; document.getElementById('editId').value = t.id; document.getElementById('editTipo').value = t.tipo; document.getElementById('editData').value = t.data; document.getElementById('editDesc').value = t.descricao; document.getElementById('editValor').value = t.valor; document.getElementById('editMetodo').value = t.metodo; if(document.getElementById('modalHistoricoAtleta').style.display === 'flex') fecharModal('modalHistoricoAtleta'); document.getElementById('modalEditarT').style.display = 'flex'; }
     function guardarEdicaoT() { const id = document.getElementById('editId').value; const index = transacoes.findIndex(x => x.id === id); if(index > -1) { transacoes[index].data = document.getElementById('editData').value; transacoes[index].descricao = document.getElementById('editDesc').value; transacoes[index].valor = parseFloat(document.getElementById('editValor').value); transacoes[index].metodo = document.getElementById('editMetodo').value; salvarEAtualizar(); fecharModal('modalEditarT'); if(transacoes[index].atleta) abrirHistoricoAtleta(transacoes[index].atleta); } }
-    function salvarEAtualizar() { transacoes.sort((a,b) => a.data.localeCompare(b.data)); localStorage.setItem('futsal_transacoes', JSON.stringify(transacoes)); atualizarTesouraria(); const dados = localStorage.getItem('futsal_atletas'); if (dados) gerarCartoes(JSON.parse(dados)); }
-
-    function atualizarTesouraria() {
-        let saldos = { Total: 0, Dinheiro: 0, 'MB Way': 0, Transferência: 0, Outros: 0 };
-        const listaDOM = document.getElementById('listaExtrato'); listaDOM.innerHTML = '';
-        let transAnoAtual = transacoes.filter(t => t.data.startsWith(anoAtual.toString()) && t.tipo !== 'divida_atleta');
-        transAnoAtual.forEach(t => { let mult = t.tipo === 'entrada' ? 1 : -1; saldos.Total += (t.valor * mult); if(saldos[t.metodo] !== undefined) saldos[t.metodo] += (t.valor * mult); });
-        
-        let listaInvertida = [...transAnoAtual].reverse();
-        if(listaInvertida.length === 0) listaDOM.innerHTML = '<p style="text-align:center; color:#999; font-size:13px;">Sem movimentos neste ano.</p>';
-        listaInvertida.forEach(t => {
-            let corCSS = t.tipo === 'entrada' ? 'entrada' : 'saida'; let sinal = t.tipo === 'entrada' ? '+' : '-';
-            listaDOM.innerHTML += `<div class="transacao-item"><div class="t-info"><span class="t-desc">${t.descricao}</span><span class="t-data">${formatarDataPT(t.data)} • ${t.metodo}</span></div><div class="t-valor-container"><div class="t-valor ${corCSS}">${sinal}${t.valor.toFixed(2)}€</div></div><div class="t-acoes"><button class="btn-icon" onclick="abrirEditarTransacao('${t.id}')">✏️</button><button class="btn-icon" onclick="apagarTransacao('${t.id}')">❌</button></div></div>`;
-        });
-        document.getElementById('saldoTotal').innerText = saldos.Total.toFixed(2) + ' €'; document.getElementById('saldoDinheiro').innerText = saldos.Dinheiro.toFixed(2) + ' €'; document.getElementById('saldoMBWay').innerText = saldos['MB Way'].toFixed(2) + ' €'; document.getElementById('saldoTransferencia').innerText = saldos.Transferência.toFixed(2) + ' €'; document.getElementById('saldoOutros').innerText = saldos.Outros.toFixed(2) + ' €';
-    }
 
     function fecharContasAno() {
         if(!confirm(`Isto irá calcular os saldos atuais e criar o transporte automático para ${anoAtual+1}. Deseja continuar?`)) return;
@@ -885,35 +1076,113 @@
         document.getElementById('selectAnoBase').value = anoAtual + 1; mudarAnoBase(); salvarEAtualizar(); alert(`Sucesso! Contas fechadas. Saldos transportados para ${anoAtual+1}.`);
     }
 
-    function limparDadosSistema() {
-        if(confirm("ATENÇÃO: Tens a certeza que queres APAGAR TODOS os dados? Esta ação não pode ser desfeita!")) {
-            if(confirm("Última confirmação: APAGAR TUDO e começar do zero?")) {
-                localStorage.clear(); window.location.reload();
-            }
-        }
+    // ==========================================
+    // EXPORTAR E IMPORTAR VIA NATIVE SHARE
+    // ==========================================
+    async function exportarStatsPDF() {
+        const d = JSON.parse(localStorage.getItem('futsal_atletas')) || []; if(d.length === 0) return alert("Sem dados.");
+        const { jsPDF } = window.jspdf; const doc = new jsPDF(); doc.setFontSize(16); doc.text(`Estatísticas - ${nomeClube}`, 14, 15);
+        
+        let jogosRegistados = jogosMensais.filter(j => j.data.startsWith(anoAtual.toString())).length;
+        let maxPresencas = Math.max(...d.map(a => parseInt(a.PRESENCAS) || 0), 0);
+        let totalJogosAno = Math.max(jogosRegistados, maxPresencas);
+        
+        d.forEach(a => { 
+            a.pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0); 
+            a.ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0; 
+            a.ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0; 
+        });
+        
+        d.sort((a,b) => b.pts - a.pts || (b.GOLOS||0) - (a.GOLOS||0) || (a.NOME||'').localeCompare(b.NOME||''));
+        const tb = d.map(a => [ a.NOME, a.PRESENCAS||0, a.VITORIAS||0, a.EMPATES||0, a.DERROTAS||0, a.AG||0, `${a.ifreq}%`, a.pts, `${a.ivit}%`, a.GOLOS||0 ]);
+        
+        doc.autoTable({ startY: 25, head: [['Nome', 'P', 'V', 'E', 'D', 'AG', 'IF', 'Pts', 'IV', 'Gols']], body: tb, headStyles: { fillColor: [0, 122, 255] }, styles: { fontSize: 8 } });
+        
+        partilharFicheiro(doc.output('blob'), `Estatisticas_${nomeClube.replace(/\s+/g, '')}.pdf`, 'application/pdf');
+    }
+    
+    async function gerarPDF() {
+        const { jsPDF } = window.jspdf; const doc = new jsPDF(); doc.setFontSize(16); doc.text(`Tesouraria - ${nomeClube}`, 14, 15);
+        let t = transacoes.filter(x => x.tipo !== 'divida_atleta');
+        const tb = t.map(x => [ formatarDataPT(x.data), x.descricao, x.tipo==='entrada'?x.valor+'€':'', x.tipo==='saida'?x.valor+'€':'' ]);
+        doc.autoTable({ startY: 25, head: [['Data', 'Descricao', 'Entrada', 'Saida']], body: tb, headStyles: { fillColor: [0, 122, 255] } });
+        
+        partilharFicheiro(doc.output('blob'), `Contas_${nomeClube.replace(/\s+/g, '')}.pdf`, 'application/pdf');
     }
 
-    function gerarPDF() {
-        const dataI = document.getElementById('pdfDataI').value; const dataF = document.getElementById('pdfDataF').value;
-        if(!dataI || !dataF) return alert('Por favor selecione a Data Inicial e Final.');
-        let filtradas = transacoes.filter(t => t.data >= dataI && t.data <= dataF && t.tipo !== 'divida_atleta'); filtradas.sort((a,b) => a.data.localeCompare(b.data));
-        if(filtradas.length === 0) return alert('Sem movimentos de tesouraria nestas datas.');
-        const { jsPDF } = window.jspdf; const doc = new jsPDF();
-        doc.setFontSize(16); doc.text(`Conta Corrente - ${nomeClube}`, 14, 15); doc.setFontSize(10); doc.text(`Período: ${formatarDataPT(dataI)} a ${formatarDataPT(dataF)}`, 14, 22);
-        let sEntradas = 0, sSaidas = 0;
-        const tableBody = filtradas.map(t => { if(t.tipo === 'entrada') sEntradas += t.valor; if(t.tipo === 'saida') sSaidas += t.valor; return [ formatarDataPT(t.data), t.descricao, t.metodo, t.tipo === 'entrada' ? t.valor.toFixed(2)+'€' : '', t.tipo === 'saida' ? t.valor.toFixed(2)+'€' : '' ]; });
-        doc.autoTable({ startY: 30, head: [['Data', 'Descrição', 'Método', 'Entrada', 'Saída']], body: tableBody, headStyles: { fillColor: [0, 122, 255] } });
-        let yPos = doc.lastAutoTable.finalY + 15;
-        doc.setFontSize(12); doc.text(`Resumo do Período:`, 14, yPos); doc.text(`Total Entradas: ${sEntradas.toFixed(2)}€`, 14, yPos + 7); doc.text(`Total Saídas: ${sSaidas.toFixed(2)}€`, 14, yPos + 14); doc.text(`Balanço: ${(sEntradas - sSaidas).toFixed(2)}€`, 14, yPos + 21);
-        doc.save(`Tesouraria_${nomeClube.replace(/\s+/g, '')}.pdf`);
+    async function exportarBackup() { 
+        const dados = JSON.stringify(localStorage);
+        const blob = new Blob([dados], { type: "application/json" });
+        partilharFicheiro(blob, `Backup_Clube_${hojeISO()}.json`, 'application/json');
+    }
+
+    function importarBackup(e) {
+        const file = e.target.files[0]; if(!file) return;
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+            try {
+                const dados = JSON.parse(ev.target.result);
+                localStorage.clear(); for (let key in dados) { localStorage.setItem(key, dados[key]); }
+                alert("Backup Restaurado com Sucesso!"); window.location.reload();
+            } catch (err) { alert("Ficheiro inválido."); }
+        }; reader.readAsText(file);
+    }
+    
+    // ==========================================
+    // INTEGRAÇÃO NATIVA WHATSAPP (A funcionar)
+    // ==========================================
+    function abrirAppWhatsApp(texto, telefone = '') {
+        try {
+            let urlApp = telefone ? `whatsapp://send?phone=${telefone}&text=${texto}` : `whatsapp://send?text=${texto}`;
+            let urlWeb = telefone ? `https://wa.me/${telefone}?text=${texto}` : `https://api.whatsapp.com/send?text=${texto}`;
+            window.location.href = urlApp;
+            setTimeout(() => { window.open(urlWeb, '_blank'); }, 600);
+        } catch(e) { console.log("Erro ao abrir WhatsApp"); }
     }
 
     function abrirWhatsAppLink(contacto, texto) {
         if(!contacto) return;
-        let telefone = contacto.toString().replace(/\s/g,''); if (!telefone.startsWith('351') && !telefone.startsWith('+')) telefone = '351' + telefone;
-        window.open(`https://wa.me/${telefone}?text=${texto}`, '_blank');
+        let telefone = contacto.toString().replace(/\s/g,''); 
+        if (!telefone.startsWith('351') && !telefone.startsWith('+')) telefone = '351' + telefone;
+        abrirAppWhatsApp(texto, telefone);
     }
-</script>
 
+    function partilharStatsWA() {
+        const dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || []; 
+        if(dadosAtletas.length === 0) return alert("Sem dados.");
+        
+        let jogosRegistados = jogosMensais.filter(j => j.data.startsWith(anoAtual.toString())).length;
+        let maxPresencas = Math.max(...dadosAtletas.map(a => parseInt(a.PRESENCAS) || 0), 0);
+        let totalJogosAno = Math.max(jogosRegistados, maxPresencas);
+        
+        dadosAtletas.forEach(a => { 
+            a.pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0); 
+            a.ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0; 
+            a.ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0; 
+        });
+        
+        dadosAtletas.sort((a,b) => b.pts - a.pts || (b.GOLOS||0) - (a.GOLOS||0) || (a.NOME||'').localeCompare(b.NOME||''));
+        
+        let texto = `🏆 *RANKING ${nomeClube.toUpperCase()}* 🏆%0A%0A`;
+        dadosAtletas.forEach((a, idx) => { 
+            if((a.PRESENCAS||0) > 0) { 
+                texto += `*${idx+1}º ${a.NOME}* - ${a.pts} Pts%0A`; 
+                texto += `P:${a.PRESENCAS||0} | V:${a.VITORIAS||0} | E:${a.EMPATES||0} | D:${a.DERROTAS||0} | ⚽ ${a.GOLOS||0} | AG:${a.AG||0} | IF:${a.ifreq}% | IV:${a.ivit}%%0A%0A`; 
+            } 
+        });
+        
+        abrirAppWhatsApp(texto);
+    }
+
+    function partilharSorteioWhatsApp() {
+        if(!equipasMensais || equipasMensais.azul.length === 0) return alert("Sem equipas geradas.");
+        let azuis = [...equipasMensais.azul].sort((a,b) => a.localeCompare(b)); 
+        let vermelhos = [...equipasMensais.vermelha].sort((a,b) => a.localeCompare(b));
+        let texto = `⚽ *EQUIPAS ${nomeClube.toUpperCase()}* ⚽%0A%0A🔵 *EQUIPA AZUL (${azuis.length}):*%0A${azuis.map(n => `• ${n}`).join('%0A')}%0A%0A🔴 *EQUIPA VERMELHA (${vermelhos.length}):*%0A${vermelhos.map(n => `• ${n}`).join('%0A')}%0A%0A_Bons jogos!_`;
+        abrirAppWhatsApp(texto);
+    }
+
+    function limparDadosSistema() { if(confirm("ATENÇÃO: APAGAR TUDO e formatar? Esta ação não pode ser desfeita!")) { localStorage.clear(); window.location.reload(); } }
+</script>
 </body>
 </html>

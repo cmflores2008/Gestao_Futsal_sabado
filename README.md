@@ -1,23 +1,32 @@
-# 🏆 Gestor de Clube Desportivo (Web App Universal)
+## Gestão Clube - Futsal & Futebol Amador
 
-Esta é uma aplicação web completa (HTML, CSS, JS puro) para gerir um grupo desportivo amador. É totalmente adaptável a qualquer desporto e clube, permitindo a gestão de jogadores, estatísticas avançadas de desempenho, formação automática de equipas (sorteios) e tesouraria completa.
+Uma aplicação nativa (offline-first) desenvolvida para facilitar a gestão completa de grupos desportivos amadores, equipas de futsal e peladinhas semanais. Construída para operar sem necessidade de servidores externos, garantindo 100% de privacidade dos dados no dispositivo do utilizador.
 
-A aplicação funciona inteiramente no browser e guarda a base de dados no armazenamento local do teu dispositivo (`localStorage`), garantindo rapidez extrema e total privacidade (offline-first).
+## 🚀 Funcionalidades Principais
 
-## 📂 Estrutura de Ficheiros Necessária
-Para que a aplicação funcione corretamente no teu computador ou quando a alojares na internet (ex: num servidor ou GitHub Pages), a pasta do projeto deve ter a seguinte estrutura:
+* **Gestão Total de Atletas:** Adição manual de jogadores ou importação em massa via ficheiro Excel (compatível com dados exportados).
+* **Estatísticas Avançadas:** Cálculo automático de Presenças, Golos, Auto Golos (AG), Vitórias, Empates e Derrotas. Geração de Índices de Frequência (IF) e Índices de Vitória (IV).
+* **Sorteio Inteligente:** Criação automática e equilibrada de equipas (Azul vs. Vermelha) baseada no nível dos jogadores (1 a 5).
+* **Modo de Jogo & Bancada:** Registo de golos individuais, gestão de convidados extra e sistema de "Ausentes" (drag-and-drop) com retorno automático à equipa base após gravação do resultado.
+* **Tesouraria Completa:** Controlo de Conta Corrente (Entradas, Saídas, Dívidas de Atletas e Saldos em Dinheiro/MBWay/Transferência).
+* **Exportação e Partilha:** Geração de relatórios PDF (Estatísticas e Finanças) e partilha direta de classificações e convocatórias via WhatsApp.
+* **White-Label e Multilingue:** Personalização com o nome e emblema do clube do utilizador. Suporte nativo para Português, Inglês e Espanhol.
 
-```text
-/a-tua-pasta-do-projeto
-│
-├── index.html               # O código principal da aplicação
-├── logo.jpg                 # O logotipo do teu clube (aparece no topo da app)
-├── elementos_clube.xlsx     # A base de dados Excel inicial com os atletas
-│
-└── /fotos                   # Pasta (opcional) com as fotos dos jogadores
-    ├── joao.jpg
-    ├── mario.png
-    └── …
+## 🛠️ Tecnologias Utilizadas
+* **Frontend:** HTML5, CSS3, Vanilla JavaScript (ES6+).
+* **Armazenamento:** `localStorage` (Base de dados local e privada).
+* **Bibliotecas:** `SheetJS` (Leitura de Excel), `jsPDF` e `jsPDF-AutoTable` (Geração de documentos).
+* **Empacotamento Nativo:** Capacitor (Conversão web para Android `.aab` / iOS).
+
+## 🔒 Privacidade e Segurança (Offline-First)
+A aplicação não requer criação de conta, login ou subscrições na cloud. Toda a base de dados (estatísticas, saldos financeiros e logótipos) vive exclusivamente no interior do smartphone do utilizador. Os backups são gerados em formato `.json` localmente.
+
+## 📦 Deploy para Android (Google Play Store)
+O projeto está configurado via Capacitor para gerar um Android App Bundle (`.aab`).
+1. `npm install`
+2. `npx cap sync android`
+3. `npx cap open android`
+4. Gerar Signed Bundle via Android Studio.
 
 
 
