@@ -3,7 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestão de Clube</title>
+    <title>Gestão de Clube - Futsal & Futebol Amador</title>
+    <meta name="description" content="Aplicação de gestão completa de grupos desportivos amadores e equipas de futsal com sorteio inteligente, registo de jogos, estatísticas e tesouraria.">
+    <meta property="og:title" content="Gestão de Clube - Futsal & Futebol Amador">
+    <meta property="og:description" content="Aplicação de gestão completa de grupos desportivos amadores e equipas de futsal com sorteio inteligente, registo de jogos, estatísticas e tesouraria.">
+    <link rel="icon" href="logo.jpg">
+
+    <script>
+        (function() {
+            const _alert = window.alert;
+            window.alert = function(msg) {
+                try {
+                    if (_alert) _alert.call(window, msg);
+                } catch(e) {
+                    console.warn('[Blocked alert in iframe]:', msg);
+                    const toast = document.createElement('div');
+                    toast.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#1f2937;color:#fff;padding:10px 20px;border-radius:8px;z-index:999999;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,0.25);text-align:center;max-width:90%;';
+                    toast.textContent = msg;
+                    (document.body || document.documentElement).appendChild(toast);
+                    setTimeout(() => toast.remove(), 3500);
+                }
+            };
+            const _confirm = window.confirm;
+            window.confirm = function(msg) {
+                try {
+                    if (_confirm) return _confirm.call(window, msg);
+                } catch(e) {
+                    console.warn('[Blocked confirm in iframe]:', msg);
+                    return true;
+                }
+                return true;
+            };
+        })();
+    </script>
 
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -200,6 +232,18 @@
 
 <div class="container-central">
     
+    <!-- BANNER DE LEMBRETE DO PRÓXIMO JOGO (Visível se o jogo for hoje ou amanhã) -->
+    <div id="bannerLembreteProximoJogo" style="display: none; background: #fffde7; border: 1px solid #ffe082; border-left: 5px solid #ffb300; border-radius: var(--border-radius); padding: 12px 14px; margin-bottom: 15px; font-size: 13px; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.04); gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 22px;">⏰</span>
+            <div>
+                <strong style="color: #b78103; font-size: 13px;">Lembrete de Jogo:</strong>
+                <div id="bannerLembreteTexto" style="color: #424242; font-size: 13px;"></div>
+            </div>
+        </div>
+        <button class="btn-small" style="background: var(--green-win); color: white; border: none; padding: 6px 12px; font-weight: bold; flex-shrink: 0; border-radius: 6px; cursor: pointer;" onclick="enviarLembreteWhatsApp()">📲 Avisar</button>
+    </div>
+    
     <div id="ecra-equipa" class="ecra ativo">
         <div style="display: flex; gap: 10px; margin-bottom: 15px;">
             <button class="btn-small" style="flex: 1; padding: 10px; background: #e3f2fd; color: var(--primary-blue);" onclick="exportarStatsPDF()">📄 PDF Estatísticas</button>
@@ -222,6 +266,27 @@
     </div>
 
     <div id="ecra-sorteio" class="ecra">
+        
+        <!-- CARD DE HORÁRIO RECORRENTE & LEMBRETE WHATSAPP -->
+        <div class="seccao-branca" style="background: linear-gradient(145deg, #ffffff 0%, #f4f9ff 100%); border: 1px solid #d0e7ff; margin-bottom: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e1effe; padding-bottom: 8px; margin-bottom: 10px;">
+                <h3 style="margin: 0; border: none; padding: 0; color: var(--primary-blue); font-size: 15px; display: flex; align-items: center; gap: 6px;">
+                    ⏰ Agenda Recorrente & Convocatória
+                </h3>
+                <button class="btn-small" onclick="abrirModalHorario()" style="background: #e3f2fd; color: var(--primary-blue); padding: 5px 10px; cursor: pointer;">⚙️ Configurar</button>
+            </div>
+            
+            <div id="infoHorarioDisplay" style="margin-bottom: 12px; font-size: 13px; line-height: 1.5;"></div>
+
+            <div style="display: flex; gap: 8px;">
+                <button class="btn-success" style="margin-bottom: 0; flex: 2; padding: 10px; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 6px;" onclick="enviarLembreteWhatsApp()">
+                    <span>📲 Enviar Lembrete no WhatsApp</span>
+                </button>
+                <button class="btn-small" style="flex: 1; padding: 10px; font-size: 13px; background: #f0f0f0; color: var(--text-main);" onclick="copiarLembreteTexto()" title="Copiar texto para colar">
+                    📋 Copiar
+                </button>
+            </div>
+        </div>
         
         <div id="areaSorteioCheckboxes">
             <div class="seccao-branca" style="background: #f8fcfd; border: 1px solid #e1f5fe;">
@@ -402,13 +467,23 @@
 <div id="modalPagamento" class="modal">
     <div class="modal-content">
         <h3 id="tituloModalPagamento">Registar Pagamento</h3>
+        
+        <div id="infoDividaModalPagamento" style="background: #eef6ff; border: 1px solid #cce5ff; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #1e3a8a; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-weight: 500;">Dívida Acumulada:</span>
+            <strong id="valorDividaAcumuladaDisplay">0,00 €</strong>
+        </div>
+
         <div><label>Data</label><input type="date" id="pagData"></div>
         <div style="background: #f9f9f9; padding: 10px; border-radius: 8px; border: 1px solid #eee;">
             <div style="margin-bottom: 8px;"><label>Mês de Ref.</label><input type="month" id="pagRefMes"></div>
             <div style="margin-bottom: 8px;"><label>Data do Jogo</label><input type="date" id="pagRefJogo"></div>
             <div><label>Outros Pagamentos</label><input type="text" id="pagRefOutros" placeholder="Ex: Equipamento, Multa..."></div>
         </div>
-        <div><label>Valor (€)</label><input type="number" id="pagValor" step="0.1"></div>
+        <div>
+            <label>Valor (€)</label>
+            <input type="number" id="pagValor" step="0.1" oninput="verificarExcedenteEmTempoReal()" placeholder="0.00">
+            <div id="avisoExcedenteInput" style="display: none; font-size: 12px; color: #d97706; margin-top: 5px; font-weight: 500; padding: 4px 8px; background: #fffbe6; border-radius: 6px; border: 1px solid #ffe58f;"></div>
+        </div>
         <div><label>Método</label><select id="pagMetodo">
             <option value="Dinheiro">Dinheiro</option>
             <option value="MB Way">MB Way</option>
@@ -418,6 +493,39 @@
         <div class="modal-actions">
             <button class="btn-cancel" onclick="fecharModal('modalPagamento')">Cancelar</button>
             <button class="btn-primary auto" onclick="confirmarPagamento()">Confirmar</button>
+        </div>
+    </div>
+</div>
+
+<div id="modalConfirmarExcedente" class="modal">
+    <div class="modal-content">
+        <h3 style="color: #ea580c; display: flex; align-items: center; gap: 8px;">
+            ⚠️ Valor Excede a Dívida
+        </h3>
+        <p style="font-size: 13px; color: #4b5563; margin: 0; line-height: 1.4;" id="msgConfirmarExcedente"></p>
+
+        <div style="background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 12px; font-size: 13px; line-height: 1.6;">
+            <div style="display: flex; justify-content: space-between;">
+                <span>Valor a Registar:</span>
+                <strong id="detalheValorPagamento">0,00 €</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span>Dívida Acumulada:</span>
+                <span id="detalheDividaAtleta">0,00 €</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-top: 1px dashed #fdba74; margin-top: 6px; padding-top: 6px; color: var(--green-win); font-weight: bold;">
+                <span>Crédito Futuro:</span>
+                <span id="detalheExcedenteCredito">+0,00 €</span>
+            </div>
+        </div>
+
+        <p style="font-size: 13px; font-weight: 600; color: #1f2937; margin: 0;">
+            Deseja aplicar o excedente como crédito futuro na conta do atleta?
+        </p>
+
+        <div class="modal-actions" style="gap: 8px;">
+            <button class="btn-cancel" style="flex: 1;" onclick="cancelarExcedente()">Não, Corrigir</button>
+            <button class="btn-success auto" style="flex: 1; margin-bottom: 0;" onclick="efetivarPagamento(true)">Sim, Aplicar Crédito</button>
         </div>
     </div>
 </div>
@@ -468,6 +576,55 @@
 
 <div id="modalCategorias" class="modal"><div class="modal-content"><h3>Categorias</h3><ul class="cat-list" id="listaCatUI"></ul><div class="input-group-modal"><input type="text" id="novaCat" placeholder="Nova categoria..."><button class="btn-primary auto" onclick="addCategoria()">Adicionar</button></div><div class="modal-actions"><button class="btn-primary" onclick="fecharModalCategorias()">Concluído</button></div></div></div>
 
+<div id="modalHorarioJogo" class="modal">
+    <div class="modal-content">
+        <h3 style="color: var(--primary-blue); display: flex; align-items: center; gap: 8px;">
+            ⏰ Definir Horário Recorrente
+        </h3>
+        <p style="font-size: 12px; color: var(--text-muted); margin: 0 0 10px 0;">
+            Configura o dia da semana e hora habitual dos jogos do clube para gerar lembretes automáticos para o WhatsApp.
+        </p>
+
+        <div>
+            <label>Dia da Semana Recorrente</label>
+            <select id="horarioDiaSemana">
+                <option value="6">Sábado (Padrão)</option>
+                <option value="0">Domingo</option>
+                <option value="1">Segunda-feira</option>
+                <option value="2">Terça-feira</option>
+                <option value="3">Quarta-feira</option>
+                <option value="4">Quinta-feira</option>
+                <option value="5">Sexta-feira</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Hora do Jogo</label>
+            <input type="time" id="horarioHora" value="18:00">
+        </div>
+
+        <div>
+            <label>Local / Pavilhão</label>
+            <input type="text" id="horarioLocal" placeholder="Ex: Pavilhão Municipal" value="Pavilhão Municipal">
+        </div>
+
+        <div>
+            <label>Prazo de Confirmação (Opcional)</label>
+            <input type="text" id="horarioPrazo" placeholder="Ex: Véspera até às 20h" value="Véspera às 20h">
+        </div>
+
+        <div>
+            <label>Notas / Recomendações Extras</label>
+            <input type="text" id="horarioNotas" placeholder="Ex: Trazer equipamento preto e bom humor!">
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="fecharModal('modalHorarioJogo')">Cancelar</button>
+            <button class="btn-primary auto" onclick="guardarConfigHorario()">Guardar Horário</button>
+        </div>
+    </div>
+</div>
+
 <script>
     let nomeClube = localStorage.getItem('clube_nome_app');
     let atletaAtual = { nome: '', contacto: '' };
@@ -476,6 +633,13 @@
     let equipasMensais = JSON.parse(localStorage.getItem('futsal_equipas_mensais')) || null;
     let jogosMensais = JSON.parse(localStorage.getItem('futsal_jogos_mensais')) || [];
     let anoAtual = new Date().getFullYear();
+    let configHorario = JSON.parse(localStorage.getItem('futsal_horario_recorrente')) || {
+        diaSemana: 6,
+        hora: '18:00',
+        local: 'Pavilhão Municipal',
+        prazo: 'Véspera às 20h',
+        notas: 'Confirmem presença para sortearmos as equipas!'
+    };
 
     function hojeISO() { return new Date().toISOString().split('T')[0]; }
     function formatarDataPT(iso) { if(!iso) return ''; const p = iso.split('-'); return `${p[2]}/${p[1]}/${p[0]}`; }
@@ -536,6 +700,158 @@
         document.getElementById('modalSetup').style.display = 'none'; iniciarApp();
     }
 
+    // ==========================================
+    // GESTÃO DE HORÁRIO RECORRENTE & LEMBRETES WHATSAPP
+    // ==========================================
+    function calcularProximoJogo() {
+        const diasNome = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+        const diaAlvo = parseInt(configHorario.diaSemana !== undefined ? configHorario.diaSemana : 6);
+        const partesHora = (configHorario.hora || '18:00').split(':');
+        const horaAlvo = parseInt(partesHora[0]) || 0;
+        const minAlvo = parseInt(partesHora[1]) || 0;
+        
+        const agora = new Date();
+        const diaHoje = agora.getDay();
+        
+        let diasAte = (diaAlvo - diaHoje + 7) % 7;
+        let dataJogo = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate() + diasAte, horaAlvo, minAlvo, 0, 0);
+        
+        // Se for hoje e a hora do jogo já tiver passado há mais de 2 horas, agendamos para a próxima semana
+        if (diasAte === 0 && (agora.getTime() - dataJogo.getTime() > 2 * 60 * 60 * 1000)) {
+            diasAte = 7;
+            dataJogo = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate() + diasAte, horaAlvo, minAlvo, 0, 0);
+        }
+        
+        const diffMs = dataJogo.getTime() - agora.getTime();
+        const diffHoras = Math.round(diffMs / (1000 * 60 * 60));
+        
+        const hojeZero = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate()).getTime();
+        const jogoZero = new Date(dataJogo.getFullYear(), dataJogo.getMonth(), dataJogo.getDate()).getTime();
+        const diffDiasCal = Math.round((jogoZero - hojeZero) / (1000 * 60 * 60 * 24));
+        
+        let textoRelativo = '';
+        if (diffDiasCal === 0) {
+            textoRelativo = 'Hoje';
+        } else if (diffDiasCal === 1) {
+            textoRelativo = 'Amanhã';
+        } else {
+            textoRelativo = `em ${diffDiasCal} dias`;
+        }
+
+        const diaStr = String(dataJogo.getDate()).padStart(2, '0');
+        const mesStr = String(dataJogo.getMonth() + 1).padStart(2, '0');
+        const anoStr = dataJogo.getFullYear();
+
+        return {
+            dataObj: dataJogo,
+            diaSemanaNome: diasNome[diaAlvo],
+            dataFormatada: `${diaStr}/${mesStr}/${anoStr}`,
+            hora: configHorario.hora || '18:00',
+            local: configHorario.local || 'Pavilhão Habitual',
+            prazo: configHorario.prazo || '',
+            notas: configHorario.notas || '',
+            textoRelativo,
+            diffHoras,
+            diffDiasCal
+        };
+    }
+
+    function atualizarDisplayHorario() {
+        const info = calcularProximoJogo();
+        const container = document.getElementById('infoHorarioDisplay');
+        if (container) {
+            container.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <div style="font-weight: 600; color: #1e3a8a;">
+                        🗓️ Recorrência: <span>Todos os <b>${info.diaSemanaNome}s</b> às <b>${info.hora}</b></span>
+                    </div>
+                    <div style="color: #555;">
+                        📍 Local: <b>${info.local}</b>
+                    </div>
+                    ${info.prazo ? `<div style="color: #666; font-size: 12px;">⏳ Confirmações até: <b>${info.prazo}</b></div>` : ''}
+                    <div style="margin-top: 6px; padding: 6px 10px; background: rgba(0, 122, 255, 0.08); border-radius: 6px; font-weight: 600; color: var(--primary-blue); display: inline-flex; align-items: center; gap: 6px; width: fit-content;">
+                        <span>🎯 Próximo Jogo:</span>
+                        <span>${info.diaSemanaNome}, ${info.dataFormatada} às ${info.hora} (${info.textoRelativo})</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Atualizar o banner no topo se o jogo for hoje ou amanhã
+        const banner = document.getElementById('bannerLembreteProximoJogo');
+        const bannerTexto = document.getElementById('bannerLembreteTexto');
+        if (banner && bannerTexto) {
+            if (info.diffDiasCal <= 1 && info.diffHoras >= -2) {
+                bannerTexto.innerHTML = `O próximo jogo é <b>${info.textoRelativo.toLowerCase()}</b> (${info.diaSemanaNome} às ${info.hora}) no <b>${info.local}</b>.`;
+                banner.style.display = 'flex';
+            } else {
+                banner.style.display = 'none';
+            }
+        }
+    }
+
+    function abrirModalHorario() {
+        document.getElementById('horarioDiaSemana').value = configHorario.diaSemana !== undefined ? configHorario.diaSemana : 6;
+        document.getElementById('horarioHora').value = configHorario.hora || '18:00';
+        document.getElementById('horarioLocal').value = configHorario.local || 'Pavilhão Municipal';
+        document.getElementById('horarioPrazo').value = configHorario.prazo || 'Véspera às 20h';
+        document.getElementById('horarioNotas').value = configHorario.notas || '';
+        document.getElementById('modalHorarioJogo').style.display = 'flex';
+    }
+
+    function guardarConfigHorario() {
+        configHorario = {
+            diaSemana: parseInt(document.getElementById('horarioDiaSemana').value),
+            hora: document.getElementById('horarioHora').value || '18:00',
+            local: document.getElementById('horarioLocal').value.trim() || 'Pavilhão Habitual',
+            prazo: document.getElementById('horarioPrazo').value.trim(),
+            notas: document.getElementById('horarioNotas').value.trim()
+        };
+        localStorage.setItem('futsal_horario_recorrente', JSON.stringify(configHorario));
+        fecharModal('modalHorarioJogo');
+        atualizarDisplayHorario();
+        alert("Horário recorrente atualizado com sucesso!");
+    }
+
+    function enviarLembreteWhatsApp() {
+        const info = calcularProximoJogo();
+        const nome = (nomeClube || 'FUTSAL').toUpperCase();
+        
+        let texto = `⚽ *CONVOCATÓRIA & LEMBRETE DE JOGO* ⚽%0A`;
+        texto += `*${nome}*%0A%0A`;
+        texto += `📅 *Data:* ${info.diaSemanaNome}, ${info.dataFormatada}%0A`;
+        texto += `⏰ *Hora:* ${info.hora}%0A`;
+        texto += `📍 *Local:* ${info.local}%0A`;
+        if (info.prazo) {
+            texto += `⏳ *Confirmação até:* ${info.prazo}%0A`;
+        }
+        if (info.notas) {
+            texto += `%0A📝 _Nota: ${info.notas}_%0A`;
+        }
+        texto += `%0A👇 *Por favor confirmem a vossa presença aqui no grupo!*%0A_Contamos com todos para o sorteio das equipas!_ ⚽🔥`;
+
+        abrirAppWhatsApp(texto);
+    }
+
+    function copiarLembreteTexto() {
+        const info = calcularProximoJogo();
+        const nome = (nomeClube || 'FUTSAL').toUpperCase();
+        let textoLimpo = `⚽ CONVOCATÓRIA & LEMBRETE DE JOGO ⚽\n${nome}\n\n📅 Data: ${info.diaSemanaNome}, ${info.dataFormatada}\n⏰ Hora: ${info.hora}\n📍 Local: ${info.local}\n`;
+        if (info.prazo) textoLimpo += `⏳ Confirmação até: ${info.prazo}\n`;
+        if (info.notas) textoLimpo += `\n📝 Nota: ${info.notas}\n`;
+        textoLimpo += `\n👇 Por favor confirmem a vossa presença aqui no grupo!\nContamos com todos para o sorteio das equipas! ⚽🔥`;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(textoLimpo).then(() => {
+                alert("Mensagem de convocatória copiada com sucesso!");
+            }).catch(() => {
+                prompt("Copie o texto da convocatória:", textoLimpo);
+            });
+        } else {
+            prompt("Copie o texto da convocatória:", textoLimpo);
+        }
+    }
+
     function iniciarApp() {
         document.getElementById('appNameDisplay').innerText = nomeClube;
         setupAnos();
@@ -547,6 +863,7 @@
             mostrarImportacao();
         }
         atualizarTesouraria(); atualizarSelectCategorias();
+        atualizarDisplayHorario();
         document.getElementById('dataJogoAtual').value = hojeISO();
     }
 
@@ -587,7 +904,9 @@
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.ecra').forEach(e => e.classList.remove('ativo'));
         document.getElementById('tab-' + ecra).classList.add('active'); document.getElementById('ecra-' + ecra).classList.add('ativo');
-        if(ecra === 'tesouraria') atualizarTesouraria(); if(ecra === 'sorteio') carregarListaSorteio();
+        if(ecra === 'tesouraria') atualizarTesouraria();
+        if(ecra === 'sorteio') { carregarListaSorteio(); atualizarDisplayHorario(); }
+        if(ecra === 'equipa') atualizarDisplayHorario();
     }
 
     function mostrarImportacao() { document.getElementById('areaImportacao').style.display = 'block'; }
@@ -608,12 +927,18 @@
 
     // Função de fechar modais com reset aos campos de pagamento
     function fecharModal(id) {
-        document.getElementById(id).style.display = 'none';
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
         if(id === 'modalPagamento') {
             document.getElementById('pagRefMes').value = '';
             document.getElementById('pagRefJogo').value = '';
             document.getElementById('pagRefOutros').value = '';
             document.getElementById('pagValor').value = '';
+            const avisoEl = document.getElementById('avisoExcedenteInput');
+            if (avisoEl) { avisoEl.style.display = 'none'; avisoEl.innerText = ''; }
+        } else if(id === 'modalLancarDivida') {
+            document.getElementById('divDesc').value = '';
+            document.getElementById('divValor').value = '';
         }
     }
 
@@ -978,20 +1303,162 @@
     // ==========================================
     // SECÇÃO TESOURARIA
     // ==========================================
-    function abrirModalDivida(n) { atletaAtual.nome = n; document.getElementById('modalLancarDivida').style.display = 'flex'; document.getElementById('divData').value = hojeISO(); }
-    function confirmarDivida() { gravarTransacao('divida_atleta', document.getElementById('divDesc').value, parseFloat(document.getElementById('divValor').value), '-', document.getElementById('divData').value, atletaAtual.nome); fecharModal('modalLancarDivida'); }
-    function abrirModalPagamento(n) { atletaAtual.nome = n; document.getElementById('modalPagamento').style.display = 'flex'; document.getElementById('pagData').value = hojeISO(); }
+    function gerarId() { return Date.now().toString() + Math.floor(Math.random()*1000); }
+
+    function abrirModalSaldoInicial() {
+        document.getElementById('siData').value = hojeISO();
+        document.getElementById('siDesc').value = 'Transporte do exercício anterior';
+        document.getElementById('siValor').value = '';
+        document.getElementById('modalSaldoInicial').style.display = 'flex';
+    }
+    function confirmarSaldoInicial() {
+        const desc = document.getElementById('siDesc').value || 'Saldo Inicial';
+        const v = parseFloat(document.getElementById('siValor').value);
+        if (!v || v <= 0 || isNaN(v)) return alert("Valor inválido.");
+        gravarTransacao('entrada', desc, v, document.getElementById('siMetodo').value, document.getElementById('siData').value || hojeISO());
+        fecharModal('modalSaldoInicial');
+    }
+
+    function abrirModalDivida(n) {
+        atletaAtual.nome = n;
+        let atletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
+        let a = atletas.find(x => x.NOME === n);
+        atletaAtual.contacto = a ? (a.CONTACTO || '') : '';
+        document.getElementById('tituloModalDivida').innerText = 'Lançar Dívida: ' + n;
+        document.getElementById('divData').value = hojeISO();
+        document.getElementById('divDesc').value = '';
+        document.getElementById('divValor').value = '';
+        document.getElementById('modalLancarDivida').style.display = 'flex';
+    }
+    function confirmarDivida() {
+        const desc = document.getElementById('divDesc').value.trim() || 'Dívida';
+        const v = parseFloat(document.getElementById('divValor').value);
+        if (!v || v <= 0 || isNaN(v)) return alert("Por favor, introduza um valor válido para a dívida.");
+        gravarTransacao('divida_atleta', desc, v, '-', document.getElementById('divData').value || hojeISO(), atletaAtual.nome);
+        fecharModal('modalLancarDivida');
+    }
+
+    function abrirModalPagamento(n, c = '') {
+        atletaAtual.nome = n;
+        if (!c) {
+            let atletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
+            let a = atletas.find(x => x.NOME === n);
+            atletaAtual.contacto = a ? (a.CONTACTO || '') : '';
+        } else {
+            atletaAtual.contacto = c;
+        }
+        document.getElementById('tituloModalPagamento').innerText = 'Registar Pagamento: ' + n;
+        document.getElementById('pagData').value = hojeISO();
+        document.getElementById('pagValor').value = '';
+        document.getElementById('pagRefMes').value = '';
+        document.getElementById('pagRefJogo').value = '';
+        document.getElementById('pagRefOutros').value = '';
+
+        // Exibir a dívida atual acumulada no cabeçalho do modal
+        let dividaAtual = obterSaldoAtleta(n);
+        let badgeEl = document.getElementById('valorDividaAcumuladaDisplay');
+        let avisoEl = document.getElementById('avisoExcedenteInput');
+        if (badgeEl) {
+            if (dividaAtual > 0) {
+                badgeEl.innerText = `${dividaAtual.toFixed(2)} € (Dívida Pendente)`;
+                badgeEl.style.color = 'var(--red-loss)';
+            } else if (dividaAtual < 0) {
+                badgeEl.innerText = `${Math.abs(dividaAtual).toFixed(2)} € (Crédito Atual)`;
+                badgeEl.style.color = 'var(--green-win)';
+            } else {
+                badgeEl.innerText = '0,00 € (Contas em dia)';
+                badgeEl.style.color = 'var(--text-muted)';
+            }
+        }
+        if (avisoEl) {
+            avisoEl.style.display = 'none';
+            avisoEl.innerText = '';
+        }
+
+        document.getElementById('modalPagamento').style.display = 'flex';
+    }
+
+    function verificarExcedenteEmTempoReal() {
+        const v = parseFloat(document.getElementById('pagValor').value);
+        const avisoEl = document.getElementById('avisoExcedenteInput');
+        if (!avisoEl) return;
+        
+        if (!v || v <= 0 || isNaN(v)) {
+            avisoEl.style.display = 'none';
+            return;
+        }
+
+        let dividaAtual = obterSaldoAtleta(atletaAtual.nome);
+        if (dividaAtual > 0 && v > dividaAtual) {
+            let excedente = v - dividaAtual;
+            avisoEl.style.display = 'block';
+            avisoEl.innerHTML = `⚠️ O valor excede a dívida em <b>${excedente.toFixed(2)}€</b>. Será perguntado se deseja aplicar como crédito futuro.`;
+        } else if (dividaAtual <= 0) {
+            avisoEl.style.display = 'block';
+            avisoEl.innerHTML = `💡 O atleta não tem dívida pendente. O valor total de <b>${v.toFixed(2)}€</b> ficará como crédito futuro.`;
+        } else {
+            avisoEl.style.display = 'none';
+        }
+    }
     
-    // FUNÇÃO COM O NOVO CAMPO DE PAGAMENTO
+    let pagamentoPendente = null;
+
+    // FUNÇÃO COM VALIDAÇÃO AUTOMÁTICA DE EXCEDENTE / CRÉDITO FUTURO
     function confirmarPagamento() { 
         const v = parseFloat(document.getElementById('pagValor').value); 
-        if (!v || v <= 0) return alert("Valor inválido."); 
+        if (!v || v <= 0 || isNaN(v)) return alert("Por favor, introduza um valor válido para o pagamento."); 
         
-        const dataRegisto = document.getElementById('pagData').value; 
+        const dataRegisto = document.getElementById('pagData').value || hojeISO(); 
         const metodo = document.getElementById('pagMetodo').value; 
         const refMes = document.getElementById('pagRefMes').value; 
         const refJogo = document.getElementById('pagRefJogo').value; 
-        const refOutros = document.getElementById('pagRefOutros').value.trim();
+        const refOutros = (document.getElementById('pagRefOutros').value || '').trim();
+
+        let dividaAtual = obterSaldoAtleta(atletaAtual.nome);
+        pagamentoPendente = { v, dataRegisto, metodo, refMes, refJogo, refOutros };
+
+        // Validação automática: Se o valor exceder a dívida acumulada
+        if (dividaAtual > 0 && v > dividaAtual) {
+            let excedente = v - dividaAtual;
+            abrirModalConfirmarExcedente(v, dividaAtual, excedente, false);
+            return;
+        } else if (dividaAtual <= 0) {
+            abrirModalConfirmarExcedente(v, 0, v, true);
+            return;
+        }
+
+        // Sem excedente (v <= dividaAtual)
+        efetivarPagamento(false);
+    }
+
+    function abrirModalConfirmarExcedente(valorPago, divida, excedente, semDivida) {
+        document.getElementById('detalheValorPagamento').innerText = `${valorPago.toFixed(2)} €`;
+        document.getElementById('detalheDividaAtleta').innerText = semDivida ? '0,00 € (Sem dívida)' : `${divida.toFixed(2)} €`;
+        document.getElementById('detalheExcedenteCredito').innerText = `+${excedente.toFixed(2)} €`;
+
+        const msgEl = document.getElementById('msgConfirmarExcedente');
+        if (semDivida) {
+            msgEl.innerHTML = `O atleta <b>${atletaAtual.nome}</b> não possui dívida pendente. O montante de <b>${valorPago.toFixed(2)}€</b> excederá o valor das despesas.`;
+        } else {
+            msgEl.innerHTML = `O valor inserido (<b>${valorPago.toFixed(2)}€</b>) é superior à dívida acumulada (<b>${divida.toFixed(2)}€</b>) do atleta <b>${atletaAtual.nome}</b>.`;
+        }
+
+        document.getElementById('modalConfirmarExcedente').style.display = 'flex';
+    }
+
+    function cancelarExcedente() {
+        fecharModal('modalConfirmarExcedente');
+        pagamentoPendente = null;
+        const inputVal = document.getElementById('pagValor');
+        if (inputVal) {
+            inputVal.focus();
+            inputVal.select();
+        }
+    }
+
+    function efetivarPagamento(aplicouCredito = false) {
+        if (!pagamentoPendente) return;
+        const { v, dataRegisto, metodo, refMes, refJogo, refOutros } = pagamentoPendente;
 
         let detalheDesc = ''; 
         let detalheWhatsApp = '';
@@ -1016,17 +1483,36 @@
         gravarTransacao('entrada', `Pagamento: ${atletaAtual.nome}${detalheDesc}`, v, metodo, dataRegisto, atletaAtual.nome); 
 
         let saldoAtual = obterSaldoAtleta(atletaAtual.nome); 
-        let textoSaldo = saldoAtual > 0 ? `%0A• Saldo Pendente a pagar: ${saldoAtual.toFixed(2)}€` : (saldoAtual < 0 ? `%0A• Ficas com um crédito de: ${Math.abs(saldoAtual).toFixed(2)}€` : `%0A• Contas em dia! Obrigado.`); 
+        let textoSaldo = saldoAtual > 0 
+            ? `%0A• Saldo Pendente a pagar: ${saldoAtual.toFixed(2)}€` 
+            : (saldoAtual < 0 
+                ? `%0A• Ficas com um crédito futuro de: ${Math.abs(saldoAtual).toFixed(2)}€ para próximos jogos/mensalidades!` 
+                : `%0A• Contas em dia! Obrigado.`); 
         
-        abrirWhatsAppLink(atletaAtual.contacto, `⚽ ${nomeClube} - Recibo ⚽%0AOlá, ${atletaAtual.nome}! Confirmamos a receção de ${v.toFixed(2)}€ via ${metodo}.${detalheWhatsApp}${textoSaldo}%0AAté ao próximo jogo!`); 
+        if (atletaAtual.contacto) {
+            abrirWhatsAppLink(atletaAtual.contacto, `⚽ ${nomeClube} - Recibo ⚽%0AOlá, ${atletaAtual.nome}! Confirmamos a receção de ${v.toFixed(2)}€ via ${metodo}.${detalheWhatsApp}${textoSaldo}%0AAté ao próximo jogo!`); 
+        }
         
+        fecharModal('modalConfirmarExcedente');
         fecharModal('modalPagamento'); 
+        pagamentoPendente = null;
+
+        if (aplicouCredito && saldoAtual < 0) {
+            alert(`Pagamento registado com sucesso! Foi aplicado um crédito futuro de ${Math.abs(saldoAtual).toFixed(2)}€ na conta de ${atletaAtual.nome}.`);
+        }
     }
 
     function abrirModalReceitaAvulsa() { document.getElementById('modalReceitaAvulsa').style.display = 'flex'; document.getElementById('recData').value = hojeISO(); }
-    function confirmarReceitaAvulsa() { gravarTransacao('entrada', document.getElementById('recDesc').value, parseFloat(document.getElementById('recValor').value), document.getElementById('recMetodo').value, document.getElementById('recData').value); fecharModal('modalReceitaAvulsa'); }
+    function confirmarReceitaAvulsa() { const v = parseFloat(document.getElementById('recValor').value); if(!v || v<=0 || isNaN(v)) return alert("Valor inválido."); gravarTransacao('entrada', document.getElementById('recDesc').value || 'Receita Extra', v, document.getElementById('recMetodo').value, document.getElementById('recData').value || hojeISO()); fecharModal('modalReceitaAvulsa'); }
     function abrirModalDespesa() { document.getElementById('modalDespesa').style.display = 'flex'; document.getElementById('despData').value = hojeISO(); }
-    function confirmarDespesa() { gravarTransacao('saida', document.getElementById('despDesc').value, parseFloat(document.getElementById('despValor').value), document.getElementById('despMetodo').value, document.getElementById('despData').value); fecharModal('modalDespesa'); }
+    function confirmarDespesa() { const v = parseFloat(document.getElementById('despValor').value); if(!v || v<=0 || isNaN(v)) return alert("Valor inválido."); gravarTransacao('saida', document.getElementById('despDesc').value, v, document.getElementById('despMetodo').value, document.getElementById('despData').value || hojeISO()); fecharModal('modalDespesa'); }
+
+    function atualizarSelectCategorias() { const sel = document.getElementById('despDesc'); if(!sel) return; sel.innerHTML = ''; categoriasDespesa.forEach(c => { let opt = document.createElement('option'); opt.value = c; opt.innerText = c; sel.appendChild(opt); }); }
+    function abrirModalCategorias() { desenharListaCategorias(); document.getElementById('modalCategorias').style.display = 'flex'; }
+    function desenharListaCategorias() { const ul = document.getElementById('listaCatUI'); if(!ul) return; ul.innerHTML = ''; categoriasDespesa.forEach((c, i) => { ul.innerHTML += `<li class="cat-item"><span>${c}</span><button type="button" onclick="removerCategoria(${i})">X</button></li>`; }); }
+    function addCategoria() { const val = document.getElementById('novaCat').value.trim(); if(val && !categoriasDespesa.includes(val)) { categoriasDespesa.push(val); localStorage.setItem('futsal_cat_despesas', JSON.stringify(categoriasDespesa)); document.getElementById('novaCat').value = ''; desenharListaCategorias(); atualizarSelectCategorias(); } }
+    function removerCategoria(idx) { categoriasDespesa.splice(idx, 1); localStorage.setItem('futsal_cat_despesas', JSON.stringify(categoriasDespesa)); desenharListaCategorias(); atualizarSelectCategorias(); }
+    function fecharModalCategorias() { atualizarSelectCategorias(); fecharModal('modalCategorias'); }
 
     function gravarTransacao(t, desc, v, m, d, a = null) { transacoes.push({ id: gerarId(), data: d, tipo: t, descricao: desc, valor: v, metodo: m, atleta: a }); salvarEAtualizar(); }
     function salvarEAtualizar() { transacoes.sort((a,b) => a.data.localeCompare(b.data)); localStorage.setItem('futsal_transacoes', JSON.stringify(transacoes)); atualizarTesouraria(); const d = localStorage.getItem('futsal_atletas'); if (d) gerarCartoes(JSON.parse(d)); }
@@ -1133,11 +1619,9 @@
     // ==========================================
     function abrirAppWhatsApp(texto, telefone = '') {
         try {
-            let urlApp = telefone ? `whatsapp://send?phone=${telefone}&text=${texto}` : `whatsapp://send?text=${texto}`;
             let urlWeb = telefone ? `https://wa.me/${telefone}?text=${texto}` : `https://api.whatsapp.com/send?text=${texto}`;
-            window.location.href = urlApp;
-            setTimeout(() => { window.open(urlWeb, '_blank'); }, 600);
-        } catch(e) { console.log("Erro ao abrir WhatsApp"); }
+            window.open(urlWeb, '_blank');
+        } catch(e) { console.log("Erro ao abrir WhatsApp", e); }
     }
 
     function abrirWhatsAppLink(contacto, texto) {
@@ -1186,3 +1670,4 @@
 </script>
 </body>
 </html>
+
