@@ -212,6 +212,58 @@
         /* POST-IT ANIVERSÁRIO */
         .post-it-content { background-color: #fffacb; border-left: 5px solid #ffeb3b; padding: 20px; border-radius: 4px; box-shadow: 2px 4px 10px rgba(0,0,0,0.1); width: 90%; max-width: 340px;}
         .post-it-content h3 { margin: 0 0 15px 0; color: #d32f2f; display: flex; align-items: center; gap: 8px;}
+
+        /* PODIO & DESTAQUES DA ÉPOCA */
+        .destaques-container { background: white; border-radius: var(--border-radius); box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 15px; margin-bottom: 15px; }
+        .destaques-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 12px; }
+        .destaques-header h3 { margin: 0; font-size: 15px; color: var(--primary-blue); display: flex; align-items: center; gap: 6px; }
+        .podio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+        .podio-card { background: #fafafa; border: 1px solid #eee; border-radius: 10px; padding: 10px; display: flex; flex-direction: column; position: relative; }
+        .podio-card.pichichi { border-color: #ffd54f; background: linear-gradient(145deg, #ffffff 0%, #fffde7 100%); }
+        .podio-card.assiduo { border-color: #90caf9; background: linear-gradient(145deg, #ffffff 0%, #e3f2fd 100%); }
+        .podio-card.iv { border-color: #a5d6a7; background: linear-gradient(145deg, #ffffff 0%, #e8f5e9 100%); }
+        .podio-card.ranking { border-color: #ce93d8; background: linear-gradient(145deg, #ffffff 0%, #f3e5f5 100%); }
+        .podio-badge-topo { font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; display: flex; align-items: center; gap: 4px; }
+        .podio-nome { font-weight: 700; font-size: 13px; margin-bottom: 3px; color: #1f2937; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .podio-stat { font-size: 13px; font-weight: 700; color: #374151; }
+        .podio-detalhe { font-size: 11px; color: #6b7280; }
+
+        /* CONFRONTO DIRETO (H2H) */
+        .h2h-box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 10px 12px; }
+        .h2h-titulo { font-size: 12px; font-weight: 700; color: #374151; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .h2h-score { display: flex; justify-content: space-around; align-items: center; margin-bottom: 8px; text-align: center; }
+        .h2h-time { display: flex; flex-direction: column; align-items: center; }
+        .h2h-time-nome { font-size: 11px; font-weight: 700; text-transform: uppercase; }
+        .h2h-time-vits { font-size: 18px; font-weight: 800; }
+        .h2h-barra-wrap { width: 100%; height: 8px; background: #e5e7eb; border-radius: 4px; display: flex; overflow: hidden; margin-bottom: 6px; }
+        .h2h-barra-azul { background: var(--primary-blue); height: 100%; transition: width 0.3s; }
+        .h2h-barra-empate { background: #fbbf24; height: 100%; transition: width 0.3s; }
+        .h2h-barra-verm { background: var(--red-loss); height: 100%; transition: width 0.3s; }
+        .h2h-stats-gerais { font-size: 11px; color: #6b7280; text-align: center; }
+
+        /* PESQUISA E FILTROS DO PLANTEL */
+        .pesquisa-filtros-bar { background: white; border-radius: var(--border-radius); box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding: 12px; margin-bottom: 15px; }
+        .input-pesquisa-wrap { position: relative; margin-bottom: 8px; }
+        .input-pesquisa-wrap input { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; box-sizing: border-box; }
+        .filtros-scroll { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+        .filtros-scroll::-webkit-scrollbar { height: 4px; }
+        .filtros-scroll::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }
+        .filtro-chip { padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; border: 1px solid #e0e0e0; background: #f8f9fa; color: #555; transition: 0.15s; flex-shrink: 0; }
+        .filtro-chip.active { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
+        .filtro-contador { font-size: 12px; color: #777; margin-top: 6px; display: flex; justify-content: space-between; align-items: center; }
+
+        /* BADGE GUARDA-REDES */
+        .badge-gr { display: inline-flex; align-items: center; gap: 2px; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; font-weight: 700; padding: 2px 6px; border-radius: 4px; font-size: 11px; margin-left: 6px; }
+
+        /* LISTA DE ESPERA / SUPLENTES */
+        .lista-espera-box { background: #fffbf0; border: 2px dashed #f59e0b; border-radius: var(--border-radius); padding: 12px; margin-top: 15px; }
+        .lista-espera-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; color: #b45309; }
+        .lista-espera-item { display: flex; justify-content: space-between; align-items: center; background: white; padding: 8px 10px; border-radius: 6px; margin-bottom: 6px; border: 1px solid #fde68a; font-size: 13px; }
+
+        /* COBRANÇA WHATSAPP */
+        .cobranca-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-bottom: 1px solid #eee; background: white; border-radius: 8px; margin-bottom: 8px; border: 1px solid #f0f0f0; }
+        .cobranca-info { display: flex; flex-direction: column; gap: 3px; }
+        .cobranca-acoes { display: flex; gap: 6px; align-items: center; }
     </style>
 </head>
 <body>
@@ -245,9 +297,83 @@
     </div>
     
     <div id="ecra-equipa" class="ecra ativo">
-        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-            <button class="btn-small" style="flex: 1; padding: 10px; background: #e3f2fd; color: var(--primary-blue);" onclick="exportarStatsPDF()">📄 PDF Estatísticas</button>
-            <button class="btn-small" style="flex: 1; padding: 10px; background: #e8f5e9; color: var(--green-win);" onclick="partilharStatsWA()">📲 WhatsApp Rank</button>
+        <!-- 🏆 DESTAQUES DA ÉPOCA & CONFRONTO DIRETO -->
+        <div class="destaques-container" id="painelDestaques">
+            <div class="destaques-header">
+                <h3>🏆 Destaques da Época (<span id="anoDestaquesDisplay">2026</span>)</h3>
+                <span style="font-size: 11px; color: var(--text-muted); font-weight: 500;">Pódio & Estatísticas</span>
+            </div>
+            
+            <div class="podio-grid">
+                <!-- 1. PICHICHI (MELHOR MARCADOR) -->
+                <div class="podio-card pichichi" id="cardPichichi">
+                    <div class="podio-badge-topo" style="color: #b45309;">🥇 Troféu Pichichi</div>
+                    <div class="podio-nome" id="pichichiNome">--</div>
+                    <div class="podio-stat" id="pichichiGolos" style="color: var(--purple-goals);">⚽ 0 golos</div>
+                    <div class="podio-detalhe" id="pichichiDetalhe">Melhor Marcador</div>
+                </div>
+
+                <!-- 2. MAIS ASSÍDUO -->
+                <div class="podio-card assiduo" id="cardAssiduo">
+                    <div class="podio-badge-topo" style="color: #1d4ed8;">👑 Mais Assíduo</div>
+                    <div class="podio-nome" id="assiduoNome">--</div>
+                    <div class="podio-stat" id="assiduoPresencas" style="color: var(--primary-blue);">0 jogos</div>
+                    <div class="podio-detalhe" id="assiduoDetalhe">IF: 0%</div>
+                </div>
+
+                <!-- 3. MAIOR % VITÓRIAS (IV) -->
+                <div class="podio-card iv" id="cardIV">
+                    <div class="podio-badge-topo" style="color: #15803d;">🎯 Maior % Vitórias</div>
+                    <div class="podio-nome" id="ivNome">--</div>
+                    <div class="podio-stat" id="ivPercentagem" style="color: var(--green-win);">0% IV</div>
+                    <div class="podio-detalhe" id="ivDetalhe">0 vitórias</div>
+                </div>
+
+                <!-- 4. LÍDER DO RANKING (PONTOS) -->
+                <div class="podio-card ranking" id="cardRanking">
+                    <div class="podio-badge-topo" style="color: #7e22ce;">🌟 Líder do Ranking</div>
+                    <div class="podio-nome" id="rankingNome">--</div>
+                    <div class="podio-stat" id="rankingPontos" style="color: #9333ea;">0 Pts</div>
+                    <div class="podio-detalhe" id="rankingDetalhe">0V - 0E - 0D</div>
+                </div>
+            </div>
+
+            <!-- CONFRONTO DIRETO DA ÉPOCA (AZUL VS VERMELHA) -->
+            <div class="h2h-box" id="caixaConfrontoDireto">
+                <div class="h2h-titulo">
+                    <span>⚔️ Confronto Direto da Época</span>
+                    <span id="h2hTotalJogos" style="color: var(--text-muted); font-size: 11px;">0 jogos disputados</span>
+                </div>
+                <div class="h2h-score">
+                    <div class="h2h-time">
+                        <span class="h2h-time-nome" style="color: var(--primary-blue);">Equipa Azul 🔵</span>
+                        <span class="h2h-time-vits" id="h2hVitoriasAzul" style="color: var(--primary-blue);">0</span>
+                    </div>
+                    <div class="h2h-time" style="opacity: 0.8;">
+                        <span class="h2h-time-nome" style="color: #b45309;">Empates ⚖️</span>
+                        <span class="h2h-time-vits" id="h2hEmpates" style="color: #b45309; font-size: 16px;">0</span>
+                    </div>
+                    <div class="h2h-time">
+                        <span class="h2h-time-nome" style="color: var(--red-loss);">Equipa Vermelha 🔴</span>
+                        <span class="h2h-time-vits" id="h2hVitoriasVermelha" style="color: var(--red-loss);">0</span>
+                    </div>
+                </div>
+                <div class="h2h-barra-wrap">
+                    <div class="h2h-barra-azul" id="h2hBarraAzul" style="width: 50%;"></div>
+                    <div class="h2h-barra-empate" id="h2hBarraEmpate" style="width: 0%;"></div>
+                    <div class="h2h-barra-verm" id="h2hBarraVermelha" style="width: 50%;"></div>
+                </div>
+                <div class="h2h-stats-gerais" id="h2hGolosMedia">
+                    ⚽ 0 golos marcados (média de 0.0 por jogo)
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTÕES DE EXPORTAÇÃO & RELATÓRIOS -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px;">
+            <button class="btn-small" style="padding: 10px 4px; background: #e3f2fd; color: var(--primary-blue); font-size: 12px; font-weight: bold;" onclick="exportarStatsPDF()" title="Exportar Relatório PDF">📄 PDF Stats</button>
+            <button class="btn-small" style="padding: 10px 4px; background: #e8f5e9; color: var(--green-win); font-size: 12px; font-weight: bold;" onclick="partilharStatsWA()" title="Partilhar Ranking no WhatsApp">📲 WA Rank</button>
+            <button class="btn-small" style="padding: 10px 4px; background: #fef3c7; color: #b45309; font-size: 12px; font-weight: bold; border: 1px solid #fde68a;" onclick="exportarBaseDadosExcel()" title="Exportar Base de Dados Completa em Excel">📊 Excel (.xlsx)</button>
         </div>
 
         <div style="display: flex; gap: 10px; margin-bottom: 15px;">
@@ -262,6 +388,27 @@
             <button class="btn-cancel" style="margin-top: 10px;" onclick="document.getElementById('areaImportacao').style.display='none'">Fechar</button>
         </div>
 
+        <!-- BARRA DE PESQUISA E FILTROS RÁPIDOS NO PLANTEL -->
+        <div class="pesquisa-filtros-bar">
+            <div class="input-pesquisa-wrap">
+                <input type="text" id="inputPesquisaAtleta" placeholder="🔍 Pesquisar atleta por nome..." oninput="filtrarAtletasUI()">
+            </div>
+            <div class="filtros-scroll">
+                <div class="filtro-chip active" id="chip-todos" onclick="definirFiltroAtletas('todos')">Todos</div>
+                <div class="filtro-chip" id="chip-divida" onclick="definirFiltroAtletas('divida')">🔴 Com Dívida</div>
+                <div class="filtro-chip" id="chip-credito" onclick="definirFiltroAtletas('credito')">🟢 Com Crédito</div>
+                <div class="filtro-chip" id="chip-emdia" onclick="definirFiltroAtletas('emdia')">⚪ Em Dia</div>
+                <div class="filtro-chip" id="chip-mensalidade" onclick="definirFiltroAtletas('mensalidade')">👔 Mensalistas</div>
+                <div class="filtro-chip" id="chip-jogo" onclick="definirFiltroAtletas('jogo')">🎟️ Por Jogo</div>
+                <div class="filtro-chip" id="chip-convidado" onclick="definirFiltroAtletas('convidado')">⭐ Convidados</div>
+                <div class="filtro-chip" id="chip-gr" onclick="definirFiltroAtletas('gr')">🧤 Guarda-Redes (GR)</div>
+            </div>
+            <div class="filtro-contador">
+                <span id="contadorAtletasFiltro">A mostrar 0 atletas</span>
+                <span id="btnLimparFiltros" style="display: none; color: var(--primary-blue); cursor: pointer; font-weight: 600;" onclick="limparFiltrosAtletas()">Limpar filtro ✕</span>
+            </div>
+        </div>
+
         <div id="cartoesContainer" class="cards-container"></div>
     </div>
 
@@ -273,19 +420,24 @@
                 <h3 style="margin: 0; border: none; padding: 0; color: var(--primary-blue); font-size: 15px; display: flex; align-items: center; gap: 6px;">
                     ⏰ Agenda Recorrente & Convocatória
                 </h3>
-                <button class="btn-small" onclick="abrirModalHorario()" style="background: #e3f2fd; color: var(--primary-blue); padding: 5px 10px; cursor: pointer;">⚙️ Configurar</button>
+                <button class="btn-small" onclick="abrirModalHorario()" style="background: #e3f2fd; color: var(--primary-blue); padding: 5px 10px; cursor: pointer;">⚙️ Detalhes do Jogo</button>
             </div>
             
             <div id="infoHorarioDisplay" style="margin-bottom: 12px; font-size: 13px; line-height: 1.5;"></div>
 
-            <div style="display: flex; gap: 8px;">
-                <button class="btn-success" style="margin-bottom: 0; flex: 2; padding: 10px; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 6px;" onclick="enviarLembreteWhatsApp()">
-                    <span>📲 Enviar Lembrete no WhatsApp</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="btn-success" style="margin-bottom: 0; flex: 2; min-width: 170px; padding: 10px; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 6px;" onclick="enviarLembreteWhatsApp()">
+                    <span>📲 Convocatória no WhatsApp</span>
                 </button>
-                <button class="btn-small" style="flex: 1; padding: 10px; font-size: 13px; background: #f0f0f0; color: var(--text-main);" onclick="copiarLembreteTexto()" title="Copiar texto para colar">
+                <button class="btn-small" style="flex: 1; padding: 10px; font-size: 13px; background: #f0f0f0; color: var(--text-main);" onclick="copiarLembreteTexto()" title="Copiar mensagem para colar">
                     📋 Copiar
                 </button>
+                <button class="btn-small" style="padding: 10px 10px; font-size: 13px; background: #e0f2fe; color: #0284c7;" onclick="alternarPreviaConvocatoria()" title="Ver texto completo da mensagem">
+                    👁️ Ver Mensagem
+                </button>
             </div>
+
+            <div id="previaConvocatoriaContainer" style="display: none; margin-top: 12px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px; font-family: monospace; font-size: 12px; white-space: pre-wrap; color: #166534; line-height: 1.4;"></div>
         </div>
         
         <div id="areaSorteioCheckboxes">
@@ -301,6 +453,22 @@
             </div>
 
             <div class="seccao-branca">
+                <!-- CONTROLO DE LOTAÇÃO MÁXIMA & LISTA DE ESPERA -->
+                <div style="display: flex; justify-content: space-between; align-items: center; background: #eef6ff; padding: 10px 12px; border-radius: 8px; border: 1px solid #cce5ff; margin-bottom: 12px;">
+                    <div>
+                        <div style="font-size: 13px; font-weight: 700; color: #1e3a8a;">🎯 Lotação do Jogo:</div>
+                        <div style="font-size: 11px; color: #64748b;">Excedentes vão para a Lista de Espera</div>
+                    </div>
+                    <select id="selectLotacaoJogo" onchange="alterarLotacaoJogo()" style="padding: 6px 10px; border-radius: 6px; font-weight: bold; color: var(--primary-blue); border: 1px solid #90caf9; width: auto; font-size: 13px;">
+                        <option value="8">8 Jogadores (4 vs 4)</option>
+                        <option value="10" selected>10 Jogadores (5 vs 5)</option>
+                        <option value="12">12 Jogadores (6 vs 6)</option>
+                        <option value="14">14 Jogadores (7 vs 7)</option>
+                        <option value="16">16 Jogadores (8 vs 8)</option>
+                        <option value="0">Sem Limite</option>
+                    </select>
+                </div>
+
                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">
                     <h3 style="margin: 0; border: none; padding: 0;">Presenças Iniciais</h3>
                     <span id="contagemPresencas" style="font-weight: bold; color: var(--primary-blue); font-size: 14px;">0 selecionados</span>
@@ -334,6 +502,18 @@
             <div class="equipa-box" id="boxAusentes" ondragover="permitirDrop(event)" ondrop="receberDrop(event, 'boxAusentes')" style="background: #f5f5f5; border: 2px dashed #ccc; margin-top: 10px; min-height: 80px;">
                 <h4 style="color: #777; border-bottom: 1px solid #ccc;">❌ Ausentes (Bancada)</h4>
                 <div id="listaAusentes" class="lista-jogadores" style="min-height: 50px;"></div>
+            </div>
+
+            <!-- GESTÃO DE LISTA DE ESPERA / SUPLENTES -->
+            <div class="lista-espera-box" id="boxListaEspera" style="display: none;">
+                <div class="lista-espera-header">
+                    <h4 style="margin: 0; font-size: 14px; display: flex; align-items: center; gap: 6px;">
+                        <span>⏳ Lista de Espera / Suplentes</span>
+                        <span id="contagemEspera" style="background: #d97706; color: white; padding: 2px 7px; border-radius: 12px; font-size: 11px;">0</span>
+                    </h4>
+                    <span style="font-size: 11px; opacity: 0.9;">Clique para colocar em jogo</span>
+                </div>
+                <div id="listaSuplentesUI"></div>
             </div>
 
             <button class="btn-success" style="margin-top: 15px;" onclick="partilharSorteioWhatsApp()">📲 Enviar Equipas para o WhatsApp</button>
@@ -382,6 +562,12 @@
             <div class="saldo-card"><h4>MB Way</h4><p class="valor" id="saldoMBWay">0,00 €</p></div>
             <div class="saldo-card"><h4>Transferências</h4><p class="valor" id="saldoTransferencia">0,00 €</p></div>
             <div class="saldo-card"><h4>Outros</h4><p class="valor" id="saldoOutros">0,00 €</p></div>
+        </div>
+
+        <!-- AÇÕES RÁPIDAS DE COBRANÇAS E QUOTAS -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+            <button class="btn-primary" style="background: #2563eb; padding: 12px 10px; font-size: 13px; font-weight: bold; margin: 0; box-shadow: 0 2px 8px rgba(37,99,235,0.25);" onclick="abrirModalMensalidadeMassa()">💶 Quotas em Massa</button>
+            <button class="btn-success" style="background: #10b981; padding: 12px 10px; font-size: 13px; font-weight: bold; margin: 0; box-shadow: 0 2px 8px rgba(16,185,129,0.25);" onclick="abrirPainelCobranca()">📲 Cobrança (WA)</button>
         </div>
 
         <div class="action-grid">
@@ -439,6 +625,13 @@
             <option value="Por Jogo">Por Jogo</option>
             <option value="Convidado">Convidado</option>
         </select></div>
+        <div>
+            <label>Posição Habitual</label>
+            <select id="atletaPosicao">
+                <option value="Campo">Jogador de Campo</option>
+                <option value="GR">🧤 Guarda-Redes (GR)</option>
+            </select>
+        </div>
         <div><label>Nível Sorteio (1 a 5)</label><input type="number" id="atletaNivel" min="1" max="5" value="3"></div>
         <div class="modal-actions" style="justify-content: space-between;">
             <button class="btn-icon" id="btnApagarAtleta" style="color: red; display: none;" onclick="apagarAtletaManual()">🗑️ Apagar</button>
@@ -577,12 +770,12 @@
 <div id="modalCategorias" class="modal"><div class="modal-content"><h3>Categorias</h3><ul class="cat-list" id="listaCatUI"></ul><div class="input-group-modal"><input type="text" id="novaCat" placeholder="Nova categoria..."><button class="btn-primary auto" onclick="addCategoria()">Adicionar</button></div><div class="modal-actions"><button class="btn-primary" onclick="fecharModalCategorias()">Concluído</button></div></div></div>
 
 <div id="modalHorarioJogo" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="max-width: 380px;">
         <h3 style="color: var(--primary-blue); display: flex; align-items: center; gap: 8px;">
-            ⏰ Definir Horário Recorrente
+            ⏰ Agenda & Detalhes da Convocatória
         </h3>
         <p style="font-size: 12px; color: var(--text-muted); margin: 0 0 10px 0;">
-            Configura o dia da semana e hora habitual dos jogos do clube para gerar lembretes automáticos para o WhatsApp.
+            Configura todos os detalhes do jogo (dia, hora, local, morada e prazos) para a convocatória automática de WhatsApp.
         </p>
 
         <div>
@@ -598,29 +791,156 @@
             </select>
         </div>
 
-        <div>
-            <label>Hora do Jogo</label>
-            <input type="time" id="horarioHora" value="18:00">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div>
+                <label>Hora de Início</label>
+                <input type="time" id="horarioHora" value="18:00">
+            </div>
+            <div>
+                <label>Hora de Fim (Opcional)</label>
+                <input type="time" id="horarioHoraFim" value="19:00">
+            </div>
         </div>
 
         <div>
             <label>Local / Pavilhão</label>
-            <input type="text" id="horarioLocal" placeholder="Ex: Pavilhão Municipal" value="Pavilhão Municipal">
+            <input type="text" id="horarioLocal" placeholder="Ex: Pavilhão Municipal de Desportos" value="Pavilhão Municipal">
         </div>
 
         <div>
-            <label>Prazo de Confirmação (Opcional)</label>
-            <input type="text" id="horarioPrazo" placeholder="Ex: Véspera até às 20h" value="Véspera às 20h">
+            <label>Morada / Link do Pavilhão (Google Maps)</label>
+            <input type="text" id="horarioMorada" placeholder="Ex: Rua do Estádio, 12 ou link do Maps">
         </div>
 
         <div>
             <label>Notas / Recomendações Extras</label>
-            <input type="text" id="horarioNotas" placeholder="Ex: Trazer equipamento preto e bom humor!">
+            <input type="text" id="horarioNotas" placeholder="Ex: Chegar 15 minutos antes para aquecimento e sorteio!">
         </div>
 
         <div class="modal-actions">
             <button class="btn-cancel" onclick="fecharModal('modalHorarioJogo')">Cancelar</button>
-            <button class="btn-primary auto" onclick="guardarConfigHorario()">Guardar Horário</button>
+            <button class="btn-primary auto" onclick="guardarConfigHorario()">Guardar Detalhes</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL LANÇAMENTO DE MENSALIDADES EM MASSA -->
+<div id="modalMensalidadeMassa" class="modal">
+    <div class="modal-content" style="max-width: 380px;">
+        <h3 style="color: var(--primary-blue); display: flex; align-items: center; gap: 8px;">
+            💶 Quotas em Massa
+        </h3>
+        <p style="font-size: 12px; color: var(--text-muted); margin: 0 0 6px 0;">
+            Lança a mensalidade do mês a todos os atletas com estatuto <b>"Mensalidade"</b> com apenas 1 clique.
+        </p>
+
+        <div>
+            <label>Mês de Referência</label>
+            <input type="month" id="massaMesRef" onchange="atualizarDescricaoMassa()">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div>
+                <label>Valor / Quota (€)</label>
+                <input type="number" id="massaValor" step="0.5" min="0" value="15" oninput="atualizarResumoMassa()">
+            </div>
+            <div>
+                <label>Data de Débito</label>
+                <input type="date" id="massaData">
+            </div>
+        </div>
+
+        <div>
+            <label>Descrição do Débito</label>
+            <input type="text" id="massaDesc" value="Quota Mensal">
+        </div>
+
+        <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                <label style="margin: 0;">Atletas Mensalistas (<span id="contagemMensalistasMassa">0</span>)</label>
+                <span style="font-size: 11px; color: var(--primary-blue); cursor: pointer; font-weight: 600;" onclick="alternarTodosMensalistasMassa()">Inverter Seleção</span>
+            </div>
+            <div id="listaMensalistasMassa" style="max-height: 180px; overflow-y: auto; border: 1px solid #e5e7eb; border-radius: 8px; padding: 6px; background: #fafafa;"></div>
+            <div id="resumoTotalMassa" style="font-size: 12px; font-weight: 700; color: #1e3a8a; margin-top: 6px; padding: 6px 8px; background: #e0f2fe; border-radius: 6px;"></div>
+        </div>
+
+        <div class="modal-actions" style="margin-top: 6px;">
+            <button class="btn-cancel" onclick="fecharModal('modalMensalidadeMassa')">Cancelar</button>
+            <button class="btn-primary auto" style="background: #2563eb;" onclick="confirmarMensalidadeMassa()">Confirmar Lançamento</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL PAINEL DE COBRANÇA RÁPIDA POR WHATSAPP -->
+<div id="modalPainelCobranca" class="modal">
+    <div class="modal-content" style="max-width: 420px; max-height: 92vh;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px;">
+            <div>
+                <h3 style="color: #10b981; margin: 0; display: flex; align-items: center; gap: 6px;">
+                    📲 Painel de Cobrança (WhatsApp)
+                </h3>
+                <p style="font-size: 12px; color: var(--text-muted); margin: 3px 0 0 0;">
+                    Lembretes cordiais de pagamento aos atletas com saldo em dívida.
+                </p>
+            </div>
+            <button class="btn-icon" style="background: #f3f4f6; font-size: 14px;" onclick="abrirModalConfigPagamento()" title="Configurar MB Way e IBAN do Clube">⚙️ Dados</button>
+        </div>
+
+        <!-- RESUMO DA DÍVIDA TOTAL PENDENTE -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 2px;">
+            <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 8px 10px; text-align: center;">
+                <div style="font-size: 11px; color: #991b1b; font-weight: 600; text-transform: uppercase;">Atletas com Dívida</div>
+                <div style="font-size: 18px; font-weight: 800; color: var(--red-loss);" id="totalDevedoresCobranca">0</div>
+            </div>
+            <div style="background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 8px 10px; text-align: center;">
+                <div style="font-size: 11px; color: #9a3412; font-weight: 600; text-transform: uppercase;">Total a Receber</div>
+                <div style="font-size: 18px; font-weight: 800; color: #ea580c;" id="totalDividaCobranca">0,00 €</div>
+            </div>
+        </div>
+
+        <div style="font-size: 11px; color: #64748b; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 10px;" id="infoDadosPagamentoResumo"></div>
+
+        <div id="listaAtletasCobranca" style="flex: 1; overflow-y: auto; max-height: 380px; padding-right: 4px;"></div>
+
+        <div class="modal-actions" style="margin-top: 6px;">
+            <button class="btn-cancel" style="width: 100%;" onclick="fecharModal('modalPainelCobranca')">Fechar Painel</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CONFIGURAÇÃO DOS DADOS DE PAGAMENTO DO CLUBE -->
+<div id="modalConfigPagamento" class="modal">
+    <div class="modal-content" style="max-width: 360px;">
+        <h3 style="color: var(--primary-blue); display: flex; align-items: center; gap: 8px;">
+            ⚙️ Dados de Pagamento do Clube
+        </h3>
+        <p style="font-size: 12px; color: var(--text-muted); margin: 0;">
+            Estes dados serão automaticamente incluídos nas mensagens de cobrança via WhatsApp.
+        </p>
+
+        <div>
+            <label>Telemóvel MB Way do Clube</label>
+            <input type="text" id="cfgMbway" placeholder="Ex: 912 345 678">
+        </div>
+
+        <div>
+            <label>IBAN do Clube</label>
+            <input type="text" id="cfgIban" placeholder="Ex: PT50 0000 0000 0000 0000 0000 0">
+        </div>
+
+        <div>
+            <label>Titular da Conta / Clube</label>
+            <input type="text" id="cfgTitular" placeholder="Ex: Associação / Grupo Desportivo">
+        </div>
+
+        <div>
+            <label>Instruções / Notas Adicionais</label>
+            <input type="text" id="cfgNotas" placeholder="Ex: Por favor enviar comprovativo no grupo!">
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="fecharModal('modalConfigPagamento')">Cancelar</button>
+            <button class="btn-primary auto" onclick="guardarConfigPagamento()">Guardar Dados</button>
         </div>
     </div>
 </div>
@@ -636,10 +956,20 @@
     let configHorario = JSON.parse(localStorage.getItem('futsal_horario_recorrente')) || {
         diaSemana: 6,
         hora: '18:00',
+        horaFim: '19:00',
         local: 'Pavilhão Municipal',
-        prazo: 'Véspera às 20h',
-        notas: 'Confirmem presença para sortearmos as equipas!'
+        morada: '',
+        notas: 'Chegar 15 minutos antes para aquecimento e sorteio!'
     };
+    let configPagamento = JSON.parse(localStorage.getItem('futsal_dados_pagamento')) || {
+        mbway: '',
+        iban: '',
+        titular: '',
+        notas: 'Enviar comprovativo pelo WhatsApp.'
+    };
+    let lotacaoJogo = parseInt(localStorage.getItem('futsal_lotacao_jogo') || '10');
+    let filtroAtletaAtivo = 'todos';
+    let textoPesquisaAtleta = '';
 
     function hojeISO() { return new Date().toISOString().split('T')[0]; }
     function formatarDataPT(iso) { if(!iso) return ''; const p = iso.split('-'); return `${p[2]}/${p[1]}/${p[0]}`; }
@@ -747,8 +1077,9 @@
             diaSemanaNome: diasNome[diaAlvo],
             dataFormatada: `${diaStr}/${mesStr}/${anoStr}`,
             hora: configHorario.hora || '18:00',
+            horaFim: configHorario.horaFim || '',
             local: configHorario.local || 'Pavilhão Habitual',
-            prazo: configHorario.prazo || '',
+            morada: configHorario.morada || '',
             notas: configHorario.notas || '',
             textoRelativo,
             diffHoras,
@@ -756,22 +1087,69 @@
         };
     }
 
+    function gerarTextoConvocatoria(info) {
+        const nome = (nomeClube || 'Futsal').toUpperCase();
+        let linhas = [];
+        linhas.push(`⚽ *CONVOCATÓRIA & LEMBRETE DE JOGO* ⚽`);
+        linhas.push(`🏆 *${nome}*`);
+        linhas.push(``);
+        linhas.push(`📅 *Data:* ${info.diaSemanaNome}, ${info.dataFormatada} (${info.textoRelativo})`);
+        
+        let horaStr = `⏰ *Hora:* ${info.hora}`;
+        if (info.horaFim) {
+            horaStr += ` às ${info.horaFim}`;
+        }
+        linhas.push(horaStr);
+        
+        linhas.push(`📍 *Local:* ${info.local}`);
+        if (info.morada) {
+            linhas.push(`🗺️ *Morada / GPS:* ${info.morada}`);
+        }
+        if (info.notas) {
+            linhas.push(``);
+            linhas.push(`📝 *Avisos / Recomendações:* ${info.notas}`);
+        }
+        linhas.push(``);
+        linhas.push(`_Contamos com todos para o sorteio e um grande jogo!_ ⚽🔥👊`);
+
+        return linhas.join('\n');
+    }
+
     function atualizarDisplayHorario() {
         const info = calcularProximoJogo();
         const container = document.getElementById('infoHorarioDisplay');
         if (container) {
+            let horaCompleta = info.hora;
+            if (info.horaFim) horaCompleta += ` às ${info.horaFim}`;
+
+            let moradaHTML = info.morada ? `<div style="font-size: 12px; color: #64748b; margin-left: 18px;">🗺️ ${info.morada}</div>` : '';
+            let notasHTML = info.notas ? `<div style="color: #64748b; font-size: 12px; font-style: italic; background: #fff; padding: 6px 8px; border-radius: 6px; border: 1px solid #e2e8f0; margin-top: 4px;">📝 ${info.notas}</div>` : '';
+
             container.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 4px;">
-                    <div style="font-weight: 600; color: #1e3a8a;">
-                        🗓️ Recorrência: <span>Todos os <b>${info.diaSemanaNome}s</b> às <b>${info.hora}</b></span>
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <!-- PRÓXIMO JOGO DESTAQUE -->
+                    <div style="padding: 10px 12px; background: linear-gradient(135deg, #007aff 0%, #2563eb 100%); color: white; border-radius: 8px; box-shadow: 0 2px 6px rgba(0, 122, 255, 0.2);">
+                        <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; opacity: 0.9; letter-spacing: 0.5px;">🎯 Próxima Partida</div>
+                        <div style="font-size: 16px; font-weight: 800; margin-top: 2px;">
+                            ${info.diaSemanaNome}, ${info.dataFormatada}
+                        </div>
+                        <div style="font-size: 13px; font-weight: 600; opacity: 0.95; margin-top: 3px; display: flex; align-items: center; gap: 6px;">
+                            <span>⏰ ${horaCompleta}</span>
+                            <span>•</span>
+                            <span style="background: rgba(255,255,255,0.25); padding: 1px 7px; border-radius: 4px; font-size: 11px;">${info.textoRelativo}</span>
+                        </div>
                     </div>
-                    <div style="color: #555;">
-                        📍 Local: <b>${info.local}</b>
-                    </div>
-                    ${info.prazo ? `<div style="color: #666; font-size: 12px;">⏳ Confirmações até: <b>${info.prazo}</b></div>` : ''}
-                    <div style="margin-top: 6px; padding: 6px 10px; background: rgba(0, 122, 255, 0.08); border-radius: 6px; font-weight: 600; color: var(--primary-blue); display: inline-flex; align-items: center; gap: 6px; width: fit-content;">
-                        <span>🎯 Próximo Jogo:</span>
-                        <span>${info.diaSemanaNome}, ${info.dataFormatada} às ${info.hora} (${info.textoRelativo})</span>
+
+                    <!-- DETALHES DO JOGO -->
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; font-size: 13px;">
+                        <div style="color: #1e293b;">
+                            📍 Local: <b>${info.local}</b>
+                        </div>
+                        ${moradaHTML}
+                        <div style="color: #475569;">
+                            🗓️ Recorrência: <b>Todos os ${info.diaSemanaNome}s</b> às <b>${info.hora}</b>
+                        </div>
+                        ${notasHTML}
                     </div>
                 </div>
             `;
@@ -782,7 +1160,9 @@
         const bannerTexto = document.getElementById('bannerLembreteTexto');
         if (banner && bannerTexto) {
             if (info.diffDiasCal <= 1 && info.diffHoras >= -2) {
-                bannerTexto.innerHTML = `O próximo jogo é <b>${info.textoRelativo.toLowerCase()}</b> (${info.diaSemanaNome} às ${info.hora}) no <b>${info.local}</b>.`;
+                let horaCompleta = info.hora;
+                if (info.horaFim) horaCompleta += ` às ${info.horaFim}`;
+                bannerTexto.innerHTML = `O próximo jogo é <b>${info.textoRelativo.toLowerCase()}</b> (${info.diaSemanaNome}, ${info.dataFormatada} às <b>${horaCompleta}</b>) no <b>${info.local}</b>.`;
                 banner.style.display = 'flex';
             } else {
                 banner.style.display = 'none';
@@ -793,8 +1173,9 @@
     function abrirModalHorario() {
         document.getElementById('horarioDiaSemana').value = configHorario.diaSemana !== undefined ? configHorario.diaSemana : 6;
         document.getElementById('horarioHora').value = configHorario.hora || '18:00';
+        document.getElementById('horarioHoraFim').value = configHorario.horaFim || '19:00';
         document.getElementById('horarioLocal').value = configHorario.local || 'Pavilhão Municipal';
-        document.getElementById('horarioPrazo').value = configHorario.prazo || 'Véspera às 20h';
+        document.getElementById('horarioMorada').value = configHorario.morada || '';
         document.getElementById('horarioNotas').value = configHorario.notas || '';
         document.getElementById('modalHorarioJogo').style.display = 'flex';
     }
@@ -803,47 +1184,36 @@
         configHorario = {
             diaSemana: parseInt(document.getElementById('horarioDiaSemana').value),
             hora: document.getElementById('horarioHora').value || '18:00',
-            local: document.getElementById('horarioLocal').value.trim() || 'Pavilhão Habitual',
-            prazo: document.getElementById('horarioPrazo').value.trim(),
+            horaFim: document.getElementById('horarioHoraFim').value || '',
+            local: document.getElementById('horarioLocal').value.trim() || 'Pavilhão Municipal',
+            morada: document.getElementById('horarioMorada').value.trim(),
             notas: document.getElementById('horarioNotas').value.trim()
         };
         localStorage.setItem('futsal_horario_recorrente', JSON.stringify(configHorario));
         fecharModal('modalHorarioJogo');
         atualizarDisplayHorario();
-        alert("Horário recorrente atualizado com sucesso!");
+        
+        const previaBox = document.getElementById('previaConvocatoriaContainer');
+        if (previaBox && previaBox.style.display !== 'none') {
+            const info = calcularProximoJogo();
+            previaBox.innerText = gerarTextoConvocatoria(info);
+        }
+        alert("Detalhes da convocatória e horário atualizados com sucesso!");
     }
 
     function enviarLembreteWhatsApp() {
         const info = calcularProximoJogo();
-        const nome = (nomeClube || 'FUTSAL').toUpperCase();
-        
-        let texto = `⚽ *CONVOCATÓRIA & LEMBRETE DE JOGO* ⚽%0A`;
-        texto += `*${nome}*%0A%0A`;
-        texto += `📅 *Data:* ${info.diaSemanaNome}, ${info.dataFormatada}%0A`;
-        texto += `⏰ *Hora:* ${info.hora}%0A`;
-        texto += `📍 *Local:* ${info.local}%0A`;
-        if (info.prazo) {
-            texto += `⏳ *Confirmação até:* ${info.prazo}%0A`;
-        }
-        if (info.notas) {
-            texto += `%0A📝 _Nota: ${info.notas}_%0A`;
-        }
-        texto += `%0A👇 *Por favor confirmem a vossa presença aqui no grupo!*%0A_Contamos com todos para o sorteio das equipas!_ ⚽🔥`;
-
+        const texto = gerarTextoConvocatoria(info);
         abrirAppWhatsApp(texto);
     }
 
     function copiarLembreteTexto() {
         const info = calcularProximoJogo();
-        const nome = (nomeClube || 'FUTSAL').toUpperCase();
-        let textoLimpo = `⚽ CONVOCATÓRIA & LEMBRETE DE JOGO ⚽\n${nome}\n\n📅 Data: ${info.diaSemanaNome}, ${info.dataFormatada}\n⏰ Hora: ${info.hora}\n📍 Local: ${info.local}\n`;
-        if (info.prazo) textoLimpo += `⏳ Confirmação até: ${info.prazo}\n`;
-        if (info.notas) textoLimpo += `\n📝 Nota: ${info.notas}\n`;
-        textoLimpo += `\n👇 Por favor confirmem a vossa presença aqui no grupo!\nContamos com todos para o sorteio das equipas! ⚽🔥`;
+        const textoLimpo = gerarTextoConvocatoria(info);
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(textoLimpo).then(() => {
-                alert("Mensagem de convocatória copiada com sucesso!");
+                alert("Convocatória completa com data, local e hora copiada para a área de transferência!");
             }).catch(() => {
                 prompt("Copie o texto da convocatória:", textoLimpo);
             });
@@ -852,9 +1222,23 @@
         }
     }
 
+    function alternarPreviaConvocatoria() {
+        const box = document.getElementById('previaConvocatoriaContainer');
+        if (!box) return;
+        if (box.style.display === 'none' || !box.style.display) {
+            const info = calcularProximoJogo();
+            box.innerText = gerarTextoConvocatoria(info);
+            box.style.display = 'block';
+        } else {
+            box.style.display = 'none';
+        }
+    }
+
     function iniciarApp() {
         document.getElementById('appNameDisplay').innerText = nomeClube;
         setupAnos();
+        const selLot = document.getElementById('selectLotacaoJogo');
+        if (selLot) selLot.value = lotacaoJogo !== undefined ? lotacaoJogo : 10;
         const dadosGuardados = localStorage.getItem('futsal_atletas');
         if (dadosGuardados) {
             gerarCartoes(JSON.parse(dadosGuardados));
@@ -864,6 +1248,8 @@
         }
         atualizarTesouraria(); atualizarSelectCategorias();
         atualizarDisplayHorario();
+        atualizarPodioDestaques();
+        atualizarConfrontoDireto();
         document.getElementById('dataJogoAtual').value = hojeISO();
     }
 
@@ -898,15 +1284,22 @@
         anos.forEach(a => { let op = document.createElement('option'); op.value = a; op.innerText = 'Ano ' + a; if(a === anoCorrente) op.selected = true; select.appendChild(op); });
         anoAtual = parseInt(select.value);
     }
-    function mudarAnoBase() { anoAtual = parseInt(document.getElementById('selectAnoBase').value); atualizarTesouraria(); const dados = localStorage.getItem('futsal_atletas'); if (dados) gerarCartoes(JSON.parse(dados)); }
+    function mudarAnoBase() { 
+        anoAtual = parseInt(document.getElementById('selectAnoBase').value); 
+        atualizarTesouraria(); 
+        const dados = localStorage.getItem('futsal_atletas'); 
+        if (dados) gerarCartoes(JSON.parse(dados)); 
+        atualizarPodioDestaques();
+        atualizarConfrontoDireto();
+    }
 
     function mudarEcra(ecra) {
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.ecra').forEach(e => e.classList.remove('ativo'));
         document.getElementById('tab-' + ecra).classList.add('active'); document.getElementById('ecra-' + ecra).classList.add('ativo');
         if(ecra === 'tesouraria') atualizarTesouraria();
-        if(ecra === 'sorteio') { carregarListaSorteio(); atualizarDisplayHorario(); }
-        if(ecra === 'equipa') atualizarDisplayHorario();
+        if(ecra === 'sorteio') { carregarListaSorteio(); atualizarDisplayHorario(); atualizarConfrontoDireto(); }
+        if(ecra === 'equipa') { atualizarDisplayHorario(); atualizarPodioDestaques(); atualizarConfrontoDireto(); }
     }
 
     function mostrarImportacao() { document.getElementById('areaImportacao').style.display = 'block'; }
@@ -919,9 +1312,26 @@
         reader.onload = function(e) {
             const w = XLSX.read(new Uint8Array(e.target.result), {type: 'array'});
             const atletas = XLSX.utils.sheet_to_json(w.Sheets[w.SheetNames[0]], { raw: false });
-            atletas.forEach(a => { a.PRESENCAS = a.PRESENCAS || 0; a.VITORIAS = a.VITORIAS || 0; a.EMPATES = a.EMPATES || 0; a.DERROTAS = a.DERROTAS || 0; a.GOLOS = a.GOLOS || 0; a.AG = a.AG || 0; });
-            localStorage.setItem('futsal_atletas', JSON.stringify(atletas)); gerarCartoes(atletas);
-            document.getElementById('areaImportacao').style.display = 'none'; verificarAniversarios();
+            atletas.forEach(a => { 
+                a.PRESENCAS = a.PRESENCAS || 0; 
+                a.VITORIAS = a.VITORIAS || 0; 
+                a.EMPATES = a.EMPATES || 0; 
+                a.DERROTAS = a.DERROTAS || 0; 
+                a.GOLOS = a.GOLOS || 0; 
+                a.AG = a.AG || 0; 
+                let p = (a.POSICAO || a['POSIÇÃO'] || a.FUNCAO || a['FUNÇÃO'] || a.POS || '').toString().toLowerCase();
+                if (p.includes('gr') || p.includes('guarda') || p.includes('gk') || p.includes('portero')) {
+                    a.POSICAO = 'GR';
+                } else {
+                    a.POSICAO = a.POSICAO || 'Campo';
+                }
+            });
+            localStorage.setItem('futsal_atletas', JSON.stringify(atletas)); 
+            gerarCartoes(atletas);
+            document.getElementById('areaImportacao').style.display = 'none'; 
+            verificarAniversarios();
+            atualizarPodioDestaques();
+            atualizarConfrontoDireto();
         }; reader.readAsArrayBuffer(f);
     }
 
@@ -957,6 +1367,7 @@
                 else { document.getElementById('atletaDataNasc').value = dt || ''; }
                 document.getElementById('atletaContacto').value = atleta['CONTACTO'] || '';
                 document.getElementById('atletaEstatuto').value = atleta['ESTATUTO'] || 'Mensalidade';
+                document.getElementById('atletaPosicao').value = (atleta['POSICAO'] === 'GR' || atleta.isGR) ? 'GR' : 'Campo';
                 document.getElementById('atletaNivel').value = atleta['NÍVEL'] || 3;
             }
             btnApagar.style.display = 'block';
@@ -964,6 +1375,7 @@
             document.getElementById('tituloModalAtleta').innerText = 'Novo Atleta';
             document.getElementById('atletaNome').value = ''; document.getElementById('atletaDataNasc').value = '';
             document.getElementById('atletaContacto').value = ''; document.getElementById('atletaEstatuto').value = 'Mensalidade';
+            document.getElementById('atletaPosicao').value = 'Campo';
             document.getElementById('atletaNivel').value = 3;
             btnApagar.style.display = 'none';
         }
@@ -980,6 +1392,7 @@
             'DATA NASCIMENTO': document.getElementById('atletaDataNasc').value,
             'CONTACTO': document.getElementById('atletaContacto').value,
             'ESTATUTO': document.getElementById('atletaEstatuto').value,
+            'POSICAO': document.getElementById('atletaPosicao').value,
             'NÍVEL': parseInt(document.getElementById('atletaNivel').value) || 3
         };
 
@@ -1001,7 +1414,9 @@
             atletas.push(novoAtleta);
         }
         
-        localStorage.setItem('futsal_atletas', JSON.stringify(atletas)); gerarCartoes(atletas); fecharModal('modalAtleta');
+        localStorage.setItem('futsal_atletas', JSON.stringify(atletas)); 
+        gerarCartoes(atletas); 
+        fecharModal('modalAtleta');
     }
 
     function apagarAtletaManual() {
@@ -1009,7 +1424,9 @@
         if(!confirm(`Tem a certeza que quer apagar permanentemente os dados e estatísticas do atleta ${nome}?`)) return;
         let atletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
         atletas = atletas.filter(a => a['NOME'] !== nome);
-        localStorage.setItem('futsal_atletas', JSON.stringify(atletas)); gerarCartoes(atletas); fecharModal('modalAtleta');
+        localStorage.setItem('futsal_atletas', JSON.stringify(atletas)); 
+        gerarCartoes(atletas); 
+        fecharModal('modalAtleta');
     }
 
     function obterSaldoAtleta(nome) {
@@ -1020,30 +1437,125 @@
         }); return dividas - pagamentos; 
     }
 
+    // ==========================================
+    // PESQUISA E FILTROS DO PLANTEL
+    // ==========================================
+    function definirFiltroAtletas(tipo) {
+        filtroAtletaAtivo = tipo;
+        document.querySelectorAll('.filtro-chip').forEach(c => c.classList.remove('active'));
+        const chip = document.getElementById('chip-' + tipo);
+        if (chip) chip.classList.add('active');
+        filtrarAtletasUI();
+    }
+
+    function limparFiltrosAtletas() {
+        filtroAtletaAtivo = 'todos';
+        const inp = document.getElementById('inputPesquisaAtleta');
+        if (inp) inp.value = '';
+        textoPesquisaAtleta = '';
+        document.querySelectorAll('.filtro-chip').forEach(c => c.classList.remove('active'));
+        const chipTodos = document.getElementById('chip-todos');
+        if (chipTodos) chipTodos.classList.add('active');
+        filtrarAtletasUI();
+    }
+
+    function filtrarAtletasUI() {
+        const inp = document.getElementById('inputPesquisaAtleta');
+        textoPesquisaAtleta = (inp ? inp.value : '').trim().toLowerCase();
+        const atletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
+        
+        let filtrados = atletas.filter(a => {
+            const nome = (a['NOME'] || '').toLowerCase();
+            const contacto = (a['CONTACTO'] || '').toLowerCase();
+            const matchTexto = !textoPesquisaAtleta || nome.includes(textoPesquisaAtleta) || contacto.includes(textoPesquisaAtleta);
+            if (!matchTexto) return false;
+
+            const saldo = obterSaldoAtleta(a['NOME']);
+            const est = (a['ESTATUTO'] || '').toLowerCase();
+            const ehGR = (a['POSICAO'] === 'GR' || a.isGR);
+
+            if (filtroAtletaAtivo === 'divida') return saldo > 0;
+            if (filtroAtletaAtivo === 'credito') return saldo < 0;
+            if (filtroAtletaAtivo === 'emdia') return saldo === 0;
+            if (filtroAtletaAtivo === 'mensalidade') return est.includes('mensal');
+            if (filtroAtletaAtivo === 'jogo') return est.includes('jogo');
+            if (filtroAtletaAtivo === 'convidado') return est.includes('convid');
+            if (filtroAtletaAtivo === 'gr') return ehGR;
+            return true; // 'todos'
+        });
+
+        const btnLimpar = document.getElementById('btnLimparFiltros');
+        if (btnLimpar) {
+            btnLimpar.style.display = (filtroAtletaAtivo !== 'todos' || textoPesquisaAtleta) ? 'inline' : 'none';
+        }
+
+        const contador = document.getElementById('contadorAtletasFiltro');
+        if (contador) {
+            contador.innerText = `A mostrar ${filtrados.length} de ${atletas.length} atletas`;
+        }
+
+        renderizarCartoesHTML(filtrados);
+    }
+
     function gerarCartoes(atletas) {
-        const container = document.getElementById('cartoesContainer'); container.innerHTML = ''; 
+        filtrarAtletasUI();
+        atualizarPodioDestaques();
+        atualizarConfrontoDireto();
+    }
+
+    function renderizarCartoesHTML(atletas) {
+        const container = document.getElementById('cartoesContainer'); 
+        container.innerHTML = ''; 
+
+        if (atletas.length === 0) {
+            container.innerHTML = `
+                <div style="background: white; border-radius: var(--border-radius); padding: 30px 15px; text-align: center; color: var(--text-muted);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🔍</div>
+                    <div style="font-weight: 600; font-size: 14px;">Nenhum atleta encontrado</div>
+                    <div style="font-size: 12px; margin-top: 4px;">Tente alterar os termos de pesquisa ou o filtro selecionado.</div>
+                </div>`;
+            return;
+        }
+
+        let todosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
         let jogosRegistados = jogosMensais.filter(j => j.data.startsWith(anoAtual.toString())).length;
-        let maxPresencas = Math.max(...atletas.map(a => parseInt(a.PRESENCAS) || 0), 0);
+        let maxPresencas = Math.max(...todosAtletas.map(a => parseInt(a.PRESENCAS) || 0), 0);
         let totalJogosAno = Math.max(jogosRegistados, maxPresencas);
 
         atletas.forEach(a => {
-            const nome = a['NOME'] || 'Desconhecido'; const idade = calcularIdade(a['DATA NASCIMENTO']); const est = a['ESTATUTO'] || 'Não definido'; 
+            const nome = a['NOME'] || 'Desconhecido'; 
+            const idade = calcularIdade(a['DATA NASCIMENTO']); 
+            const est = a['ESTATUTO'] || 'Não definido'; 
+            const ehGR = (a['POSICAO'] === 'GR' || a.isGR);
+            const badgeGR = ehGR ? `<span class="badge-gr">🧤 GR</span>` : '';
             
-            // FOTO RESTAURADA COM A TAG <img> EXATA PARA CARREGAR AS IMAGENS DA PASTA "fotos/"
             const foto = a['FOTO'] || '';
             let htmlF = foto ? `<img src="fotos/${foto}" class="photo-real">` : `<div class="photo-placeholder"><span>${nome.charAt(0)}</span></div>`;
             
-            let cor = 'status-mensalidade'; if (est.toLowerCase().includes('por jogo')) cor = 'status-por-jogo'; if (est.toLowerCase().includes('convidado')) cor = 'status-convidado';
-            let saldo = obterSaldoAtleta(nome); let badgeSaldo = saldo > 0 ? `<div class="saldo-indicador saldo-negativo">A Pagar: ${saldo.toFixed(2)}€</div>` : (saldo < 0 ? `<div class="saldo-indicador saldo-positivo">Crédito de: ${Math.abs(saldo).toFixed(2)}€</div>` : `<div class="saldo-indicador saldo-neutro">Contas em dia</div>`);
+            let cor = 'status-mensalidade'; 
+            if (est.toLowerCase().includes('por jogo')) cor = 'status-por-jogo'; 
+            if (est.toLowerCase().includes('convidado')) cor = 'status-convidado';
+            
+            let saldo = obterSaldoAtleta(nome); 
+            let badgeSaldo = saldo > 0 
+                ? `<div class="saldo-indicador saldo-negativo">A Pagar: ${saldo.toFixed(2)}€</div>` 
+                : (saldo < 0 
+                    ? `<div class="saldo-indicador saldo-positivo">Crédito de: ${Math.abs(saldo).toFixed(2)}€</div>` 
+                    : `<div class="saldo-indicador saldo-neutro">Contas em dia</div>`);
 
-            let pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0); let ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0; let ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0;
+            let pts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0); 
+            let ifreq = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0; 
+            let ivit = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0;
 
             container.innerHTML += `
                 <div class="athlete-card">
                     <div class="card-header">
                         ${htmlF}
                         <div class="athlete-info">
-                            <h2>${nome} <button class="btn-icon" style="background:transparent; font-size:16px; margin-left:5px;" title="Editar Dados" onclick="abrirModalAtleta('${nome}')">✏️</button></h2>
+                            <h2>
+                                <span>${nome}</span> ${badgeGR}
+                                <button class="btn-icon" style="background:transparent; font-size:16px; margin-left:4px;" title="Editar Dados" onclick="abrirModalAtleta('${nome}')">✏️</button>
+                            </h2>
                             <p class="age">${idade} anos</p><span class="badge ${cor}">${est}</span>
                         </div>
                         <a onclick="abrirWhatsAppLink('${a['CONTACTO']}','Olá ${nome}, tudo bem?')" class="btn-whatsapp">💬</a>
@@ -1076,6 +1588,129 @@
         });
     }
 
+    // ==========================================
+    // DESTAQUES DA ÉPOCA & PÓDIO
+    // ==========================================
+    function atualizarPodioDestaques() {
+        const d = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
+        const anoSpan = document.getElementById('anoDestaquesDisplay');
+        if (anoSpan) anoSpan.innerText = anoAtual;
+
+        if (d.length === 0) return;
+
+        let jogosRegistados = jogosMensais.filter(j => j.data.startsWith(anoAtual.toString())).length;
+        let maxPresencas = Math.max(...d.map(a => parseInt(a.PRESENCAS) || 0), 0);
+        let totalJogosAno = Math.max(jogosRegistados, maxPresencas);
+
+        d.forEach(a => { 
+            a.calcPts = (a.VITORIAS || 0) * 3 + (a.EMPATES || 0); 
+            a.calcIF = totalJogosAno > 0 ? (((a.PRESENCAS || 0) / totalJogosAno) * 100).toFixed(0) : 0; 
+            a.calcIV = (a.PRESENCAS || 0) > 0 ? (((a.VITORIAS || 0) / (a.PRESENCAS || 1)) * 100).toFixed(0) : 0; 
+        });
+
+        // 1. Pichichi (Melhor Marcador)
+        let marcadores = [...d].filter(a => (a.GOLOS || 0) > 0).sort((a,b) => (b.GOLOS||0) - (a.GOLOS||0));
+        let topPichichi = marcadores[0];
+        if (topPichichi && topPichichi.GOLOS > 0) {
+            document.getElementById('pichichiNome').innerText = topPichichi.NOME;
+            document.getElementById('pichichiGolos').innerText = `⚽ ${topPichichi.GOLOS} golos`;
+            document.getElementById('pichichiDetalhe').innerText = `${topPichichi.PRESENCAS || 0} jogos jogados`;
+        } else {
+            document.getElementById('pichichiNome').innerText = 'Sem golos';
+            document.getElementById('pichichiGolos').innerText = '⚽ 0 golos';
+            document.getElementById('pichichiDetalhe').innerText = 'A aguardar golos';
+        }
+
+        // 2. Mais Assíduo
+        let assiduos = [...d].filter(a => (a.PRESENCAS || 0) > 0).sort((a,b) => (b.PRESENCAS||0) - (a.PRESENCAS||0));
+        let topAssiduo = assiduos[0];
+        if (topAssiduo && topAssiduo.PRESENCAS > 0) {
+            document.getElementById('assiduoNome').innerText = topAssiduo.NOME;
+            document.getElementById('assiduoPresencas').innerText = `${topAssiduo.PRESENCAS} jogos`;
+            document.getElementById('assiduoDetalhe').innerText = `IF: ${topAssiduo.calcIF}% assiduidade`;
+        } else {
+            document.getElementById('assiduoNome').innerText = 'Sem jogos';
+            document.getElementById('assiduoPresencas').innerText = '0 jogos';
+            document.getElementById('assiduoDetalhe').innerText = 'IF: 0%';
+        }
+
+        // 3. Maior IV (% Vitórias)
+        let comJogos = [...d].filter(a => (a.PRESENCAS || 0) > 0).sort((a,b) => b.calcIV - a.calcIV || (b.VITORIAS||0) - (a.VITORIAS||0));
+        let topIV = comJogos[0];
+        if (topIV && topIV.PRESENCAS > 0) {
+            document.getElementById('ivNome').innerText = topIV.NOME;
+            document.getElementById('ivPercentagem').innerText = `${topIV.calcIV}% IV`;
+            document.getElementById('ivDetalhe').innerText = `${topIV.VITORIAS || 0}V em ${topIV.PRESENCAS} jogos`;
+        } else {
+            document.getElementById('ivNome').innerText = 'Sem jogos';
+            document.getElementById('ivPercentagem').innerText = '0% IV';
+            document.getElementById('ivDetalhe').innerText = '0 vitórias';
+        }
+
+        // 4. Líder do Ranking (Pontos)
+        let porPontos = [...d].filter(a => (a.PRESENCAS || 0) > 0).sort((a,b) => b.calcPts - a.calcPts || (b.GOLOS||0) - (a.GOLOS||0));
+        let topRanking = porPontos[0];
+        if (topRanking && topRanking.PRESENCAS > 0) {
+            document.getElementById('rankingNome').innerText = topRanking.NOME;
+            document.getElementById('rankingPontos').innerText = `${topRanking.calcPts} Pts`;
+            document.getElementById('rankingDetalhe').innerText = `${topRanking.VITORIAS||0}V - ${topRanking.EMPATES||0}E - ${topRanking.DERROTAS||0}D`;
+        } else {
+            document.getElementById('rankingNome').innerText = 'Sem ranking';
+            document.getElementById('rankingPontos').innerText = '0 Pts';
+            document.getElementById('rankingDetalhe').innerText = '0V - 0E - 0D';
+        }
+    }
+
+    // ==========================================
+    // CONFRONTO DIRETO DA ÉPOCA (AZUL VS VERMELHA)
+    // ==========================================
+    function atualizarConfrontoDireto() {
+        let jogosAno = jogosMensais.filter(j => j.data && j.data.startsWith(anoAtual.toString()));
+        let total = jogosAno.length;
+        let vAzul = 0, vVerm = 0, emp = 0, golosAzul = 0, golosVerm = 0;
+
+        jogosAno.forEach(j => {
+            let ga = parseInt(j.golosA) || 0;
+            let gv = parseInt(j.golosV) || 0;
+            golosAzul += ga;
+            golosVerm += gv;
+            if (ga > gv) vAzul++;
+            else if (gv > ga) vVerm++;
+            else emp++;
+        });
+
+        let totalGolos = golosAzul + golosVerm;
+        let mediaGolos = total > 0 ? (totalGolos / total).toFixed(1) : '0.0';
+
+        const totalEl = document.getElementById('h2hTotalJogos');
+        if (totalEl) totalEl.innerText = `${total} ${total === 1 ? 'jogo disputado' : 'jogos disputados'}`;
+
+        const vAzulEl = document.getElementById('h2hVitoriasAzul');
+        if (vAzulEl) vAzulEl.innerText = vAzul;
+
+        const vVermEl = document.getElementById('h2hVitoriasVermelha');
+        if (vVermEl) vVermEl.innerText = vVerm;
+
+        const empEl = document.getElementById('h2hEmpates');
+        if (empEl) empEl.innerText = emp;
+
+        let pctAzul = total > 0 ? (vAzul / total) * 100 : 50;
+        let pctEmp = total > 0 ? (emp / total) * 100 : 0;
+        let pctVerm = total > 0 ? (vVerm / total) * 100 : 50;
+
+        const bAzul = document.getElementById('h2hBarraAzul');
+        const bEmp = document.getElementById('h2hBarraEmpate');
+        const bVerm = document.getElementById('h2hBarraVermelha');
+        if (bAzul) bAzul.style.width = pctAzul + '%';
+        if (bEmp) bEmp.style.width = pctEmp + '%';
+        if (bVerm) bVerm.style.width = pctVerm + '%';
+
+        const statsMedia = document.getElementById('h2hGolosMedia');
+        if (statsMedia) {
+            statsMedia.innerText = `⚽ ${totalGolos} golos marcados (média de ${mediaGolos} por jogo)`;
+        }
+    }
+
     function abrirModalEditarStats(nome) {
         let dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || []; let atleta = dadosAtletas.find(a => a['NOME'] === nome); if(!atleta) return;
         document.getElementById('tituloModalStats').innerText = 'Estatísticas: ' + nome; document.getElementById('editStatNome').value = nome;
@@ -1095,17 +1730,60 @@
         }
     }
 
+    function alterarLotacaoJogo() {
+        const sel = document.getElementById('selectLotacaoJogo');
+        if (!sel) return;
+        lotacaoJogo = parseInt(sel.value);
+        localStorage.setItem('futsal_lotacao_jogo', lotacaoJogo.toString());
+        atualizarContagemSorteio();
+    }
+
+    function atualizarContagemSorteio() {
+        const selecionados = document.querySelectorAll('.chk-presenca:checked').length;
+        const contEl = document.getElementById('contagemPresencas');
+        if (!contEl) return;
+        if (lotacaoJogo > 0) {
+            if (selecionados > lotacaoJogo) {
+                let suplentes = selecionados - lotacaoJogo;
+                contEl.innerHTML = `<span style="color:#d97706;">${selecionados} selecionados</span> (${lotacaoJogo} titulares + <b>${suplentes} suplentes</b>)`;
+            } else {
+                contEl.innerText = `${selecionados} de ${lotacaoJogo} convocados`;
+            }
+        } else {
+            contEl.innerText = `${selecionados} selecionados`;
+        }
+    }
+
     function carregarListaSorteio() {
+        const selLot = document.getElementById('selectLotacaoJogo');
+        if (selLot) selLot.value = lotacaoJogo !== undefined ? lotacaoJogo : 10;
+
         if (equipasMensais && equipasMensais.azul && equipasMensais.azul.length > 0) {
             if(!equipasMensais.azulBase) equipasMensais.azulBase = [...equipasMensais.azul];
             if(!equipasMensais.vermelhaBase) equipasMensais.vermelhaBase = [...equipasMensais.vermelha];
+            if(!equipasMensais.listaEspera) equipasMensais.listaEspera = [];
             
-            document.getElementById('areaSorteioCheckboxes').style.display = 'none'; desenharEquipasMemoria(); renderizarJogosMensais(); document.getElementById('areaResultadosSorteio').style.display = 'block';
+            document.getElementById('areaSorteioCheckboxes').style.display = 'none'; 
+            desenharEquipasMemoria(); 
+            renderizarJogosMensais(); 
+            document.getElementById('areaResultadosSorteio').style.display = 'block';
         } else {
-            document.getElementById('areaSorteioCheckboxes').style.display = 'block'; document.getElementById('areaResultadosSorteio').style.display = 'none';
-            const listaUI = document.getElementById('listaJogadoresSorteio'); listaUI.innerHTML = ''; const dadosGuardados = localStorage.getItem('futsal_atletas');
+            document.getElementById('areaSorteioCheckboxes').style.display = 'block'; 
+            document.getElementById('areaResultadosSorteio').style.display = 'none';
+            const listaUI = document.getElementById('listaJogadoresSorteio'); 
+            listaUI.innerHTML = ''; 
+            const dadosGuardados = localStorage.getItem('futsal_atletas');
             if (!dadosGuardados) return listaUI.innerHTML = '<p style="text-align:center; color:#999;">Sem atletas.</p>';
-            JSON.parse(dadosGuardados).forEach((a, index) => { listaUI.innerHTML += `<label class="jogador-checkbox" for="chk_s_${index}">${a['NOME']} <input type="checkbox" id="chk_s_${index}" class="chk-presenca" data-nome="${a['NOME']}" data-nivel="${a['NÍVEL'] || 1}" onchange="atualizarContagemSorteio()" checked></label>`; });
+            
+            JSON.parse(dadosGuardados).forEach((a, index) => { 
+                const ehGR = (a['POSICAO'] === 'GR' || a.isGR);
+                const badgeGR = ehGR ? `<span class="badge-gr">🧤 GR</span>` : '';
+                listaUI.innerHTML += `
+                    <label class="jogador-checkbox" for="chk_s_${index}">
+                        <span style="display: flex; align-items: center;">${a['NOME']} ${badgeGR}</span>
+                        <input type="checkbox" id="chk_s_${index}" class="chk-presenca" data-nome="${a['NOME']}" data-nivel="${a['NÍVEL'] || 1}" data-gr="${ehGR ? 'true' : 'false'}" onchange="atualizarContagemSorteio()" checked>
+                    </label>`; 
+            });
             atualizarContagemSorteio();
         }
     }
@@ -1115,7 +1793,7 @@
         if (!nome) return alert('Introduza o nome do convidado.');
         const listaUI = document.getElementById('listaJogadoresSorteio'); const idChk = 'chk_ext_' + Date.now();
         const novoElemento = document.createElement('label'); novoElemento.className = 'jogador-checkbox'; novoElemento.style.backgroundColor = '#f0f8ff';
-        novoElemento.innerHTML = `${nome} (Extra) <input type="checkbox" id="${idChk}" class="chk-presenca" data-nome="${nome} (Extra)" data-nivel="${nivel}" onchange="atualizarContagemSorteio()" checked>`;
+        novoElemento.innerHTML = `${nome} (Extra) <input type="checkbox" id="${idChk}" class="chk-presenca" data-nome="${nome} (Extra)" data-nivel="${nivel}" data-gr="false" onchange="atualizarContagemSorteio()" checked>`;
         listaUI.insertBefore(novoElemento, listaUI.firstChild); document.getElementById('nomeConvidadoExtra').value = ''; atualizarContagemSorteio();
     }
 
@@ -1128,32 +1806,192 @@
         document.getElementById('nomeConvidadoJogo').value = ''; desenharEquipasMemoria();
     }
 
-    function atualizarContagemSorteio() { document.getElementById('contagemPresencas').innerText = `${document.querySelectorAll('.chk-presenca:checked').length} selecionados`; }
-
     function realizarSorteio() {
-        const selecionados = []; document.querySelectorAll('.chk-presenca:checked').forEach(chk => { selecionados.push({ nome: chk.getAttribute('data-nome'), nivel: parseInt(chk.getAttribute('data-nivel')) }); });
+        const selecionados = []; 
+        document.querySelectorAll('.chk-presenca:checked').forEach(chk => { 
+            selecionados.push({ 
+                nome: chk.getAttribute('data-nome'), 
+                nivel: parseInt(chk.getAttribute('data-nivel')) || 3,
+                isGR: chk.getAttribute('data-gr') === 'true'
+            }); 
+        });
+        
         if (selecionados.length < 2) return alert("Selecione pelo menos 2 jogadores.");
-        selecionados.sort(() => Math.random() - 0.5); selecionados.sort((a, b) => b.nivel - a.nivel);
-        let equipaAzul = []; let equipaVermelha = []; let somaNivelAzul = 0; let somaNivelVermelha = 0;
-        selecionados.forEach(jogador => { if (somaNivelAzul <= somaNivelVermelha) { equipaAzul.push(jogador.nome); somaNivelAzul += jogador.nivel; } else { equipaVermelha.push(jogador.nome); somaNivelVermelha += jogador.nivel; } });
-        equipaAzul.sort((a,b) => a.localeCompare(b)); equipaVermelha.sort((a,b) => a.localeCompare(b));
+
+        let titulares = [];
+        let listaEspera = [];
+
+        // GESTÃO DE LOTAÇÃO & LISTA DE ESPERA
+        if (lotacaoJogo > 0 && selecionados.length > lotacaoJogo) {
+            let grs = selecionados.filter(p => p.isGR);
+            let campos = selecionados.filter(p => !p.isGR);
+
+            // Garantir que até 2 GRs ficam entre os titulares para não faltar guarda-redes
+            let grsTitulares = grs.slice(0, 2);
+            let grsEspera = grs.slice(2);
+
+            let vagasCampo = lotacaoJogo - grsTitulares.length;
+            let camposTitulares = campos.slice(0, vagasCampo);
+            let camposEspera = campos.slice(vagasCampo);
+
+            titulares = [...grsTitulares, ...camposTitulares];
+            listaEspera = [...grsEspera, ...camposEspera];
+        } else {
+            titulares = [...selecionados];
+            listaEspera = [];
+        }
+
+        let grsEmJogo = titulares.filter(p => p.isGR);
+        let camposEmJogo = titulares.filter(p => !p.isGR);
+
+        grsEmJogo.sort(() => Math.random() - 0.5).sort((a,b) => b.nivel - a.nivel);
+        camposEmJogo.sort(() => Math.random() - 0.5).sort((a,b) => b.nivel - a.nivel);
+
+        let equipaAzul = []; 
+        let equipaVermelha = []; 
+        let somaNivelAzul = 0; 
+        let somaNivelVermelha = 0;
+
+        // 1. REGRA ESPECIAL DE GUARDA-REDES: 1 GR na Azul e 1 GR na Vermelha
+        if (grsEmJogo.length >= 2) {
+            equipaAzul.push(grsEmJogo[0].nome);
+            somaNivelAzul += grsEmJogo[0].nivel;
+
+            equipaVermelha.push(grsEmJogo[1].nome);
+            somaNivelVermelha += grsEmJogo[1].nivel;
+
+            // Extra GRs (se houver mais de 2)
+            for (let i = 2; i < grsEmJogo.length; i++) {
+                if (somaNivelAzul <= somaNivelVermelha) {
+                    equipaAzul.push(grsEmJogo[i].nome);
+                    somaNivelAzul += grsEmJogo[i].nivel;
+                } else {
+                    equipaVermelha.push(grsEmJogo[i].nome);
+                    somaNivelVermelha += grsEmJogo[i].nivel;
+                }
+            }
+        } else if (grsEmJogo.length === 1) {
+            if (Math.random() < 0.5) {
+                equipaAzul.push(grsEmJogo[0].nome);
+                somaNivelAzul += grsEmJogo[0].nivel;
+            } else {
+                equipaVermelha.push(grsEmJogo[0].nome);
+                somaNivelVermelha += grsEmJogo[0].nivel;
+            }
+        }
+
+        // 2. EQUILÍBRIO DOS JOGADORES DE CAMPO
+        camposEmJogo.forEach(jogador => { 
+            if (somaNivelAzul < somaNivelVermelha) { 
+                equipaAzul.push(jogador.nome); 
+                somaNivelAzul += jogador.nivel; 
+            } else if (somaNivelVermelha < somaNivelAzul) { 
+                equipaVermelha.push(jogador.nome); 
+                somaNivelVermelha += jogador.nivel; 
+            } else {
+                if (equipaAzul.length <= equipaVermelha.length) {
+                    equipaAzul.push(jogador.nome);
+                    somaNivelAzul += jogador.nivel;
+                } else {
+                    equipaVermelha.push(jogador.nome);
+                    somaNivelVermelha += jogador.nivel;
+                }
+            }
+        });
+
+        equipaAzul.sort((a,b) => a.localeCompare(b)); 
+        equipaVermelha.sort((a,b) => a.localeCompare(b));
         
         equipasMensais = { 
-            azulBase: [...equipaAzul], vermelhaBase: [...equipaVermelha],
-            azul: [...equipaAzul], vermelha: [...equipaVermelha], ausentes: [] 
+            azulBase: [...equipaAzul], 
+            vermelhaBase: [...equipaVermelha],
+            azul: [...equipaAzul], 
+            vermelha: [...equipaVermelha], 
+            ausentes: [],
+            listaEspera: listaEspera.map(p => p.nome)
         }; 
         localStorage.setItem('futsal_equipas_mensais', JSON.stringify(equipasMensais));
-        document.getElementById('areaSorteioCheckboxes').style.display = 'none'; desenharEquipasMemoria(); renderizarJogosMensais(); document.getElementById('areaResultadosSorteio').style.display = 'block';
+        document.getElementById('areaSorteioCheckboxes').style.display = 'none'; 
+        desenharEquipasMemoria(); 
+        renderizarJogosMensais(); 
+        document.getElementById('areaResultadosSorteio').style.display = 'block';
+
+        if (listaEspera.length > 0) {
+            alert(`Sorteio efetuado!\n${titulares.length} atletas titulares nas equipas e ${listaEspera.length} na Lista de Espera / Suplentes.`);
+        }
     }
 
     function desenharEquipasMemoria() {
         if(!equipasMensais.ausentes) equipasMensais.ausentes = [];
-        const gerarDivArrastavel = (nome, index, equipa) => `<div class="jogador-sorteado ${equipa==='X'?'ausente':''}" id="drag_${equipa}_${index}" draggable="true" ondragstart="iniciarDrag(event)" data-nome="${nome}">${nome}</div>`;
+        if(!equipasMensais.listaEspera) equipasMensais.listaEspera = [];
+
+        const dadosAtletas = JSON.parse(localStorage.getItem('futsal_atletas')) || [];
+        const ehGR = (nome) => {
+            let a = dadosAtletas.find(x => x.NOME === nome);
+            return a && (a['POSICAO'] === 'GR' || a.isGR);
+        };
+
+        const gerarDivArrastavel = (nome, index, equipa) => {
+            let grIcon = ehGR(nome) ? ' 🧤' : '';
+            return `<div class="jogador-sorteado ${equipa==='X'?'ausente':''}" id="drag_${equipa}_${index}" draggable="true" ondragstart="iniciarDrag(event)" data-nome="${nome}">${nome}${grIcon}</div>`;
+        };
+
         document.getElementById('listaEquipaAzul').innerHTML = equipasMensais.azul.map((n, i) => gerarDivArrastavel(n, i, 'A')).join('');
         document.getElementById('listaEquipaVermelha').innerHTML = equipasMensais.vermelha.map((n, i) => gerarDivArrastavel(n, i, 'V')).join('');
         document.getElementById('listaAusentes').innerHTML = equipasMensais.ausentes.map((n, i) => gerarDivArrastavel(n, i, 'X')).join('');
-        document.getElementById('contagemAzul').innerText = `${equipasMensais.azul.length} atletas`; document.getElementById('contagemVermelha').innerText = `${equipasMensais.vermelha.length} atletas`;
+        
+        document.getElementById('contagemAzul').innerText = `${equipasMensais.azul.length} atletas`; 
+        document.getElementById('contagemVermelha').innerText = `${equipasMensais.vermelha.length} atletas`;
+
+        // Renderizar Lista de Espera / Suplentes
+        const boxEspera = document.getElementById('boxListaEspera');
+        const contEspera = document.getElementById('contagemEspera');
+        const listaSuplentes = document.getElementById('listaSuplentesUI');
+
+        if (boxEspera && listaSuplentes) {
+            if (equipasMensais.listaEspera && equipasMensais.listaEspera.length > 0) {
+                boxEspera.style.display = 'block';
+                if (contEspera) contEspera.innerText = equipasMensais.listaEspera.length;
+                listaSuplentes.innerHTML = equipasMensais.listaEspera.map((nome, idx) => `
+                    <div class="lista-espera-item">
+                        <span style="font-weight: 600;">${idx+1}. ${nome}${ehGR(nome) ? ' 🧤(GR)' : ''}</span>
+                        <div style="display: flex; gap: 4px;">
+                            <button class="btn-small" style="background: #e3f2fd; color: var(--primary-blue); padding: 4px 8px; font-size: 11px;" onclick="promoverSuplenteJogo('${nome}', 'azul')">🔵 Azul</button>
+                            <button class="btn-small" style="background: #ffebee; color: var(--red-loss); padding: 4px 8px; font-size: 11px;" onclick="promoverSuplenteJogo('${nome}', 'vermelha')">🔴 Vermelha</button>
+                            <button class="btn-small" style="background: #f3f4f6; color: #888; padding: 4px 6px; font-size: 11px;" onclick="removerSuplente('${nome}')">✕</button>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                boxEspera.style.display = 'none';
+                listaSuplentes.innerHTML = '';
+            }
+        }
+
         desenharInterfaceResultadosIndividuais();
+    }
+
+    function promoverSuplenteJogo(nome, equipaDestino) {
+        if (!equipasMensais) return;
+        equipasMensais.listaEspera = (equipasMensais.listaEspera || []).filter(n => n !== nome);
+        if (equipaDestino === 'azul') {
+            equipasMensais.azul.push(nome);
+            equipasMensais.azul.sort((a,b) => a.localeCompare(b));
+            if (!equipasMensais.azulBase.includes(nome)) equipasMensais.azulBase.push(nome);
+        } else {
+            equipasMensais.vermelha.push(nome);
+            equipasMensais.vermelha.sort((a,b) => a.localeCompare(b));
+            if (!equipasMensais.vermelhaBase.includes(nome)) equipasMensais.vermelhaBase.push(nome);
+        }
+        localStorage.setItem('futsal_equipas_mensais', JSON.stringify(equipasMensais));
+        desenharEquipasMemoria();
+    }
+
+    function removerSuplente(nome) {
+        if (!equipasMensais) return;
+        equipasMensais.listaEspera = (equipasMensais.listaEspera || []).filter(n => n !== nome);
+        localStorage.setItem('futsal_equipas_mensais', JSON.stringify(equipasMensais));
+        desenharEquipasMemoria();
     }
 
     function renderizarJogosMensais() {
@@ -1619,7 +2457,16 @@
     // ==========================================
     function abrirAppWhatsApp(texto, telefone = '') {
         try {
-            let urlWeb = telefone ? `https://wa.me/${telefone}?text=${texto}` : `https://api.whatsapp.com/send?text=${texto}`;
+            let textoUniforme = texto;
+            // Se já tiver %0A ou %20, descodifica para evitar dupla codificação
+            if (typeof texto === 'string' && (texto.includes('%0A') || texto.includes('%20') || texto.includes('%26'))) {
+                try {
+                    textoUniforme = decodeURIComponent(texto);
+                } catch(e) {}
+            }
+            // Codifica adequadamente com encodeURIComponent para que & e espaços nunca cortem a mensagem
+            const encodedText = encodeURIComponent(textoUniforme);
+            let urlWeb = telefone ? `https://wa.me/${telefone}?text=${encodedText}` : `https://api.whatsapp.com/send?text=${encodedText}`;
             window.open(urlWeb, '_blank');
         } catch(e) { console.log("Erro ao abrir WhatsApp", e); }
     }
@@ -1664,6 +2511,383 @@
         let vermelhos = [...equipasMensais.vermelha].sort((a,b) => a.localeCompare(b));
         let texto = `⚽ *EQUIPAS ${nomeClube.toUpperCase()}* ⚽%0A%0A🔵 *EQUIPA AZUL (${azuis.length}):*%0A${azuis.map(n => `• ${n}`).join('%0A')}%0A%0A🔴 *EQUIPA VERMELHA (${vermelhos.length}):*%0A${vermelhos.map(n => `• ${n}`).join('%0A')}%0A%0A_Bons jogos!_`;
         abrirAppWhatsApp(texto);
+    }
+
+    // ==========================================
+    // 1. LANÇAMENTO DE MENSALIDADES EM MASSA
+    // ==========================================
+    function abrirModalMensalidadeMassa() {
+        const dadosGuardados = localStorage.getItem('futsal_atletas');
+        const atletas = dadosGuardados ? JSON.parse(dadosGuardados) : [];
+        const mensalistas = atletas.filter(a => (a['TIPO_PAGAMENTO'] || 'Mensalidade') === 'Mensalidade');
+
+        const d = new Date();
+        const mesStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+        
+        const inputMes = document.getElementById('massaMesRef');
+        if (inputMes) inputMes.value = mesStr;
+
+        const inputData = document.getElementById('massaData');
+        if (inputData) inputData.value = hojeISO();
+
+        atualizarDescricaoMassa();
+
+        const listaUI = document.getElementById('listaMensalistasMassa');
+        if (listaUI) {
+            if (mensalistas.length === 0) {
+                listaUI.innerHTML = '<p style="text-align: center; color: #999; font-size: 13px; margin: 10px 0;">Não foram encontrados atletas com estatuto "Mensalidade". Altere o estatuto no perfil do atleta.</p>';
+            } else {
+                listaUI.innerHTML = mensalistas.map((m, idx) => {
+                    const saldo = obterSaldoAtleta(m['NOME']);
+                    let infoSaldo = '';
+                    if (saldo > 0) infoSaldo = `<span style="font-size:11px; color:var(--red-loss); font-weight:600;">(Dívida: ${saldo.toFixed(2)}€)</span>`;
+                    else if (saldo < 0) infoSaldo = `<span style="font-size:11px; color:var(--green-win); font-weight:600;">(Crédito: ${Math.abs(saldo).toFixed(2)}€)</span>`;
+                    else infoSaldo = `<span style="font-size:11px; color:#6b7280;">(Em dia)</span>`;
+
+                    return `
+                    <label style="display: flex; align-items: center; justify-content: space-between; padding: 6px 8px; border-bottom: 1px solid #f0f0f0; cursor: pointer; font-size: 13px;" for="chk_massa_${idx}">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" id="chk_massa_${idx}" class="chk-mensalista-massa" value="${m['NOME']}" checked onchange="atualizarResumoMassa()">
+                            <span style="font-weight: 600;">${m['NOME']}</span>
+                        </div>
+                        ${infoSaldo}
+                    </label>
+                    `;
+                }).join('');
+            }
+        }
+
+        const contEl = document.getElementById('contagemMensalistasMassa');
+        if (contEl) contEl.innerText = mensalistas.length;
+
+        atualizarResumoMassa();
+        document.getElementById('modalMensalidadeMassa').style.display = 'flex';
+    }
+
+    function atualizarDescricaoMassa() {
+        const mesRef = document.getElementById('massaMesRef').value;
+        const nomesMeses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+        if (mesRef) {
+            const partes = mesRef.split('-');
+            const mesNome = nomesMeses[parseInt(partes[1], 10) - 1] || partes[1];
+            document.getElementById('massaDesc').value = `Quota de ${mesNome} / ${partes[0]}`;
+        }
+        atualizarResumoMassa();
+    }
+
+    function alternarTodosMensalistasMassa() {
+        const checkboxes = document.querySelectorAll('.chk-mensalista-massa');
+        if (checkboxes.length === 0) return;
+        const todosMarcados = Array.from(checkboxes).every(c => c.checked);
+        checkboxes.forEach(c => c.checked = !todosMarcados);
+        atualizarResumoMassa();
+    }
+
+    function atualizarResumoMassa() {
+        const checkboxes = document.querySelectorAll('.chk-mensalista-massa:checked');
+        const valor = parseFloat(document.getElementById('massaValor').value) || 0;
+        const total = checkboxes.length * valor;
+        const resumoEl = document.getElementById('resumoTotalMassa');
+        if (resumoEl) {
+            resumoEl.innerHTML = `📌 <b>${checkboxes.length} atletas selecionados</b> • Valor total a debitar: <b>${total.toFixed(2)} €</b>`;
+        }
+    }
+
+    function confirmarMensalidadeMassa() {
+        const checkboxes = document.querySelectorAll('.chk-mensalista-massa:checked');
+        if (checkboxes.length === 0) {
+            return alert("Selecione pelo menos um atleta mensalista.");
+        }
+
+        const valor = parseFloat(document.getElementById('massaValor').value);
+        if (!valor || valor <= 0 || isNaN(valor)) {
+            return alert("Introduza um valor válido para a mensalidade.");
+        }
+
+        const dataRegisto = document.getElementById('massaData').value || hojeISO();
+        const descricao = document.getElementById('massaDesc').value.trim() || 'Quota Mensal';
+        const mesRef = document.getElementById('massaMesRef').value;
+
+        let detalheRef = '';
+        if (mesRef) {
+            const p = mesRef.split('-');
+            if (p.length === 2) detalheRef = ` (Ref: Mês ${p[1]}/${p[0]})`;
+        }
+
+        const totalDebitado = checkboxes.length * valor;
+        const confirmar = confirm(`Confirma o lançamento da mensalidade?\n\n• Descrição: ${descricao}${detalheRef}\n• Valor por atleta: ${valor.toFixed(2)}€\n• Atletas a debitar: ${checkboxes.length}\n• Total global: ${totalDebitado.toFixed(2)}€`);
+        if (!confirmar) return;
+
+        checkboxes.forEach(chk => {
+            const nomeAtleta = chk.value;
+            transacoes.push({
+                id: gerarId() + Math.random().toString(36).substring(2, 5),
+                data: dataRegisto,
+                tipo: 'divida_atleta',
+                descricao: `${descricao}${detalheRef}`,
+                valor: valor,
+                metodo: 'Mensalidade',
+                atleta: nomeAtleta
+            });
+        });
+
+        salvarEAtualizar();
+        fecharModal('modalMensalidadeMassa');
+        alert(`Sucesso! Quotas lançadas para ${checkboxes.length} atletas (Total: ${totalDebitado.toFixed(2)}€).`);
+    }
+
+    // ==========================================
+    // 2. PAINEL DE COBRANÇA RÁPIDA VIA WHATSAPP
+    // ==========================================
+    function abrirPainelCobranca() {
+        desenharPainelCobranca();
+        document.getElementById('modalPainelCobranca').style.display = 'flex';
+    }
+
+    function desenharPainelCobranca() {
+        const dadosGuardados = localStorage.getItem('futsal_atletas');
+        const atletas = dadosGuardados ? JSON.parse(dadosGuardados) : [];
+
+        // Atualizar info de pagamento do clube
+        const infoCfgEl = document.getElementById('infoDadosPagamentoResumo');
+        if (infoCfgEl) {
+            let dadosStr = [];
+            if (configPagamento.mbway) dadosStr.push(`<b>MB Way:</b> ${configPagamento.mbway}`);
+            if (configPagamento.iban) dadosStr.push(`<b>IBAN:</b> ${configPagamento.iban}`);
+            if (dadosStr.length > 0) {
+                infoCfgEl.innerHTML = `💳 <b>Dados do Clube:</b> ${dadosStr.join(' | ')}`;
+                infoCfgEl.style.display = 'block';
+            } else {
+                infoCfgEl.innerHTML = `💡 <i>Clique em "⚙️ Dados" acima para configurar o MB Way e IBAN do clube nas mensagens.</i>`;
+                infoCfgEl.style.display = 'block';
+            }
+        }
+
+        // Identificar atletas com dívida
+        let devedores = [];
+        let totalDivida = 0;
+
+        atletas.forEach(a => {
+            const nome = a['NOME'];
+            const saldo = obterSaldoAtleta(nome);
+            if (saldo > 0.01) {
+                devedores.push({
+                    nome: nome,
+                    contacto: a['TELEMOVEL'] || a['CONTACTO'] || '',
+                    posicao: a['POSICAO'] || 'Campo',
+                    tipo: a['TIPO_PAGAMENTO'] || 'Mensalidade',
+                    divida: saldo
+                });
+                totalDivida += saldo;
+            }
+        });
+
+        // Ordenar por maior dívida
+        devedores.sort((a, b) => b.divida - a.divida || a.nome.localeCompare(b.nome));
+
+        document.getElementById('totalDevedoresCobranca').innerText = devedores.length;
+        document.getElementById('totalDividaCobranca').innerText = `${totalDivida.toFixed(2)} €`;
+
+        const container = document.getElementById('listaAtletasCobranca');
+        if (!container) return;
+
+        if (devedores.length === 0) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 30px 15px; color: #15803d; background: #f0fdf4; border-radius: 8px; margin-top: 10px;">
+                    <div style="font-size: 28px; margin-bottom: 6px;">🎉</div>
+                    <div style="font-weight: 700; font-size: 15px;">Parabéns! Nenhuma dívida pendente.</div>
+                    <div style="font-size: 12px; color: #166534; margin-top: 4px;">Todos os atletas têm as contas do clube em dia.</div>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = devedores.map(d => {
+            const telLimpo = d.contacto ? d.contacto.toString().replace(/\s/g, '') : '';
+            return `
+                <div class="cobranca-item">
+                    <div class="cobranca-info">
+                        <div class="cobranca-nome">${d.nome} <span style="font-size:11px; font-weight:normal; color:#888;">(${d.tipo})</span></div>
+                        <div class="cobranca-sub">
+                            ${d.contacto ? `📞 ${d.contacto}` : `<span style="color:#d97706;">⚠️ Sem contacto guardado</span>`}
+                        </div>
+                    </div>
+                    <div class="cobranca-valor-area">
+                        <div class="cobranca-valor">${d.divida.toFixed(2)} €</div>
+                        <button class="btn-cobranca-wa" onclick="enviarCobrancaWhatsApp('${d.nome.replace(/'/g, "\\'")}', ${d.divida}, '${telLimpo}')" title="Enviar mensagem cordial de cobrança por WhatsApp">
+                            📲 Cobrar
+                        </button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    function enviarCobrancaWhatsApp(nome, valor, contacto) {
+        let texto = `⚽ *${nomeClube.toUpperCase()} - Informação de Pagamento* ⚽%0A%0A`;
+        texto += `Olá, *${nome}*! Tudo bem? Esperamos que sim!%0A%0A`;
+        texto += `Entramos em contacto apenas para recordar que tens um saldo pendente de *${valor.toFixed(2)}€* referente às atividades do clube.%0A%0A`;
+        
+        texto += `💳 *Dados para Liquidação:*%0A`;
+        if (configPagamento.mbway) {
+            texto += `• *MB Way:* ${configPagamento.mbway}%0A`;
+        }
+        if (configPagamento.iban) {
+            texto += `• *IBAN:* ${configPagamento.iban}%0A`;
+        }
+        if (configPagamento.titular) {
+            texto += `• *Titular:* ${configPagamento.titular}%0A`;
+        }
+        if (configPagamento.notas) {
+            texto += `• *Obs:* ${configPagamento.notas}%0A`;
+        }
+        if (!configPagamento.mbway && !configPagamento.iban) {
+            texto += `• Por favor efetua o pagamento junto da organização do clube no próximo jogo.%0A`;
+        }
+
+        texto += `%0ASe já efetuaste o pagamento, por favor envia-nos o comprovativo para darmos baixa. Muito obrigado pela tua colaboração e apoio ao nosso grupo! ⚽👊`;
+
+        if (contacto) {
+            abrirWhatsAppLink(contacto, texto);
+        } else {
+            abrirAppWhatsApp(texto);
+        }
+    }
+
+    // ==========================================
+    // 3. CONFIGURAÇÃO DE PAGAMENTO DO CLUBE
+    // ==========================================
+    function abrirModalConfigPagamento() {
+        document.getElementById('cfgMbway').value = configPagamento.mbway || '';
+        document.getElementById('cfgIban').value = configPagamento.iban || '';
+        document.getElementById('cfgTitular').value = configPagamento.titular || '';
+        document.getElementById('cfgNotas').value = configPagamento.notas || '';
+        document.getElementById('modalConfigPagamento').style.display = 'flex';
+    }
+
+    function guardarConfigPagamento() {
+        configPagamento = {
+            mbway: document.getElementById('cfgMbway').value.trim(),
+            iban: document.getElementById('cfgIban').value.trim(),
+            titular: document.getElementById('cfgTitular').value.trim(),
+            notas: document.getElementById('cfgNotas').value.trim()
+        };
+        localStorage.setItem('futsal_config_pagamento', JSON.stringify(configPagamento));
+        fecharModal('modalConfigPagamento');
+        if (document.getElementById('modalPainelCobranca').style.display === 'flex') {
+            desenharPainelCobranca();
+        }
+        alert("Dados de pagamento do clube guardados com sucesso!");
+    }
+
+    // ==========================================
+    // 4. EXPORTAR BASE DE DADOS PARA EXCEL (.xlsx)
+    // ==========================================
+    function exportarBaseDadosExcel() {
+        if (typeof XLSX === 'undefined') {
+            return alert("A biblioteca Excel (XLSX) está a carregar. Por favor tente novamente dentro de instantes.");
+        }
+
+        const dadosGuardados = localStorage.getItem('futsal_atletas');
+        const atletas = dadosGuardados ? JSON.parse(dadosGuardados) : [];
+
+        let jogosRegistados = jogosMensais.filter(j => j.data.startsWith(anoAtual.toString())).length;
+        let maxPresencas = Math.max(...atletas.map(a => parseInt(a.PRESENCAS) || 0), 0);
+        let totalJogosAno = Math.max(jogosRegistados, maxPresencas);
+
+        // 1. Folha de Atletas
+        const linhasAtletas = atletas.map((a, idx) => {
+            const p = parseInt(a.PRESENCAS) || 0;
+            const v = parseInt(a.VITORIAS) || 0;
+            const e = parseInt(a.EMPATES) || 0;
+            const d = parseInt(a.DERROTAS) || 0;
+            const g = parseInt(a.GOLOS) || 0;
+            const ag = parseInt(a.AG) || 0;
+            const pts = v * 3 + e;
+            const ifreq = totalJogosAno > 0 ? ((p / totalJogosAno) * 100).toFixed(0) : '0';
+            const ivit = p > 0 ? ((v / p) * 100).toFixed(0) : '0';
+            const saldo = obterSaldoAtleta(a.NOME);
+
+            let estadoFin = 'Em dia';
+            if (saldo > 0.01) estadoFin = `Dívida (${saldo.toFixed(2)}€)`;
+            else if (saldo < -0.01) estadoFin = `Crédito (${Math.abs(saldo).toFixed(2)}€)`;
+
+            return {
+                'Nº': idx + 1,
+                'Nome': a.NOME,
+                'Posição': (a.POSICAO === 'GR' || a.isGR) ? 'Guarda-Redes (GR)' : 'Campo',
+                'Estatuto': a.TIPO_PAGAMENTO || 'Mensalidade',
+                'Nível Desportivo': a['NÍVEL'] || 3,
+                'Contacto': a.TELEMOVEL || a.CONTACTO || '',
+                'Saldo Financeiro (€)': Number(saldo.toFixed(2)),
+                'Estado Financeiro': estadoFin,
+                'Presenças': p,
+                'Vitórias': v,
+                'Empates': e,
+                'Derrotas': d,
+                'Pontos': pts,
+                'Golos Marcados': g,
+                'Autogolos': ag,
+                'Índice Frequência (%)': `${ifreq}%`,
+                'Índice Vitórias (%)': `${ivit}%`
+            };
+        });
+
+        // 2. Folha de Movimentos de Tesouraria
+        const linhasTransacoes = transacoes.map(t => {
+            return {
+                'ID': t.id,
+                'Data': t.data,
+                'Tipo': t.tipo === 'entrada' ? 'Receita / Pagamento' : (t.tipo === 'saida' ? 'Despesa' : 'Dívida / Quota Atleta'),
+                'Descrição': t.descricao,
+                'Valor (€)': Number(t.valor.toFixed(2)),
+                'Método Pagamento': t.metodo || 'Outros',
+                'Atleta Associado': t.atleta || ''
+            };
+        });
+
+        // 3. Folha de Jogos
+        const linhasJogos = jogosMensais.map(j => {
+            let resultado = 'Empate';
+            if (j.golosA > j.golosV) resultado = 'Vitória Equipa Azul';
+            else if (j.golosV > j.golosA) resultado = 'Vitória Equipa Vermelha';
+
+            return {
+                'ID': j.id,
+                'Data': j.data,
+                'Golos Azul': j.golosA,
+                'Golos Vermelha': j.golosV,
+                'Resultado': resultado
+            };
+        });
+
+        // Criar Livro de Trabalho (Workbook)
+        const wb = XLSX.utils.book_new();
+
+        const wsAtletas = XLSX.utils.json_to_sheet(linhasAtletas);
+        XLSX.utils.book_append_sheet(wb, wsAtletas, "Plantel & Stats");
+
+        if (linhasTransacoes.length > 0) {
+            const wsTransacoes = XLSX.utils.json_to_sheet(linhasTransacoes);
+            XLSX.utils.book_append_sheet(wb, wsTransacoes, "Movimentos Tesouraria");
+        }
+
+        if (linhasJogos.length > 0) {
+            const wsJogos = XLSX.utils.json_to_sheet(linhasJogos);
+            XLSX.utils.book_append_sheet(wb, wsJogos, "Jogos Registados");
+        }
+
+        const dataHoje = hojeISO();
+        const nomeFicheiro = `BaseDados_${nomeClube.replace(/[^a-zA-Z0-9]/g, '_')}_${dataHoje}.xlsx`;
+
+        try {
+            XLSX.writeFile(wb, nomeFicheiro);
+        } catch(e) {
+            console.warn("Erro no writeFile direto, a usar Blob fallback:", e);
+            const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+            const blob = new Blob([wbout], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            partilharFicheiro(blob, nomeFicheiro, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        }
     }
 
     function limparDadosSistema() { if(confirm("ATENÇÃO: APAGAR TUDO e formatar? Esta ação não pode ser desfeita!")) { localStorage.clear(); window.location.reload(); } }
