@@ -264,6 +264,185 @@
         .cobranca-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-bottom: 1px solid #eee; background: white; border-radius: 8px; margin-bottom: 8px; border: 1px solid #f0f0f0; }
         .cobranca-info { display: flex; flex-direction: column; gap: 3px; }
         .cobranca-acoes { display: flex; gap: 6px; align-items: center; }
+
+        /* RESUMO DO JOGO & PARTILHA WHATSAPP */
+        .btn-resumo-jogo {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: 0.15s;
+            box-shadow: 0 1px 3px rgba(16, 185, 129, 0.25);
+            white-space: nowrap;
+        }
+        .btn-resumo-jogo:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+        .resumo-tab-btn {
+            flex: 1;
+            padding: 8px 6px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            border: none;
+            background: #ffffff;
+            color: #475569;
+            cursor: pointer;
+            transition: 0.15s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        .resumo-tab-btn.ativa {
+            background: var(--primary-blue) !important;
+            color: #ffffff !important;
+        }
+        .resumo-card-visual {
+            background: linear-gradient(135deg, #0b1120 0%, #1e293b 100%);
+            border-radius: 12px;
+            color: white;
+            padding: 14px 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+            margin-bottom: 12px;
+            border: 1px solid #334155;
+            text-align: left;
+        }
+        .resumo-card-topo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+        .resumo-card-clube {
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: #f8fafc;
+            text-transform: uppercase;
+        }
+        .resumo-card-data {
+            font-size: 11px;
+            color: #94a3b8;
+        }
+        .resumo-placar-wrap {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .resumo-time-box {
+            padding: 8px 6px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .resumo-time-box.azul {
+            background: rgba(37, 99, 235, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+        }
+        .resumo-time-box.verm {
+            background: rgba(220, 38, 38, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+        }
+        .resumo-time-nome {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .resumo-time-box.azul .resumo-time-nome { color: #60a5fa; }
+        .resumo-time-box.verm .resumo-time-nome { color: #f87171; }
+        .resumo-time-golos {
+            font-size: 32px;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .resumo-vs-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .resumo-badge-resultado {
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .badge-res-azul { background: #2563eb; color: white; }
+        .badge-res-verm { background: #dc2626; color: white; }
+        .badge-res-empate { background: #d97706; color: white; }
+
+        .resumo-marcadores-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 8px;
+        }
+        .resumo-col-marcadores {
+            font-size: 11.5px;
+        }
+        .resumo-col-marcadores h5 {
+            margin: 0 0 5px 0;
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .resumo-col-marcadores.azul h5 { color: #93c5fd; }
+        .resumo-col-marcadores.verm h5 { color: #fca5a5; }
+        .resumo-lista-gols {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .resumo-item-gol {
+            font-size: 11px;
+            color: #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .resumo-item-vazio {
+            font-size: 11px;
+            color: #64748b;
+            font-style: italic;
+        }
+        .resumo-destaque-pichichi {
+            background: linear-gradient(90deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.15) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 11px;
+            color: #fef3c7;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -365,6 +544,11 @@
                 </div>
                 <div class="h2h-stats-gerais" id="h2hGolosMedia">
                     ⚽ 0 golos marcados (média de 0.0 por jogo)
+                </div>
+                <div id="h2hUltimoJogoArea" style="display: none; margin-top: 8px; text-align: center; border-top: 1px dashed #e2e8f0; padding-top: 8px;">
+                    <button class="btn-small" style="background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd; font-weight: 700; padding: 5px 12px; font-size: 11px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;" onclick="abrirResumoUltimoJogo()" title="Ver resumo visual e marcadores do jogo mais recente">
+                        📲 Ver Resumo do Último Jogo
+                    </button>
                 </div>
             </div>
         </div>
@@ -578,11 +762,22 @@
         </div>
 
         <div class="pdf-section">
-            <h4>Exportar Conta Corrente (PDF)</h4>
-            <div class="pdf-grid">
-                <div><label>De:</label><input type="date" id="pdfDataI"></div>
-                <div><label>Até:</label><input type="date" id="pdfDataF"></div>
-                <div><button class="btn-primary" style="padding: 9px;" onclick="gerarPDF()">Gerar</button></div>
+            <h4 style="display: flex; align-items: center; justify-content: space-between; margin: 0 0 8px 0; font-size: 15px;">
+                <span>📑 Exportar Conta Corrente</span>
+                <span style="font-size: 11px; font-weight: normal; background: #e0f2fe; color: #0284c7; padding: 2px 7px; border-radius: 4px;">Com Método de Pagamento</span>
+            </h4>
+            <p style="font-size: 12px; color: #666; margin: 0 0 10px 0;">Emite o extrato detalhado discriminando se cada movimento foi pago por <strong>Dinheiro, MB Way, Transferência</strong> ou outro.</p>
+            <div class="pdf-grid" style="flex-wrap: wrap;">
+                <div style="min-width: 120px;"><label style="font-size: 12px; font-weight: bold; color: #555;">De:</label><input type="date" id="pdfDataI"></div>
+                <div style="min-width: 120px;"><label style="font-size: 12px; font-weight: bold; color: #555;">Até:</label><input type="date" id="pdfDataF"></div>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 10px;">
+                <button class="btn-primary" style="flex: 1; padding: 10px 6px; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 4px;" onclick="gerarPDF()">
+                    📄 Relatório PDF
+                </button>
+                <button class="btn-small" style="flex: 1; padding: 10px 6px; font-size: 12px; background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 4px;" onclick="exportarContaCorrenteExcel()">
+                    📊 Extrato Excel
+                </button>
             </div>
         </div>
 
@@ -724,11 +919,16 @@
 </div>
 
 <div id="modalHistoricoAtleta" class="modal">
-    <div class="modal-content">
-        <h3 id="tituloModalHistorico">Conta Corrente</h3>
+    <div class="modal-content" style="max-height: 90vh; display: flex; flex-direction: column;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <h3 id="tituloModalHistorico" style="margin: 0; font-size: 17px;">Conta Corrente</h3>
+            <span style="font-size: 11px; background: #e0f2fe; color: #0284c7; padding: 2px 7px; border-radius: 4px; font-weight: bold;">Com Métodos</span>
+        </div>
+        <div id="resumoHistoricoAtleta" style="font-size: 12px; color: #555; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 10px; margin-bottom: 8px;"></div>
         <div id="listaHistoricoAtleta" style="flex: 1; overflow-y: auto; padding-right: 5px;"></div>
-        <div class="modal-actions">
-            <button class="btn-cancel" onclick="fecharModal('modalHistoricoAtleta')">Fechar</button>
+        <div class="modal-actions" style="margin-top: 10px; display: flex; gap: 8px;">
+            <button class="btn-cancel" style="flex: 1;" onclick="fecharModal('modalHistoricoAtleta')">Fechar</button>
+            <button class="btn-primary auto" style="flex: 1.2; margin-bottom: 0; display: flex; align-items: center; justify-content: center; gap: 5px;" onclick="exportarHistoricoAtletaPDF()">📄 Exportar PDF</button>
         </div>
     </div>
 </div>
@@ -945,6 +1145,168 @@
     </div>
 </div>
 
+<!-- MODAL RESUMO DO JOGO & PARTILHA WHATSAPP -->
+<div id="modalResumoJogo" class="modal">
+    <div class="modal-content" style="max-width: 440px; max-height: 94vh; overflow-y: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; margin-bottom: 10px;">
+            <div>
+                <h3 style="color: #0f172a; margin: 0; display: flex; align-items: center; gap: 6px; font-size: 16px;">
+                    ⚽ Resumo do Jogo & Partilha
+                </h3>
+                <span id="resumoDataDisplay" style="font-size: 11px; color: var(--text-muted);"></span>
+            </div>
+            <button class="btn-icon" onclick="fecharModal('modalResumoJogo')" style="background: #f1f5f9; border-radius: 50%;">✕</button>
+        </div>
+
+        <input type="hidden" id="resumoJogoIdAtivo">
+
+        <!-- SELETOR DE VISTA: IMAGEM OU DETALHES -->
+        <div style="display: flex; gap: 6px; margin-bottom: 12px; background: #f1f5f9; padding: 4px; border-radius: 8px;">
+            <button id="tabBtnImagem" class="resumo-tab-btn ativa" onclick="alternarAbaResumo('imagem')">🖼️ Imagem Oficial</button>
+            <button id="tabBtnDetalhes" class="resumo-tab-btn" onclick="alternarAbaResumo('detalhes')">📋 Detalhes & Golos</button>
+        </div>
+
+        <!-- ABA 1: IMAGEM GRÁFICA PRÉVIA -->
+        <div id="resumoAreaImagem" style="margin-bottom: 12px; text-align: center;">
+            <div style="position: relative; background: #0b1120; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.25); border: 1px solid #334155; cursor: pointer;" onclick="abrirImagemEmEcraCompleto()" title="Toca para ver e guardar em ecrã completo">
+                <img id="resumoImagemPrevia" src="" alt="Resumo Oficial do Jogo" style="width: 100%; height: auto; display: block; border-radius: 12px; -webkit-touch-callout: default !important; user-select: auto; pointer-events: auto;">
+                <div style="position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.75); color: #fff; padding: 4px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 4px; pointer-events: none;">
+                    <span>🔍</span><span>Tocar p/ ampliar</span>
+                </div>
+            </div>
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 7px 10px; margin-top: 8px; font-size: 11px; color: #475569; text-align: left; line-height: 1.4;">
+                💡 <strong>Guardar na Galeria / Fotos (iPhone e Android):</strong><br>
+                Mantém o dedo premido na foto acima durante 1 segundo e escolhe <strong>«Guardar em Fotografias»</strong> (iPhone) ou <strong>«Transferir Imagem»</strong> (Android).
+            </div>
+        </div>
+
+        <!-- ABA 2: DETALHES INTERATIVOS DOS MARCADORES -->
+        <div id="resumoAreaDetalhes" style="display: none;">
+            <div id="resumoCardVisualContainer" class="resumo-card-visual">
+                <div class="resumo-card-topo">
+                    <span class="resumo-card-clube" id="resumoCardClube">FUTSAL @ SÁBADO</span>
+                    <span class="resumo-card-data" id="resumoCardData">10/10/2026</span>
+                </div>
+                
+                <div class="resumo-placar-wrap">
+                    <div class="resumo-time-box azul">
+                        <span class="resumo-time-nome">Equipa Azul</span>
+                        <span class="resumo-time-golos" id="resumoGolosAzul">0</span>
+                    </div>
+                    
+                    <div class="resumo-vs-badge">
+                        <span style="font-size: 10px; color: #94a3b8; font-weight: bold;">VS</span>
+                        <span class="resumo-badge-resultado" id="resumoBadgeResultado">Empate</span>
+                    </div>
+
+                    <div class="resumo-time-box verm">
+                        <span class="resumo-time-nome">Equipa Vermelha</span>
+                        <span class="resumo-time-golos" id="resumoGolosVerm">0</span>
+                    </div>
+                </div>
+
+                <!-- MARCADORES -->
+                <div class="resumo-marcadores-grid">
+                    <div class="resumo-col-marcadores azul">
+                        <h5>🔵 Marcadores Azul</h5>
+                        <ul class="resumo-lista-gols" id="resumoListaMarcadoresAzul"></ul>
+                    </div>
+                    <div class="resumo-col-marcadores verm">
+                        <h5>🔴 Marcadores Vermelha</h5>
+                        <ul class="resumo-lista-gols" id="resumoListaMarcadoresVerm"></ul>
+                    </div>
+                </div>
+
+                <!-- DESTAQUE PICHICHI -->
+                <div class="resumo-destaque-pichichi" id="resumoDestaquePichichi" style="display: none;">
+                    <span>⭐</span>
+                    <span id="resumoTextoPichichi">Melhor Marcador: --</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTÃO PRINCIPAL DE PARTILHA DE IMAGEM NO WHATSAPP -->
+        <button class="btn-success" style="background: #25d366; color: white; width: 100%; padding: 12px 10px; font-size: 14px; font-weight: 800; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 0 8px 0; box-shadow: 0 4px 14px rgba(37,211,102,0.35); cursor: pointer; border: none; transition: 0.15s;" onclick="partilharImagemWhatsApp()">
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 15px;">
+                <span>📲</span>
+                <span>Partilhar Imagem no WhatsApp</span>
+            </div>
+            <span style="font-size: 11px; font-weight: 500; opacity: 0.95; margin-top: 2px;">
+                Envia a imagem gráfica oficial do jogo diretamente
+            </span>
+        </button>
+
+        <!-- AVISO DE APOIO / FALLBACK PARA QUANDO O BROWSER NÃO PERMITE WEB SHARE NATIVO -->
+        <div id="avisoFallbackPartilha" style="display: none; background: #ecfdf5; border: 1px solid #10b981; border-radius: 8px; padding: 12px; margin-bottom: 10px; text-align: center;">
+            <div style="font-weight: 800; color: #065f46; font-size: 13.5px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <span>✅</span> <span>Imagem guardada com sucesso!</span>
+            </div>
+            <div style="font-size: 12px; color: #047857; margin-bottom: 10px; line-height: 1.4;">
+                A imagem está nas tuas <strong>Fotos / Transferências</strong>.<br>Clica no botão abaixo para abrir o WhatsApp e toca no <strong>📎 (anexo)</strong> para enviar a foto com o texto copiado!
+            </div>
+            <button class="btn-primary" style="background: #25d366; color: white; width: 100%; padding: 10px; font-size: 13px; font-weight: bold; border-radius: 6px; box-shadow: 0 2px 8px rgba(37,211,102,0.3);" onclick="abrirWhatsAppComTextoFallback()">
+                📲 Abrir WhatsApp com Texto
+            </button>
+        </div>
+
+        <!-- AÇÕES RÁPIDAS SECUNDÁRIAS -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+            <button class="btn-small" style="background: #0f172a; color: white; padding: 9px 6px; font-weight: 700; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer; border: none;" onclick="descarregarImagemResumo(true)" title="Guardar imagem no telemóvel ou PC">
+                📥 Guardar Imagem
+            </button>
+            <button class="btn-small" style="background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; padding: 9px 6px; font-weight: 700; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer;" onclick="partilharTextoResumoWhatsApp()" title="Enviar apenas o resumo de texto sem imagem">
+                💬 Só Texto no WhatsApp
+            </button>
+            <button class="btn-small" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 8px 6px; font-weight: 600; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer;" onclick="copiarImagemResumo()" title="Copiar para colar no WhatsApp Web">
+                📋 Copiar Imagem (PC)
+            </button>
+            <button class="btn-small" style="background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; padding: 8px 6px; font-weight: 600; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer;" onclick="copiarTextoResumoWhatsApp()" title="Copiar texto formatado">
+                📋 Copiar Texto
+            </button>
+        </div>
+
+        <!-- PRÉVIA DO TEXTO COLAPSÁVEL -->
+        <div style="border-top: 1px solid #e2e8f0; padding-top: 8px; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;" onclick="alternarPreviaTextoResumo()">
+                <span style="font-size: 11.5px; font-weight: 600; color: #64748b;">Ver mensagem de texto detalhada</span>
+                <span style="font-size: 11px; color: var(--primary-blue); font-weight: 600;" id="btnTogglePreviaTexto">Expandir ▾</span>
+            </div>
+            <div id="resumoTextoPrevia" style="display: none; margin-top: 6px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px; font-family: monospace; font-size: 11px; color: #334155; white-space: pre-wrap; max-height: 120px; overflow-y: auto;"></div>
+        </div>
+
+        <div class="modal-actions" style="margin-top: 4px;">
+            <button class="btn-cancel" style="width: 100%;" onclick="fecharModal('modalResumoJogo')">Fechar</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL VISUALIZADOR DE IMAGEM FULL SCREEN COM TOQUE LONGO PARA GUARDAR -->
+<div id="modalImagemFull" class="modal" style="z-index: 100000;">
+    <div class="modal-content" style="max-width: 480px; max-height: 94vh; display: flex; flex-direction: column; padding: 16px; text-align: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h4 style="margin: 0; font-size: 15px; color: #0f172a;">🖼️ Resumo Gráfico do Jogo</h4>
+            <button class="btn-icon" onclick="fecharModal('modalImagemFull')" style="background: #f1f5f9; border-radius: 50%;">✕</button>
+        </div>
+        <div style="background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; border-radius: 8px; padding: 8px 10px; font-size: 12px; margin-bottom: 10px; line-height: 1.4; text-align: left;">
+            📱 <strong>Guardar na Galeria / Fotografias:</strong> Mantém o dedo premido na foto abaixo durante 1 segundo e escolhe <strong>«Guardar em Fotografias»</strong> (iPhone) ou <strong>«Transferir Imagem»</strong> (Android).
+        </div>
+        <div style="flex: 1; overflow-y: auto; background: #0b1120; border-radius: 10px; padding: 4px; margin-bottom: 10px;">
+            <img id="imgFullEcra" src="" alt="Resumo Oficial do Jogo" style="width: 100%; height: auto; display: block; border-radius: 8px; -webkit-touch-callout: default !important; user-select: auto; pointer-events: auto;">
+        </div>
+        <div style="display: flex; gap: 8px;">
+            <button class="btn-primary" style="flex: 1; padding: 9px;" onclick="descarregarImagemResumo(true)">
+                📥 Transferir Ficheiro
+            </button>
+            <button class="btn-cancel" style="padding: 9px 18px;" onclick="fecharModal('modalImagemFull')">
+                Fechar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- CANVAS OCULTO PARA GERAÇÃO DA IMAGEM EM ALTA RESOLUÇÃO -->
+<canvas id="canvasResumoJogo" width="1080" height="1080" style="display: none;"></canvas>
+
 <script>
     let nomeClube = localStorage.getItem('clube_nome_app');
     let atletaAtual = { nome: '', contacto: '' };
@@ -975,7 +1337,7 @@
     function formatarDataPT(iso) { if(!iso) return ''; const p = iso.split('-'); return `${p[2]}/${p[1]}/${p[0]}`; }
 
     // =========================================================================
-    // FUNÇÃO DE DOWNLOAD DIRETO E BASE64 (A funcionar perfeitamente)
+    // FUNÇÃO DE DOWNLOAD E PARTILHA DE FICHEIROS (MÓVEL E DESKTOP)
     // =========================================================================
     async function partilharFicheiro(blob, nomeFicheiro, mimeType) {
         try {
@@ -988,7 +1350,7 @@
                         const savedFile = await window.Capacitor.Plugins.Filesystem.writeFile({
                             path: nomeFicheiro,
                             data: base64data,
-                            directory: 'CACHE'
+                            directory: 'DOCUMENTS'
                         });
                         await window.Capacitor.Plugins.Share.share({
                             title: nomeFicheiro,
@@ -997,21 +1359,19 @@
                     };
                     return;
                 } catch (e) {
-                    console.log("Capacitor share indisponível, a forçar download direto.");
+                    console.log("Capacitor share indisponível, a usar download nativo.");
                 }
             }
             
-            const reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.onloadend = function() {
-                const base64data = reader.result;
-                const a = document.createElement('a'); 
-                a.href = base64data; 
-                a.download = nomeFicheiro;
-                document.body.appendChild(a); 
-                a.click(); 
-                document.body.removeChild(a);
-            };
+            // Criação de Blob URL nativa compatível com todos os browsers modernos
+            const blobUrl = URL.createObjectURL(blob);
+            const a = document.createElement('a'); 
+            a.href = blobUrl; 
+            a.download = nomeFicheiro;
+            document.body.appendChild(a); 
+            a.click(); 
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(blobUrl), 15000);
         } catch (error) {
             alert("Erro ao processar ficheiro: " + error.message);
         }
@@ -1709,6 +2069,11 @@
         if (statsMedia) {
             statsMedia.innerText = `⚽ ${totalGolos} golos marcados (média de ${mediaGolos} por jogo)`;
         }
+
+        const ultimoJogoArea = document.getElementById('h2hUltimoJogoArea');
+        if (ultimoJogoArea) {
+            ultimoJogoArea.style.display = total > 0 ? 'block' : 'none';
+        }
     }
 
     function abrirModalEditarStats(nome) {
@@ -1998,7 +2363,7 @@
         const container = document.getElementById('listaJogosMesUI'); container.innerHTML = '';
         if (jogosMensais.length === 0) return container.innerHTML = '<p style="font-size: 13px; color: #888;">Sem jogos registados este mês.</p>';
         jogosMensais.forEach(j => {
-            container.innerHTML += `<div class="jogo-mes-item"><span style="color: var(--text-muted);">${formatarDataPT(j.data)}</span><div style="display:flex; align-items:center; gap:10px;"><strong><span style="color: var(--primary-blue);">Azul ${j.golosA}</span> - <span style="color: var(--red-loss);">${j.golosV} Vermelha</span></strong><button class="btn-icon" title="Editar Jogo" onclick="abrirModalEditarJogo('${j.id}')">✏️</button><button class="btn-icon" title="Apagar Jogo" onclick="apagarJogoMensal('${j.id}')">❌</button></div></div>`;
+            container.innerHTML += `<div class="jogo-mes-item"><span style="color: var(--text-muted); font-size: 13px;">${formatarDataPT(j.data)}</span><div style="display:flex; align-items:center; gap:8px;"><strong><span style="color: var(--primary-blue);">Azul ${j.golosA}</span> - <span style="color: var(--red-loss);">${j.golosV} Vermelha</span></strong><button class="btn-resumo-jogo" title="Gerar Resumo Visual e Partilhar no WhatsApp" onclick="abrirResumoJogo('${j.id}')">📲 Resumo</button><button class="btn-icon" title="Editar Jogo" onclick="abrirModalEditarJogo('${j.id}')">✏️</button><button class="btn-icon" title="Apagar Jogo" onclick="apagarJogoMensal('${j.id}')">❌</button></div></div>`;
         });
     }
 
@@ -2068,8 +2433,12 @@
             }
         });
         localStorage.setItem('futsal_atletas', JSON.stringify(dadosAtletas)); gerarCartoes(dadosAtletas);
-        jogosMensais.push({ id: gerarId(), data: dataJogo, golosA: golosAzul, golosV: golosVermelha, detalhesAtletas: statsDoJogo.filter(s => s.jogou) });
-        localStorage.setItem('futsal_jogos_mensais', JSON.stringify(jogosMensais)); renderizarJogosMensais();
+        
+        const novoJogoId = gerarId();
+        jogosMensais.push({ id: novoJogoId, data: dataJogo, golosA: golosAzul, golosV: golosVermelha, detalhesAtletas: statsDoJogo.filter(s => s.jogou) });
+        localStorage.setItem('futsal_jogos_mensais', JSON.stringify(jogosMensais)); 
+        renderizarJogosMensais();
+        if (typeof atualizarConfrontoDireto === 'function') atualizarConfrontoDireto();
         
         document.querySelectorAll('.input-golo').forEach(inp => inp.value = ''); document.querySelectorAll('.input-ag').forEach(inp => inp.value = '');
         document.getElementById('golosAzul').value = ''; document.getElementById('golosVermelha').value = '';
@@ -2083,6 +2452,7 @@
         desenharEquipasMemoria();
         
         alert("Jogo guardado com sucesso! Os jogadores regressaram às suas equipas iniciais.");
+        abrirResumoJogo(novoJogoId);
     }
 
     function abrirModalEditarJogo(idJogo) {
@@ -2114,7 +2484,9 @@
             });
         }
         localStorage.setItem('futsal_jogos_mensais', JSON.stringify(jogosMensais)); localStorage.setItem('futsal_atletas', JSON.stringify(dadosAtletas));
-        gerarCartoes(dadosAtletas); renderizarJogosMensais(); fecharModal('modalEditarJogo'); alert("Estatísticas recálculadas!");
+        gerarCartoes(dadosAtletas); renderizarJogosMensais(); 
+        if (typeof atualizarConfrontoDireto === 'function') atualizarConfrontoDireto();
+        fecharModal('modalEditarJogo'); alert("Estatísticas recálculadas!");
     }
 
     function apagarJogoMensal(idJogo) {
@@ -2131,11 +2503,855 @@
             });
         }
         jogosMensais.splice(jogoIndex, 1); localStorage.setItem('futsal_jogos_mensais', JSON.stringify(jogosMensais)); localStorage.setItem('futsal_atletas', JSON.stringify(dadosAtletas));
-        gerarCartoes(dadosAtletas); renderizarJogosMensais(); alert("Jogo apagado e estatísticas revertidas.");
+        gerarCartoes(dadosAtletas); renderizarJogosMensais(); 
+        if (typeof atualizarConfrontoDireto === 'function') atualizarConfrontoDireto();
+        alert("Jogo apagado e estatísticas revertidas.");
     }
 
     function limparEquipasMensais() {
-        if(confirm("Mês terminado? Isto vai apagar as equipas fixas e o histórico de jogos para começares de novo.")) { localStorage.removeItem('futsal_equipas_mensais'); localStorage.removeItem('futsal_jogos_mensais'); equipasMensais = null; jogosMensais = []; carregarListaSorteio(); }
+        if(confirm("Mês terminado? Isto vai apagar as equipas fixas e o histórico de jogos para começares de novo.")) { localStorage.removeItem('futsal_equipas_mensais'); localStorage.removeItem('futsal_jogos_mensais'); equipasMensais = null; jogosMensais = []; carregarListaSorteio(); if (typeof atualizarConfrontoDireto === 'function') atualizarConfrontoDireto(); }
+    }
+
+    // ==========================================
+    // RESUMO DO JOGO, IMAGEM & PARTILHA WHATSAPP
+    // ==========================================
+    function formatarDataCompletaPT(iso) {
+        if (!iso) return '';
+        try {
+            const partes = iso.split('-');
+            if (partes.length === 3) {
+                const d = new Date(parseInt(partes[0]), parseInt(partes[1]) - 1, parseInt(partes[2]));
+                const dias = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+                const meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+                return `${dias[d.getDay()]}, ${parseInt(partes[2])} de ${meses[d.getMonth()]} de ${partes[0]}`;
+            }
+        } catch(e) {}
+        return formatarDataPT(iso);
+    }
+
+    function gerarTextoResumoWhatsApp(jogo) {
+        const dataFmt = formatarDataPT(jogo.data);
+        const dataExtensa = formatarDataCompletaPT(jogo.data);
+        const gA = parseInt(jogo.golosA) || 0;
+        const gV = parseInt(jogo.golosV) || 0;
+
+        let resTitulo = '🤝 *EMPATE!*';
+        if (gA > gV) {
+            resTitulo = '🏆 *VITÓRIA DA EQUIPA AZUL!* 🔵';
+        } else if (gV > gA) {
+            resTitulo = '🏆 *VITÓRIA DA EQUIPA VERMELHA!* 🔴';
+        }
+
+        const detalhes = jogo.detalhesAtletas || [];
+        const marcA = detalhes.filter(d => d.equipa === 'azul' && (d.golos || 0) > 0).sort((a,b) => b.golos - a.golos);
+        const marcV = detalhes.filter(d => d.equipa === 'vermelha' && (d.golos || 0) > 0).sort((a,b) => b.golos - a.golos);
+        const agAzul = detalhes.filter(d => d.equipa === 'azul' && (d.ag || 0) > 0);
+        const agVerm = detalhes.filter(d => d.equipa === 'vermelha' && (d.ag || 0) > 0);
+
+        let txt = `⚽ *${(nomeClube || 'CLUBE DE FUTSAL').toUpperCase()} - RESUMO DO JOGO* ⚽\n`;
+        txt += `📅 *${dataExtensa || dataFmt}*\n\n`;
+        txt += `━━━━━━━━━━━━━━━━━━━━━\n`;
+        txt += `🔵 *AZUL  ${gA} - ${gV}  VERMELHA* 🔴\n`;
+        txt += `${resTitulo}\n`;
+        txt += `━━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+        txt += `⚽ *MARCADORES AZUL (${gA}):*\n`;
+        if (marcA.length > 0) {
+            marcA.forEach(m => {
+                txt += `  • ${m.nome}: ${m.golos} ${m.golos === 1 ? 'golo' : 'golos'} ⚽\n`;
+            });
+        } else if (gA > 0) {
+            txt += `  • Golos de equipa\n`;
+        } else {
+            txt += `  • (Sem golos registados)\n`;
+        }
+        if (agVerm.length > 0) {
+            agVerm.forEach(ag => {
+                txt += `  • Auto-golo adversário: ${ag.nome} (+${ag.ag})\n`;
+            });
+        }
+
+        txt += `\n⚽ *MARCADORES VERMELHA (${gV}):*\n`;
+        if (marcV.length > 0) {
+            marcV.forEach(m => {
+                txt += `  • ${m.nome}: ${m.golos} ${m.golos === 1 ? 'golo' : 'golos'} ⚽\n`;
+            });
+        } else if (gV > 0) {
+            txt += `  • Golos de equipa\n`;
+        } else {
+            txt += `  • (Sem golos registados)\n`;
+        }
+        if (agAzul.length > 0) {
+            agAzul.forEach(ag => {
+                txt += `  • Auto-golo adversário: ${ag.nome} (+${ag.ag})\n`;
+            });
+        }
+
+        const todosMarc = detalhes.filter(d => (d.golos || 0) > 0).sort((a,b) => b.golos - a.golos);
+        if (todosMarc.length > 0 && todosMarc[0].golos > 0) {
+            const maxG = todosMarc[0].golos;
+            const tops = todosMarc.filter(m => m.golos === maxG);
+            const strTops = tops.map(t => `${t.nome} (${t.golos} ${t.golos === 1 ? 'golo' : 'golos'})`).join(', ');
+            txt += `\n⭐ *Pichichi do Jogo:* ${strTops}\n`;
+        }
+
+        if (detalhes.length > 0) {
+            txt += `👥 *Presenças:* ${detalhes.length} atletas em campo\n`;
+        }
+
+        txt += `\n👏 Parabéns a todos pelo grande jogo! ⚽🔥`;
+        return txt;
+    }
+
+    function abrirResumoJogo(idJogo) {
+        let jogo = jogosMensais.find(j => j.id === idJogo);
+        if (!jogo) return alert("Jogo não encontrado.");
+
+        document.getElementById('resumoJogoIdAtivo').value = jogo.id;
+        const dataFmt = formatarDataPT(jogo.data);
+        const dataCompleta = formatarDataCompletaPT(jogo.data);
+        
+        document.getElementById('resumoDataDisplay').innerText = dataFmt;
+        document.getElementById('resumoCardData').innerText = dataFmt;
+        document.getElementById('resumoCardClube').innerText = (nomeClube || 'CLUBE DE FUTSAL').toUpperCase();
+
+        const gA = parseInt(jogo.golosA) || 0;
+        const gV = parseInt(jogo.golosV) || 0;
+        document.getElementById('resumoGolosAzul').innerText = gA;
+        document.getElementById('resumoGolosVerm').innerText = gV;
+
+        const badgeRes = document.getElementById('resumoBadgeResultado');
+        if (gA > gV) {
+            badgeRes.innerText = 'Vitória Azul 🔵';
+            badgeRes.className = 'resumo-badge-resultado badge-res-azul';
+        } else if (gV > gA) {
+            badgeRes.innerText = 'Vitória Vermelha 🔴';
+            badgeRes.className = 'resumo-badge-resultado badge-res-verm';
+        } else {
+            badgeRes.innerText = 'Empate 🤝';
+            badgeRes.className = 'resumo-badge-resultado badge-res-empate';
+        }
+
+        const detalhes = jogo.detalhesAtletas || [];
+        const marcA = detalhes.filter(d => d.equipa === 'azul' && (d.golos || 0) > 0).sort((a,b) => b.golos - a.golos);
+        const marcV = detalhes.filter(d => d.equipa === 'vermelha' && (d.golos || 0) > 0).sort((a,b) => b.golos - a.golos);
+        const agAzul = detalhes.filter(d => d.equipa === 'azul' && (d.ag || 0) > 0);
+        const agVerm = detalhes.filter(d => d.equipa === 'vermelha' && (d.ag || 0) > 0);
+
+        // Lista Azul
+        const listaA = document.getElementById('resumoListaMarcadoresAzul');
+        listaA.innerHTML = '';
+        if (marcA.length === 0 && agVerm.length === 0) {
+            listaA.innerHTML = `<li class="resumo-item-vazio">${gA > 0 ? 'Golos de equipa' : 'Sem golos'}</li>`;
+        } else {
+            marcA.forEach(m => {
+                let bolas = '⚽'.repeat(Math.min(m.golos, 4));
+                listaA.innerHTML += `<li class="resumo-item-gol"><span>• ${m.nome}</span><strong>${m.golos} ${bolas}</strong></li>`;
+            });
+            agVerm.forEach(ag => {
+                listaA.innerHTML += `<li class="resumo-item-gol" style="color: #94a3b8; font-size: 10.5px;"><span>(AG) ${ag.nome}</span><strong>+${ag.ag}</strong></li>`;
+            });
+        }
+
+        // Lista Vermelha
+        const listaV = document.getElementById('resumoListaMarcadoresVerm');
+        listaV.innerHTML = '';
+        if (marcV.length === 0 && agAzul.length === 0) {
+            listaV.innerHTML = `<li class="resumo-item-vazio">${gV > 0 ? 'Golos de equipa' : 'Sem golos'}</li>`;
+        } else {
+            marcV.forEach(m => {
+                let bolas = '⚽'.repeat(Math.min(m.golos, 4));
+                listaV.innerHTML += `<li class="resumo-item-gol"><span>• ${m.nome}</span><strong>${m.golos} ${bolas}</strong></li>`;
+            });
+            agAzul.forEach(ag => {
+                listaV.innerHTML += `<li class="resumo-item-gol" style="color: #94a3b8; font-size: 10.5px;"><span>(AG) ${ag.nome}</span><strong>+${ag.ag}</strong></li>`;
+            });
+        }
+
+        // Destaque Pichichi
+        const divPichichi = document.getElementById('resumoDestaquePichichi');
+        const txtPichichi = document.getElementById('resumoTextoPichichi');
+        const todosMarc = detalhes.filter(d => (d.golos || 0) > 0).sort((a,b) => b.golos - a.golos);
+        if (todosMarc.length > 0 && todosMarc[0].golos > 0) {
+            const maxG = todosMarc[0].golos;
+            const tops = todosMarc.filter(m => m.golos === maxG);
+            const strTops = tops.map(t => `${t.nome} (${t.golos} ${t.golos === 1 ? 'golo' : 'golos'})`).join(', ');
+            txtPichichi.innerText = `Pichichi do Jogo: ${strTops}`;
+            divPichichi.style.display = 'flex';
+        } else {
+            divPichichi.style.display = 'none';
+        }
+
+        // Preencher texto prévio
+        const txtWA = gerarTextoResumoWhatsApp(jogo);
+        document.getElementById('resumoTextoPrevia').innerText = txtWA;
+
+        // Gerar o Canvas visual gráfico
+        try {
+            gerarCanvasResumoJogo(jogo);
+            const cvs = document.getElementById('canvasResumoJogo');
+            if (cvs) {
+                const dataUrl = cvs.toDataURL('image/png');
+                const imgPrevia = document.getElementById('resumoImagemPrevia');
+                if (imgPrevia) {
+                    imgPrevia.src = dataUrl;
+                }
+            }
+        } catch(e) {
+            console.warn("Erro ao gerar canvas do jogo:", e);
+        }
+
+        // Repor vista inicial do modal
+        alternarAbaResumo('imagem');
+        const avisoFallback = document.getElementById('avisoFallbackPartilha');
+        if (avisoFallback) avisoFallback.style.display = 'none';
+        const txtPrevia = document.getElementById('resumoTextoPrevia');
+        if (txtPrevia) txtPrevia.style.display = 'none';
+        const btnTogglePrevia = document.getElementById('btnTogglePreviaTexto');
+        if (btnTogglePrevia) btnTogglePrevia.innerText = 'Expandir ▾';
+
+        document.getElementById('modalResumoJogo').style.display = 'flex';
+    }
+
+    function abrirResumoUltimoJogo() {
+        if (!jogosMensais || jogosMensais.length === 0) return alert("Ainda não existem jogos registados.");
+        const ultimo = jogosMensais[jogosMensais.length - 1];
+        abrirResumoJogo(ultimo.id);
+    }
+
+    function desenharRetanguloArredondado(ctx, x, y, width, height, radius) {
+        if (ctx.roundRect) {
+            ctx.beginPath();
+            ctx.roundRect(x, y, width, height, radius);
+            return;
+        }
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
+    }
+
+    function gerarCanvasResumoJogo(jogo) {
+        const canvas = document.getElementById('canvasResumoJogo');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        const W = 1080;
+        const H = 1080;
+        canvas.width = W;
+        canvas.height = H;
+
+        // Fundo Principal - Gradiente desportivo
+        const grad = ctx.createLinearGradient(0, 0, W, H);
+        grad.addColorStop(0, '#090d16');
+        grad.addColorStop(0.5, '#0f172a');
+        grad.addColorStop(1, '#1e293b');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, W, H);
+
+        // Glow Azul (superior esquerdo)
+        const glowAzul = ctx.createRadialGradient(250, 200, 50, 250, 200, 350);
+        glowAzul.addColorStop(0, 'rgba(37, 99, 235, 0.22)');
+        glowAzul.addColorStop(1, 'rgba(37, 99, 235, 0)');
+        ctx.fillStyle = glowAzul;
+        ctx.fillRect(0, 0, W, H);
+
+        // Glow Vermelho (superior direito)
+        const glowVerm = ctx.createRadialGradient(830, 200, 50, 830, 200, 350);
+        glowVerm.addColorStop(0, 'rgba(239, 68, 68, 0.22)');
+        glowVerm.addColorStop(1, 'rgba(239, 68, 68, 0)');
+        ctx.fillStyle = glowVerm;
+        ctx.fillRect(0, 0, W, H);
+
+        // Moldura exterior
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.lineWidth = 2;
+        desenharRetanguloArredondado(ctx, 30, 30, W - 60, H - 60, 24);
+        ctx.stroke();
+
+        // Linha subtil de campo central
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(W / 2, 350, 180, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // 1. CABEÇALHO
+        ctx.fillStyle = '#fbbf24';
+        ctx.font = 'bold 20px system-ui, -apple-system, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('⚽ RESUMO OFICIAL DO JOGO ⚽', W / 2, 85);
+
+        const clubeTexto = (nomeClube || 'CLUBE DE FUTSAL').toUpperCase();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 44px system-ui, -apple-system, sans-serif';
+        ctx.fillText(clubeTexto, W / 2, 140);
+
+        const dataFormatada = formatarDataPT(jogo.data);
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '600 22px system-ui, -apple-system, sans-serif';
+        ctx.fillText(`📅 ${dataFormatada}`, W / 2, 180);
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(100, 205);
+        ctx.lineTo(W - 100, 205);
+        ctx.stroke();
+
+        const gA = parseInt(jogo.golosA) || 0;
+        const gV = parseInt(jogo.golosV) || 0;
+
+        // 2. PLACAR DO JOGO
+        const cardAzulX = 80;
+        const cardY = 230;
+        const cardW = 410;
+        const cardH = 220;
+
+        // Card Azul
+        ctx.fillStyle = 'rgba(30, 58, 138, 0.4)';
+        desenharRetanguloArredondado(ctx, cardAzulX, cardY, cardW, cardH, 20);
+        ctx.fill();
+        ctx.strokeStyle = '#3b82f6';
+        ctx.lineWidth = 3;
+        desenharRetanguloArredondado(ctx, cardAzulX, cardY, cardW, cardH, 20);
+        ctx.stroke();
+
+        ctx.fillStyle = '#60a5fa';
+        ctx.font = 'bold 26px system-ui, -apple-system, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('EQUIPA AZUL', cardAzulX + cardW / 2, cardY + 50);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 100px system-ui, -apple-system, sans-serif';
+        ctx.fillText(`${gA}`, cardAzulX + cardW / 2, cardY + 160);
+
+        // Card Vermelha
+        const cardVermX = 590;
+        ctx.fillStyle = 'rgba(153, 27, 27, 0.4)';
+        desenharRetanguloArredondado(ctx, cardVermX, cardY, cardW, cardH, 20);
+        ctx.fill();
+        ctx.strokeStyle = '#ef4444';
+        ctx.lineWidth = 3;
+        desenharRetanguloArredondado(ctx, cardVermX, cardY, cardW, cardH, 20);
+        ctx.stroke();
+
+        ctx.fillStyle = '#f87171';
+        ctx.font = 'bold 26px system-ui, -apple-system, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('EQUIPA VERMELHA', cardVermX + cardW / 2, cardY + 50);
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '900 100px system-ui, -apple-system, sans-serif';
+        ctx.fillText(`${gV}`, cardVermX + cardW / 2, cardY + 160);
+
+        // VS no centro
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = 'bold 28px system-ui, -apple-system, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('VS', W / 2, cardY + 115);
+
+        // 3. BADGE DE RESULTADO
+        const badgeW = 540;
+        const badgeH = 50;
+        const badgeX = (W - badgeW) / 2;
+        const badgeY = 475;
+
+        let resCor = '#d97706';
+        let resMsg = '🤝 EMPATE ENTRE AS EQUIPAS! 🤝';
+        if (gA > gV) {
+            resCor = '#2563eb';
+            resMsg = '🏆 VITÓRIA DA EQUIPA AZUL! 🔵';
+        } else if (gV > gA) {
+            resCor = '#dc2626';
+            resMsg = '🏆 VITÓRIA DA EQUIPA VERMELHA! 🔴';
+        }
+
+        ctx.fillStyle = resCor;
+        desenharRetanguloArredondado(ctx, badgeX, badgeY, badgeW, badgeH, 25);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 22px system-ui, -apple-system, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(resMsg, W / 2, badgeY + 33);
+
+        // 4. MARCADORES
+        const secMarcY = 550;
+        const secMarcH = 350;
+        const secMarcW = 440;
+
+        const detalhes = jogo.detalhesAtletas || [];
+        const marcA = detalhes.filter(d => d.equipa === 'azul' && (d.golos || 0) > 0).sort((a,b) => b.golos - a.golos);
+        const marcV = detalhes.filter(d => d.equipa === 'vermelha' && (d.golos || 0) > 0).sort((a,b) => b.golos - a.golos);
+        const agAzul = detalhes.filter(d => d.equipa === 'azul' && (d.ag || 0) > 0);
+        const agVerm = detalhes.filter(d => d.equipa === 'vermelha' && (d.ag || 0) > 0);
+
+        // Coluna Azul
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.7)';
+        desenharRetanguloArredondado(ctx, 80, secMarcY, secMarcW, secMarcH, 16);
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(59, 130, 246, 0.35)';
+        ctx.lineWidth = 1.5;
+        desenharRetanguloArredondado(ctx, 80, secMarcY, secMarcW, secMarcH, 16);
+        ctx.stroke();
+
+        ctx.fillStyle = '#93c5fd';
+        ctx.font = 'bold 22px system-ui, -apple-system, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('⚽ MARCADORES AZUL', 105, secMarcY + 40);
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.beginPath();
+        ctx.moveTo(105, secMarcY + 55);
+        ctx.lineTo(80 + secMarcW - 25, secMarcY + 55);
+        ctx.stroke();
+
+        let curY = secMarcY + 90;
+        if (marcA.length === 0 && agVerm.length === 0) {
+            ctx.fillStyle = '#64748b';
+            ctx.font = 'italic 20px system-ui, -apple-system, sans-serif';
+            ctx.fillText(gA > 0 ? 'Golos de equipa' : 'Sem golos registados', 105, curY);
+        } else {
+            marcA.slice(0, 6).forEach(m => {
+                ctx.fillStyle = '#f1f5f9';
+                ctx.font = '600 21px system-ui, -apple-system, sans-serif';
+                ctx.textAlign = 'left';
+                ctx.fillText(`• ${m.nome}`, 105, curY);
+
+                ctx.fillStyle = '#60a5fa';
+                ctx.font = 'bold 21px system-ui, -apple-system, sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillText(`${m.golos} ⚽`, 80 + secMarcW - 25, curY);
+                curY += 38;
+            });
+            agVerm.slice(0, 2).forEach(ag => {
+                ctx.fillStyle = '#94a3b8';
+                ctx.font = 'italic 19px system-ui, -apple-system, sans-serif';
+                ctx.textAlign = 'left';
+                ctx.fillText(`(AG) ${ag.nome}`, 105, curY);
+                ctx.textAlign = 'right';
+                ctx.fillText(`+${ag.ag}`, 80 + secMarcW - 25, curY);
+                curY += 36;
+            });
+        }
+
+        // Coluna Vermelha
+        const secVermX = 560;
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.7)';
+        desenharRetanguloArredondado(ctx, secVermX, secMarcY, secMarcW, secMarcH, 16);
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(239, 68, 68, 0.35)';
+        ctx.lineWidth = 1.5;
+        desenharRetanguloArredondado(ctx, secVermX, secMarcY, secMarcW, secMarcH, 16);
+        ctx.stroke();
+
+        ctx.fillStyle = '#fca5a5';
+        ctx.font = 'bold 22px system-ui, -apple-system, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('⚽ MARCADORES VERMELHA', secVermX + 25, secMarcY + 40);
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.beginPath();
+        ctx.moveTo(secVermX + 25, secMarcY + 55);
+        ctx.lineTo(secVermX + secMarcW - 25, secMarcY + 55);
+        ctx.stroke();
+
+        curY = secMarcY + 90;
+        if (marcV.length === 0 && agAzul.length === 0) {
+            ctx.fillStyle = '#64748b';
+            ctx.font = 'italic 20px system-ui, -apple-system, sans-serif';
+            ctx.fillText(gV > 0 ? 'Golos de equipa' : 'Sem golos registados', secVermX + 25, curY);
+        } else {
+            marcV.slice(0, 6).forEach(m => {
+                ctx.fillStyle = '#f1f5f9';
+                ctx.font = '600 21px system-ui, -apple-system, sans-serif';
+                ctx.textAlign = 'left';
+                ctx.fillText(`• ${m.nome}`, secVermX + 25, curY);
+
+                ctx.fillStyle = '#f87171';
+                ctx.font = 'bold 21px system-ui, -apple-system, sans-serif';
+                ctx.textAlign = 'right';
+                ctx.fillText(`${m.golos} ⚽`, secVermX + secMarcW - 25, curY);
+                curY += 38;
+            });
+            agAzul.slice(0, 2).forEach(ag => {
+                ctx.fillStyle = '#94a3b8';
+                ctx.font = 'italic 19px system-ui, -apple-system, sans-serif';
+                ctx.textAlign = 'left';
+                ctx.fillText(`(AG) ${ag.nome}`, secVermX + 25, curY);
+                ctx.textAlign = 'right';
+                ctx.fillText(`+${ag.ag}`, secVermX + secMarcW - 25, curY);
+                curY += 36;
+            });
+        }
+
+        // 5. DESTAQUE PICHICHI
+        const todosMarc = detalhes.filter(d => (d.golos || 0) > 0).sort((a,b) => b.golos - a.golos);
+        const pichichiW = 920;
+        const pichichiH = 56;
+        const pichichiX = (W - pichichiW) / 2;
+        const pichichiY = 925;
+
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.15)';
+        desenharRetanguloArredondado(ctx, pichichiX, pichichiY, pichichiW, pichichiH, 12);
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.4)';
+        ctx.lineWidth = 1.5;
+        desenharRetanguloArredondado(ctx, pichichiX, pichichiY, pichichiW, pichichiH, 12);
+        ctx.stroke();
+
+        ctx.fillStyle = '#fef3c7';
+        ctx.font = 'bold 21px system-ui, -apple-system, sans-serif';
+        ctx.textAlign = 'center';
+        if (todosMarc.length > 0 && todosMarc[0].golos > 0) {
+            const maxG = todosMarc[0].golos;
+            const tops = todosMarc.filter(m => m.golos === maxG);
+            const strTops = tops.map(t => `${t.nome} (${t.golos} ${t.golos === 1 ? 'golo' : 'golos'})`).join(', ');
+            ctx.fillText(`⭐ PICHICHI DO JOGO: ${strTops} ⭐`, W / 2, pichichiY + 36);
+        } else {
+            ctx.fillText(`⭐ PARTIDA DISPUTADA COM EXCELENTE FAIR PLAY! ⚽ ⭐`, W / 2, pichichiY + 36);
+        }
+
+        // 6. RODAPÉ
+        ctx.fillStyle = '#64748b';
+        ctx.font = '500 17px system-ui, -apple-system, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('⚽ GESTÃO DE CLUBE • FUTSAL & FUTEBOL AMADOR', W / 2, 1025);
+    }
+
+    function dataURLtoFile(dataurl, filename) {
+        try {
+            const arr = dataurl.split(',');
+            const mimeMatch = arr[0].match(/:(.*?);/);
+            const mime = mimeMatch ? mimeMatch[1] : 'image/png';
+            const bstr = atob(arr[1]);
+            let n = bstr.length;
+            const u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            try {
+                return new File([u8arr], filename, { type: mime });
+            } catch(e) {
+                const blob = new Blob([u8arr], { type: mime });
+                blob.lastModifiedDate = new Date();
+                blob.name = filename;
+                return blob;
+            }
+        } catch(e) {
+            console.warn("Erro ao converter dataURL para File:", e);
+            return null;
+        }
+    }
+
+    function obterFicheiroImagemResumoSincrono(jogo) {
+        const canvas = document.getElementById('canvasResumoJogo');
+        if (!canvas) return null;
+        const dataStr = jogo ? (jogo.data || 'jogo') : 'jogo';
+        const fileName = `Resumo_Jogo_${dataStr}.png`;
+        try {
+            const dataUrl = canvas.toDataURL('image/png');
+            return dataURLtoFile(dataUrl, fileName);
+        } catch(e) {
+            console.warn("Erro ao obter imagem síncrona do canvas:", e);
+            return null;
+        }
+    }
+
+    function alternarAbaResumo(aba) {
+        const areaImg = document.getElementById('resumoAreaImagem');
+        const areaDet = document.getElementById('resumoAreaDetalhes');
+        const btnImg = document.getElementById('tabBtnImagem');
+        const btnDet = document.getElementById('tabBtnDetalhes');
+
+        if (aba === 'imagem') {
+            if (areaImg) areaImg.style.display = 'block';
+            if (areaDet) areaDet.style.display = 'none';
+            if (btnImg) {
+                btnImg.classList.add('ativa');
+                btnImg.style.background = 'var(--primary-blue)';
+                btnImg.style.color = '#ffffff';
+            }
+            if (btnDet) {
+                btnDet.classList.remove('ativa');
+                btnDet.style.background = '#ffffff';
+                btnDet.style.color = '#475569';
+            }
+        } else {
+            if (areaImg) areaImg.style.display = 'none';
+            if (areaDet) areaDet.style.display = 'block';
+            if (btnDet) {
+                btnDet.classList.add('ativa');
+                btnDet.style.background = 'var(--primary-blue)';
+                btnDet.style.color = '#ffffff';
+            }
+            if (btnImg) {
+                btnImg.classList.remove('ativa');
+                btnImg.style.background = '#ffffff';
+                btnImg.style.color = '#475569';
+            }
+        }
+    }
+
+    async function descarregarImagemResumo(mostrarAlerta = true) {
+        const canvas = document.getElementById('canvasResumoJogo');
+        if (!canvas) return;
+        const jogoId = document.getElementById('resumoJogoIdAtivo').value;
+        const jogo = jogosMensais.find(j => j.id === jogoId);
+        const dataStr = jogo ? (jogo.data || 'jogo') : 'jogo';
+        const nomeFicheiro = `Resumo_Jogo_${dataStr}.png`;
+        const file = obterFicheiroImagemResumoSincrono(jogo);
+
+        // 1. Em smartphones (iPhone / Android) com Web Share API de ficheiros:
+        // Abre o menu oficial do sistema. No iPhone tem a opção "Guardar Imagem" (guarda no Rolo da Câmara / Fotografias)!
+        // No Android permite salvar na Galeria, Google Fotos, Drive ou WhatsApp
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
+        if (isMobile && file && navigator.canShare && typeof navigator.share === 'function') {
+            try {
+                if (navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        files: [file],
+                        title: `Resumo do Jogo - ${dataStr}`
+                    });
+                    return;
+                }
+            } catch(e) {
+                if (e && (e.name === 'AbortError' || e.code === 20)) {
+                    return; // Utilizador fechou a janela nativa
+                }
+                console.warn("Share nativo de ficheiro falhou ou foi rejeitado:", e);
+            }
+        }
+
+        // 2. Download direto via Blob URL (evita bloqueios do Safari com URLs base64 gigantes)
+        canvas.toBlob(blob => {
+            if (!blob) return alert("Erro ao gerar imagem gráfica.");
+            const blobUrl = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = nomeFicheiro;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            setTimeout(() => URL.revokeObjectURL(blobUrl), 15000);
+
+            if (mostrarAlerta) {
+                mostrarAvisoImagemGuardada(blobUrl);
+            }
+        }, 'image/png');
+    }
+
+    function mostrarAvisoImagemGuardada(blobUrl) {
+        const avisoBox = document.getElementById('avisoFallbackPartilha');
+        if (avisoBox) {
+            avisoBox.style.display = 'block';
+            avisoBox.innerHTML = `
+                <div style="font-weight: 800; color: #065f46; font-size: 13.5px; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <span>📥</span> <span>Ficheiro de imagem transferido!</span>
+                </div>
+                <div style="font-size: 11.5px; color: #047857; margin-bottom: 8px; line-height: 1.4; text-align: left;">
+                    • O ficheiro de imagem foi enviado para a tua pasta de <strong>Transferências / Downloads</strong>.<br>
+                    • <strong>Para guardar diretamente na Galeria de Fotos (iPhone/Android):</strong> Mantém o dedo premido na foto acima durante 1 segundo e escolhe <strong>«Guardar em Fotografias»</strong>.
+                </div>
+                <div style="display: flex; gap: 6px;">
+                    <button class="btn-small" style="flex: 1; background: #0f172a; color: white; padding: 7px; border-radius: 6px; font-weight: 600;" onclick="abrirImagemEmEcraCompleto()">
+                        🔍 Ver e Guardar Foto
+                    </button>
+                    <button class="btn-small" style="flex: 1; background: #25d366; color: white; padding: 7px; border-radius: 6px; font-weight: 600;" onclick="abrirWhatsAppComTextoFallback()">
+                        📲 Abrir WhatsApp
+                    </button>
+                </div>
+            `;
+            avisoBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+            alert("📥 Ficheiro descarregado para as tuas Transferências!\n\n💡 Dica no telemóvel: Podes manter o dedo na foto para 'Guardar em Fotografias'.");
+        }
+    }
+
+    function abrirImagemEmEcraCompleto() {
+        const cvs = document.getElementById('canvasResumoJogo');
+        if (!cvs) return;
+        const dataUrl = cvs.toDataURL('image/png');
+        const imgFull = document.getElementById('imgFullEcra');
+        if (imgFull) imgFull.src = dataUrl;
+        const modal = document.getElementById('modalImagemFull');
+        if (modal) modal.style.display = 'flex';
+    }
+
+    async function copiarImagemResumo() {
+        const canvas = document.getElementById('canvasResumoJogo');
+        if (!canvas) return;
+        try {
+            if (!navigator.clipboard || !navigator.clipboard.write || typeof ClipboardItem === 'undefined') {
+                descarregarImagemResumo(true);
+                return;
+            }
+            canvas.toBlob(async (blob) => {
+                if (!blob) throw new Error("Falha ao gerar blob de imagem");
+                try {
+                    await navigator.clipboard.write([
+                        new ClipboardItem({ 'image/png': blob })
+                    ]);
+                    alert("🖼️ Imagem copiada com sucesso! Podes colar diretamente (Ctrl+V) no WhatsApp Web.");
+                } catch(e) {
+                    console.warn("ClipboardItem write falhou:", e);
+                    descarregarImagemResumo(true);
+                }
+            }, 'image/png');
+        } catch(err) {
+            console.warn("Clipboard imagem não suportado ou negado:", err);
+            descarregarImagemResumo(true);
+        }
+    }
+
+    async function partilharImagemWhatsApp() {
+        const jogoId = document.getElementById('resumoJogoIdAtivo').value;
+        const jogo = jogosMensais.find(j => j.id === jogoId);
+        if (!jogo) return alert("Jogo não encontrado.");
+
+        const dataFmt = formatarDataPT(jogo.data);
+        const gA = parseInt(jogo.golosA) || 0;
+        const gV = parseInt(jogo.golosV) || 0;
+        const textoCompleto = gerarTextoResumoWhatsApp(jogo);
+
+        // Ocultar banner de fallback prévio se estava aberto
+        const avisoBox = document.getElementById('avisoFallbackPartilha');
+        if (avisoBox) avisoBox.style.display = 'none';
+
+        // Obter ficheiro da imagem de forma síncrona (preserva o gesto de toque no iOS Safari / Chrome Android)
+        const file = obterFicheiroImagemResumoSincrono(jogo);
+
+        // 1. TENTATIVA NATIVA COM WEB SHARE API (Dispositivos móveis como iPhone e Android)
+        if (file && navigator.canShare && typeof navigator.share === 'function') {
+            const shareDataComTexto = {
+                files: [file],
+                title: `Resumo do Jogo - ${dataFmt}`,
+                text: `⚽ ${(nomeClube || 'CLUBE DE FUTSAL').toUpperCase()} (${dataFmt})\n🔵 AZUL ${gA} - ${gV} VERMELHA 🔴`
+            };
+
+            try {
+                if (navigator.canShare(shareDataComTexto)) {
+                    await navigator.share(shareDataComTexto);
+                    return;
+                } else if (navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        files: [file],
+                        title: `Resumo do Jogo - ${dataFmt}`
+                    });
+                    return;
+                }
+            } catch(err) {
+                // Se o utilizador fechou a janela de partilha do telemóvel, não aciona fallback desnecessário
+                if (err && (err.name === 'AbortError' || err.code === 20)) {
+                    return;
+                }
+                console.warn("Web Share API nativa falhou ou não permitida pelo ambiente:", err);
+            }
+        }
+
+        // 2. MODO ALTERNATIVO GARANTIDO (Telemóveis em iframe, WhatsApp Web ou browsers sem Web Share de ficheiros)
+        // Descarrega automaticamente a imagem para as transferências do telemóvel
+        descarregarImagemResumo(false);
+
+        // Copia o texto para a área de transferência para facilitar envio conjunto
+        try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(textoCompleto);
+            }
+        } catch(e) {}
+
+        // Exibe o painel de assistência com o botão direto para o WhatsApp
+        if (avisoBox) {
+            avisoBox.style.display = 'block';
+            avisoBox.innerHTML = `
+                <div style="font-weight: 800; color: #065f46; font-size: 13.5px; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <span>✅</span> <span>Texto copiado & Imagem descarregada!</span>
+                </div>
+                <div style="font-size: 11.5px; color: #047857; margin-bottom: 8px; line-height: 1.4; text-align: left;">
+                    A imagem foi guardada nas <strong>Transferências</strong> e o texto foi copiado.<br>
+                    Toca no botão abaixo para abrir o WhatsApp e clica no <strong>📎 (anexo)</strong> para enviar a foto com a mensagem!
+                </div>
+                <button class="btn-primary" style="background: #25d366; color: white; width: 100%; padding: 10px; font-size: 13px; font-weight: bold; border-radius: 6px; box-shadow: 0 2px 8px rgba(37,211,102,0.3);" onclick="abrirWhatsAppComTextoFallback()">
+                    📲 Abrir WhatsApp com Texto
+                </button>
+            `;
+            avisoBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+            abrirAppWhatsApp(textoCompleto);
+        }
+    }
+
+    function partilharResumoWhatsApp() {
+        partilharImagemWhatsApp();
+    }
+
+    function abrirWhatsAppComTextoFallback() {
+        const jogoId = document.getElementById('resumoJogoIdAtivo').value;
+        const jogo = jogosMensais.find(j => j.id === jogoId);
+        if (!jogo) return;
+        const texto = gerarTextoResumoWhatsApp(jogo);
+        abrirAppWhatsApp(texto);
+    }
+
+    function partilharTextoResumoWhatsApp() {
+        const jogoId = document.getElementById('resumoJogoIdAtivo').value;
+        const jogo = jogosMensais.find(j => j.id === jogoId);
+        if (!jogo) return;
+        const texto = gerarTextoResumoWhatsApp(jogo);
+        abrirAppWhatsApp(texto);
+    }
+
+    function copiarTextoFallback(texto) {
+        const ta = document.createElement('textarea');
+        ta.value = texto;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+            document.execCommand('copy');
+            alert("📋 Resumo do jogo copiado para a área de transferência!");
+        } catch(e) {
+            alert("Não foi possível copiar automaticamente.");
+        }
+        document.body.removeChild(ta);
+    }
+
+    function copiarTextoResumoWhatsApp() {
+        const jogoId = document.getElementById('resumoJogoIdAtivo').value;
+        const jogo = jogosMensais.find(j => j.id === jogoId);
+        if (!jogo) return;
+        const texto = gerarTextoResumoWhatsApp(jogo);
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(texto).then(() => {
+                alert("📋 Resumo do jogo copiado para a área de transferência!");
+            }).catch(() => {
+                copiarTextoFallback(texto);
+            });
+        } else {
+            copiarTextoFallback(texto);
+        }
+    }
+
+    function alternarPreviaTextoResumo() {
+        const container = document.getElementById('resumoTextoPrevia');
+        const btn = document.getElementById('btnTogglePreviaTexto');
+        if (container.style.display === 'none' || !container.style.display) {
+            container.style.display = 'block';
+            btn.innerText = 'Ocultar texto ▴';
+        } else {
+            container.style.display = 'none';
+            btn.innerText = 'Expandir ▾';
+        }
     }
 
     // ==========================================
@@ -2370,19 +3586,56 @@
         document.getElementById('saldoTotal').innerText = saldos.Total.toFixed(2) + ' €'; document.getElementById('saldoDinheiro').innerText = saldos.Dinheiro.toFixed(2) + ' €'; document.getElementById('saldoMBWay').innerText = saldos['MB Way'].toFixed(2) + ' €'; document.getElementById('saldoTransferencia').innerText = saldos.Transferência.toFixed(2) + ' €'; document.getElementById('saldoOutros').innerText = saldos.Outros.toFixed(2) + ' €';
     }
 
+    let atletaHistoricoAtivo = '';
+
     function abrirHistoricoAtleta(nome) {
+        atletaHistoricoAtivo = nome;
         const lista = document.getElementById('listaHistoricoAtleta'); lista.innerHTML = '';
         let movs = transacoes.filter(t => (t.atleta === nome) || (t.tipo === 'entrada' && t.descricao.startsWith('Pagamento: ' + nome)));
-        if (movs.length === 0) lista.innerHTML = '<p style="text-align: center; color: #999;">Sem movimentos registados.</p>';
-        else {
+        
+        let totalPago = 0;
+        let totalDividas = 0;
+        let metodosUsados = {};
+
+        if (movs.length === 0) {
+            lista.innerHTML = '<p style="text-align: center; color: #999; margin: 20px 0;">Sem movimentos registados para este atleta.</p>';
+            const resEl = document.getElementById('resumoHistoricoAtleta');
+            if (resEl) resEl.innerHTML = 'Sem histórico financeiro registado.';
+        } else {
             movs.sort((a, b) => b.data.localeCompare(a.data));
             movs.forEach(m => {
-                let isPagamento = m.tipo === 'entrada'; let cor = isPagamento ? 'var(--green-win)' : 'var(--orange-debt)'; let sinal = isPagamento ? '+' : '-';
+                let isPagamento = m.tipo === 'entrada';
+                let cor = isPagamento ? 'var(--green-win)' : 'var(--orange-debt)';
+                let sinal = isPagamento ? '+' : '-';
+                let met = m.metodo || 'Outros';
+                let val = Number(m.valor || 0);
+
+                if (isPagamento) {
+                    totalPago += val;
+                    metodosUsados[met] = (metodosUsados[met] || 0) + val;
+                } else {
+                    totalDividas += val;
+                }
+
                 let descT = isPagamento ? m.descricao.replace(`Pagamento: ${nome}`, '').trim() || 'Pagamento' : m.descricao;
-                lista.innerHTML += `<div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #eee; font-size: 14px;"><div><div style="font-weight: bold;">${descT}</div><div style="font-size: 11px; color: var(--text-muted);">${formatarDataPT(m.data)} • ${m.metodo}</div><div class="t-acoes" style="margin-top: 5px;"><button class="btn-icon" onclick="abrirEditarTransacao('${m.id}')">✏️</button><button class="btn-icon" onclick="apagarTransacao('${m.id}')">❌</button></div></div><span style="font-weight: bold; font-size: 15px; color: ${cor};">${sinal}${m.valor.toFixed(2)}€</span></div>`;
+                lista.innerHTML += `<div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 13.5px;"><div><div style="font-weight: bold; color: #1e293b;">${descT}</div><div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">📅 ${formatarDataPT(m.data)} • <span style="background: #f1f5f9; padding: 1px 6px; border-radius: 4px; font-weight: 600; color: #334155;">💳 ${met}</span></div><div class="t-acoes" style="margin-top: 5px;"><button class="btn-icon" title="Editar" onclick="abrirEditarTransacao('${m.id}')">✏️</button><button class="btn-icon" title="Apagar" onclick="apagarTransacao('${m.id}')">❌</button></div></div><span style="font-weight: bold; font-size: 14.5px; color: ${cor};">${sinal}${val.toFixed(2)}€</span></div>`;
             });
+
+            const saldoAtleta = totalPago - totalDividas;
+            const resEl = document.getElementById('resumoHistoricoAtleta');
+            if (resEl) {
+                const metodosStr = Object.keys(metodosUsados).map(k => `${k}: ${metodosUsados[k].toFixed(2)}€`).join(' • ');
+                resEl.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
+                        <span>Total Pago: <strong style="color: #16a34a;">${totalPago.toFixed(2)}€</strong></span>
+                        <span>Situação: <strong style="color: ${saldoAtleta >= 0 ? '#16a34a' : '#ea580c'};">${saldoAtleta >= 0 ? 'Regularizado (+' + saldoAtleta.toFixed(2) + '€)' : 'Em Débito (' + saldoAtleta.toFixed(2) + '€)'}</strong></span>
+                    </div>
+                    ${metodosStr ? `<div style="font-size: 11px; color: #64748b; margin-top: 2px;">Métodos usados: <strong>${metodosStr}</strong></div>` : ''}
+                `;
+            }
         }
-        document.getElementById('tituloModalHistorico').innerText = 'Conta Corrente: ' + nome; document.getElementById('modalHistoricoAtleta').style.display = 'flex';
+        document.getElementById('tituloModalHistorico').innerText = 'Conta Corrente: ' + nome;
+        document.getElementById('modalHistoricoAtleta').style.display = 'flex';
     }
 
     function apagarTransacao(id) { if(confirm('Apagar este movimento?')) { transacoes = transacoes.filter(t => t.id !== id); salvarEAtualizar(); if(document.getElementById('modalHistoricoAtleta').style.display === 'flex') abrirHistoricoAtleta(document.getElementById('tituloModalHistorico').innerText.replace('Conta Corrente: ', '')); } }
@@ -2405,7 +3658,8 @@
     // ==========================================
     async function exportarStatsPDF() {
         const d = JSON.parse(localStorage.getItem('futsal_atletas')) || []; if(d.length === 0) return alert("Sem dados.");
-        const { jsPDF } = window.jspdf; const doc = new jsPDF(); doc.setFontSize(16); doc.text(`Estatísticas - ${nomeClube}`, 14, 15);
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
         
         let jogosRegistados = jogosMensais.filter(j => j.data.startsWith(anoAtual.toString())).length;
         let maxPresencas = Math.max(...d.map(a => parseInt(a.PRESENCAS) || 0), 0);
@@ -2420,18 +3674,402 @@
         d.sort((a,b) => b.pts - a.pts || (b.GOLOS||0) - (a.GOLOS||0) || (a.NOME||'').localeCompare(b.NOME||''));
         const tb = d.map(a => [ a.NOME, a.PRESENCAS||0, a.VITORIAS||0, a.EMPATES||0, a.DERROTAS||0, a.AG||0, `${a.ifreq}%`, a.pts, `${a.ivit}%`, a.GOLOS||0 ]);
         
-        doc.autoTable({ startY: 25, head: [['Nome', 'P', 'V', 'E', 'D', 'AG', 'IF', 'Pts', 'IV', 'Gols']], body: tb, headStyles: { fillColor: [0, 122, 255] }, styles: { fontSize: 8 } });
+        // Cabeçalho institucional compacto
+        doc.setFontSize(13);
+        doc.setTextColor(0, 122, 255);
+        doc.text(`Estatísticas Gerais - ${nomeClube} (${anoAtual})`, 14, 12);
+        
+        doc.setFontSize(8);
+        doc.setTextColor(100);
+        doc.text(`Jogos Registados: ${totalJogosAno} | Atletas: ${d.length} | Emitido em: ${formatarDataPT(hojeISO())}`, 14, 16.5);
+        
+        // Tabela compacta com linhas aproximadas e letra ligeiramente menor para poupar folhas
+        doc.autoTable({
+            startY: 19.5,
+            head: [['Nome', 'P', 'V', 'E', 'D', 'AG', 'IF (%)', 'Pts', 'IV (%)', 'Golos']],
+            body: tb,
+            headStyles: { fillColor: [0, 122, 255], fontStyle: 'bold', fontSize: 7, cellPadding: 0.9 },
+            styles: { fontSize: 6.8, cellPadding: 0.8, minCellHeight: 3.8, lineColor: [225, 229, 235], lineWidth: 0.1 },
+            alternateRowStyles: { fillColor: [248, 250, 252] },
+            columnStyles: {
+                0: { cellWidth: 'auto', fontStyle: 'bold' },
+                1: { cellWidth: 10, halign: 'center' },
+                2: { cellWidth: 10, halign: 'center' },
+                3: { cellWidth: 10, halign: 'center' },
+                4: { cellWidth: 10, halign: 'center' },
+                5: { cellWidth: 10, halign: 'center' },
+                6: { cellWidth: 14, halign: 'center' },
+                7: { cellWidth: 12, halign: 'center', fontStyle: 'bold', textColor: [0, 122, 255] },
+                8: { cellWidth: 14, halign: 'center' },
+                9: { cellWidth: 12, halign: 'center', fontStyle: 'bold', textColor: [156, 39, 176] }
+            }
+        });
         
         partilharFicheiro(doc.output('blob'), `Estatisticas_${nomeClube.replace(/\s+/g, '')}.pdf`, 'application/pdf');
     }
     
+    // ==========================================
+    // EXPORTAÇÃO DE CONTA CORRENTE (PDF & EXCEL COM MÉTODOS DE PAGAMENTO)
+    // ==========================================
     async function gerarPDF() {
-        const { jsPDF } = window.jspdf; const doc = new jsPDF(); doc.setFontSize(16); doc.text(`Tesouraria - ${nomeClube}`, 14, 15);
-        let t = transacoes.filter(x => x.tipo !== 'divida_atleta');
-        const tb = t.map(x => [ formatarDataPT(x.data), x.descricao, x.tipo==='entrada'?x.valor+'€':'', x.tipo==='saida'?x.valor+'€':'' ]);
-        doc.autoTable({ startY: 25, head: [['Data', 'Descricao', 'Entrada', 'Saida']], body: tb, headStyles: { fillColor: [0, 122, 255] } });
+        if (!window.jspdf || !window.jspdf.jsPDF) {
+            return alert("A biblioteca de PDF ainda está a carregar. Tente novamente em instantes.");
+        }
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
         
-        partilharFicheiro(doc.output('blob'), `Contas_${nomeClube.replace(/\s+/g, '')}.pdf`, 'application/pdf');
+        const di = document.getElementById('pdfDataI')?.value;
+        const df = document.getElementById('pdfDataF')?.value;
+        
+        let t = transacoes.filter(x => x.tipo !== 'divida_atleta');
+        if (di) t = t.filter(x => x.data >= di);
+        if (df) t = t.filter(x => x.data <= df);
+        
+        if (t.length === 0) {
+            return alert("Nenhum movimento de tesouraria encontrado no período selecionado.");
+        }
+        
+        // Ordenação cronológica (do mais antigo para o mais recente) para leitura contínua de saldo
+        t.sort((a, b) => a.data.localeCompare(b.data) || a.id.localeCompare(b.id));
+        
+        let totalEntradas = 0;
+        let totalSaidas = 0;
+        const porMetodo = {
+            'Dinheiro': { entradas: 0, saidas: 0 },
+            'MB Way': { entradas: 0, saidas: 0 },
+            'Transferência': { entradas: 0, saidas: 0 },
+            'Outros': { entradas: 0, saidas: 0 }
+        };
+        
+        let saldoAcumulado = 0;
+        const tb = t.map(x => {
+            const isEntrada = x.tipo === 'entrada';
+            const val = Number(x.valor || 0);
+            if (isEntrada) {
+                totalEntradas += val;
+                saldoAcumulado += val;
+            } else {
+                totalSaidas += val;
+                saldoAcumulado -= val;
+            }
+            
+            const met = x.metodo || 'Outros';
+            if (!porMetodo[met]) porMetodo[met] = { entradas: 0, saidas: 0 };
+            if (isEntrada) porMetodo[met].entradas += val;
+            else porMetodo[met].saidas += val;
+            
+            return [
+                formatarDataPT(x.data),
+                x.descricao || '-',
+                met,
+                isEntrada ? `+${val.toFixed(2)} €` : '',
+                !isEntrada ? `-${val.toFixed(2)} €` : '',
+                `${saldoAcumulado.toFixed(2)} €`
+            ];
+        });
+        
+        // Cabeçalho institucional do documento em formato compacto
+        doc.setFontSize(13);
+        doc.setTextColor(0, 122, 255);
+        doc.text(`${nomeClube} - Extrato de Conta Corrente`, 14, 12);
+        
+        doc.setFontSize(8);
+        doc.setTextColor(80);
+        const periodoTxt = (di || df) 
+            ? `Período: ${di ? formatarDataPT(di) : 'Início'} até ${df ? formatarDataPT(df) : 'Hoje'}`
+            : `Período: Extrato Geral (${anoAtual})`;
+        doc.text(periodoTxt, 14, 16.5);
+        doc.text(`Emitido em: ${formatarDataPT(hojeISO())} | Total de Movimentos: ${t.length}`, 14, 20.5);
+        
+        // Tabela principal de movimentos com formato condensado para poupar espaço nas folhas
+        doc.autoTable({
+            startY: 23,
+            head: [['Data', 'Descrição', 'Método Pagamento', 'Entrada', 'Saída', 'Saldo']],
+            body: tb,
+            headStyles: { fillColor: [0, 122, 255], fontStyle: 'bold', halign: 'left', fontSize: 7.2, cellPadding: 0.9 },
+            styles: { fontSize: 6.8, cellPadding: 0.8, minCellHeight: 3.8, lineColor: [225, 229, 235], lineWidth: 0.1 },
+            columnStyles: {
+                0: { cellWidth: 18 },
+                1: { cellWidth: 'auto' },
+                2: { cellWidth: 26, fontStyle: 'bold' },
+                3: { cellWidth: 20, halign: 'right', textColor: [46, 125, 50] },
+                4: { cellWidth: 20, halign: 'right', textColor: [198, 40, 40] },
+                5: { cellWidth: 21, halign: 'right', fontStyle: 'bold' }
+            },
+            alternateRowStyles: { fillColor: [248, 250, 252] }
+        });
+        
+        let finalY = doc.lastAutoTable.finalY + 4;
+        if (finalY > 250) {
+            doc.addPage();
+            finalY = 12;
+        }
+        
+        // Tabela resumo por método de pagamento (Dinheiro, MB Way, Transferência, etc.)
+        const saldoFinal = totalEntradas - totalSaidas;
+        doc.setFontSize(8.5);
+        doc.setTextColor(33);
+        doc.text('Resumo e Controlo por Método de Pagamento', 14, finalY);
+        
+        const metodosOrdenados = ['Dinheiro', 'MB Way', 'Transferência', 'Outros'];
+        Object.keys(porMetodo).forEach(m => {
+            if (!metodosOrdenados.includes(m)) metodosOrdenados.push(m);
+        });
+        
+        const linhasResumoMetodos = metodosOrdenados
+            .filter(m => porMetodo[m] && (porMetodo[m].entradas > 0 || porMetodo[m].saidas > 0))
+            .map(m => {
+                const ent = porMetodo[m].entradas;
+                const sai = porMetodo[m].saidas;
+                const sal = ent - sai;
+                return [
+                    m,
+                    `${ent.toFixed(2)} €`,
+                    `${sai.toFixed(2)} €`,
+                    `${sal.toFixed(2)} €`
+                ];
+            });
+            
+        // Linha de total global
+        linhasResumoMetodos.push([
+            'TOTAL GERAL',
+            `${totalEntradas.toFixed(2)} €`,
+            `${totalSaidas.toFixed(2)} €`,
+            `${saldoFinal.toFixed(2)} €`
+        ]);
+        
+        doc.autoTable({
+            startY: finalY + 2.5,
+            head: [['Método de Pagamento', 'Total Entradas', 'Total Saídas', 'Saldo Líquido']],
+            body: linhasResumoMetodos,
+            headStyles: { fillColor: [52, 73, 94], fontStyle: 'bold', fontSize: 7.2, cellPadding: 0.9 },
+            styles: { fontSize: 6.8, cellPadding: 0.8, minCellHeight: 3.8 },
+            columnStyles: {
+                0: { fontStyle: 'bold', cellWidth: 45 },
+                1: { halign: 'right', textColor: [46, 125, 50], cellWidth: 28 },
+                2: { halign: 'right', textColor: [198, 40, 40], cellWidth: 28 },
+                3: { halign: 'right', fontStyle: 'bold', cellWidth: 28 }
+            }
+        });
+        
+        const sufixoData = (di || df) ? `_${di || 'inicio'}_a_${df || 'fim'}` : `_${anoAtual}`;
+        const nomeFicheiro = `ContaCorrente_${nomeClube.replace(/[^a-zA-Z0-9]/g, '_')}${sufixoData}.pdf`;
+        partilharFicheiro(doc.output('blob'), nomeFicheiro, 'application/pdf');
+    }
+
+    function exportarContaCorrenteExcel() {
+        if (typeof XLSX === 'undefined') {
+            return alert("A biblioteca Excel (XLSX) está a carregar. Por favor tente novamente em instantes.");
+        }
+        
+        const di = document.getElementById('pdfDataI')?.value;
+        const df = document.getElementById('pdfDataF')?.value;
+        
+        let t = transacoes.filter(x => x.tipo !== 'divida_atleta');
+        if (di) t = t.filter(x => x.data >= di);
+        if (df) t = t.filter(x => x.data <= df);
+        
+        if (t.length === 0) {
+            return alert("Nenhum movimento encontrado no período selecionado.");
+        }
+        
+        t.sort((a, b) => a.data.localeCompare(b.data) || a.id.localeCompare(b.id));
+        
+        let saldoAcumulado = 0;
+        let totalEntradas = 0;
+        let totalSaidas = 0;
+        const porMetodo = {
+            'Dinheiro': { entradas: 0, saidas: 0 },
+            'MB Way': { entradas: 0, saidas: 0 },
+            'Transferência': { entradas: 0, saidas: 0 },
+            'Outros': { entradas: 0, saidas: 0 }
+        };
+        
+        const linhasExtrato = t.map(x => {
+            const isEntrada = x.tipo === 'entrada';
+            const val = Number(x.valor || 0);
+            const met = x.metodo || 'Outros';
+            
+            if (isEntrada) {
+                totalEntradas += val;
+                saldoAcumulado += val;
+            } else {
+                totalSaidas += val;
+                saldoAcumulado -= val;
+            }
+            
+            if (!porMetodo[met]) porMetodo[met] = { entradas: 0, saidas: 0 };
+            if (isEntrada) porMetodo[met].entradas += val;
+            else porMetodo[met].saidas += val;
+            
+            return {
+                'Data': formatarDataPT(x.data),
+                'Data (ISO)': x.data,
+                'Descrição': x.descricao || '',
+                'Método de Pagamento': met,
+                'Tipo': isEntrada ? 'Entrada / Receita' : 'Saída / Despesa',
+                'Entrada (€)': isEntrada ? val : 0,
+                'Saída (€)': !isEntrada ? val : 0,
+                'Saldo Acumulado (€)': Number(saldoAcumulado.toFixed(2)),
+                'Atleta Associado': x.atleta || ''
+            };
+        });
+        
+        // Linha de total para o extrato
+        linhasExtrato.push({
+            'Data': 'TOTAL',
+            'Data (ISO)': '',
+            'Descrição': 'TOTAIS DO PERÍODO',
+            'Método de Pagamento': '',
+            'Tipo': '',
+            'Entrada (€)': Number(totalEntradas.toFixed(2)),
+            'Saída (€)': Number(totalSaidas.toFixed(2)),
+            'Saldo Acumulado (€)': Number((totalEntradas - totalSaidas).toFixed(2)),
+            'Atleta Associado': ''
+        });
+        
+        const linhasResumoMetodos = Object.keys(porMetodo).map(m => {
+            const ent = porMetodo[m].entradas;
+            const sai = porMetodo[m].saidas;
+            return {
+                'Método de Pagamento': m,
+                'Total Entradas (€)': Number(ent.toFixed(2)),
+                'Total Saídas (€)': Number(sai.toFixed(2)),
+                'Saldo Líquido (€)': Number((ent - sai).toFixed(2))
+            };
+        });
+        linhasResumoMetodos.push({
+            'Método de Pagamento': 'TOTAL GERAL',
+            'Total Entradas (€)': Number(totalEntradas.toFixed(2)),
+            'Total Saídas (€)': Number(totalSaidas.toFixed(2)),
+            'Saldo Líquido (€)': Number((totalEntradas - totalSaidas).toFixed(2))
+        });
+        
+        const wb = XLSX.utils.book_new();
+        const wsExtrato = XLSX.utils.json_to_sheet(linhasExtrato);
+        XLSX.utils.book_append_sheet(wb, wsExtrato, "Conta Corrente Detalhada");
+        
+        const wsResumo = XLSX.utils.json_to_sheet(linhasResumoMetodos);
+        XLSX.utils.book_append_sheet(wb, wsResumo, "Resumo por Método");
+        
+        const sufixoData = (di || df) ? `_${di || 'inicio'}_a_${df || 'fim'}` : `_${anoAtual}`;
+        const nomeFicheiro = `ContaCorrente_${nomeClube.replace(/[^a-zA-Z0-9]/g, '_')}${sufixoData}.xlsx`;
+        try {
+            XLSX.writeFile(wb, nomeFicheiro);
+        } catch(e) {
+            console.warn("Erro no writeFile direto, a usar Blob fallback:", e);
+            const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+            const blob = new Blob([wbout], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            partilharFicheiro(blob, nomeFicheiro, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        }
+    }
+
+    async function exportarHistoricoAtletaPDF() {
+        const nome = atletaHistoricoAtivo || document.getElementById('tituloModalHistorico').innerText.replace('Conta Corrente: ', '').trim();
+        if (!nome) return alert("Nenhum atleta selecionado.");
+        if (!window.jspdf || !window.jspdf.jsPDF) return alert("A biblioteca de PDF está a carregar. Tente em instantes.");
+
+        let movs = transacoes.filter(t => (t.atleta === nome) || (t.tipo === 'entrada' && t.descricao.startsWith('Pagamento: ' + nome)));
+        if (movs.length === 0) return alert("Sem movimentos para exportar para este atleta.");
+
+        movs.sort((a, b) => a.data.localeCompare(b.data));
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+        
+        // Cabeçalho institucional compacto
+        doc.setFontSize(13);
+        doc.setTextColor(0, 122, 255);
+        doc.text(`${nomeClube} - Conta Corrente`, 14, 12);
+        
+        doc.setFontSize(8.5);
+        doc.setTextColor(33, 33, 33);
+        doc.text(`Atleta: ${nome}`, 14, 16.5);
+
+        doc.setFontSize(8);
+        doc.setTextColor(100);
+        doc.text(`Emitido em: ${formatarDataPT(hojeISO())} | Total de Registos: ${movs.length}`, 14, 20.5);
+
+        let totalPago = 0;
+        let totalDebito = 0;
+        let saldoAcumulado = 0;
+        const porMetodo = {};
+
+        const tb = movs.map(m => {
+            const isPagamento = m.tipo === 'entrada';
+            const val = Number(m.valor || 0);
+            const met = m.metodo || 'Outros';
+
+            if (isPagamento) {
+                totalPago += val;
+                saldoAcumulado += val;
+                porMetodo[met] = (porMetodo[met] || 0) + val;
+            } else {
+                totalDebito += val;
+                saldoAcumulado -= val;
+            }
+
+            let descT = isPagamento ? m.descricao.replace(`Pagamento: ${nome}`, '').trim() || 'Pagamento' : m.descricao;
+
+            return [
+                formatarDataPT(m.data),
+                descT,
+                met,
+                isPagamento ? `+${val.toFixed(2)} €` : '',
+                !isPagamento ? `-${val.toFixed(2)} €` : '',
+                `${saldoAcumulado.toFixed(2)} €`
+            ];
+        });
+
+        // Tabela de movimentos do atleta condensada para poupar folhas
+        doc.autoTable({
+            startY: 23,
+            head: [['Data', 'Descrição', 'Método Pagamento', 'Crédito/Pago', 'Débito/Quota', 'Saldo']],
+            body: tb,
+            headStyles: { fillColor: [0, 122, 255], fontStyle: 'bold', fontSize: 7.2, cellPadding: 0.9 },
+            styles: { fontSize: 6.8, cellPadding: 0.8, minCellHeight: 3.8, lineColor: [225, 229, 235], lineWidth: 0.1 },
+            columnStyles: {
+                0: { cellWidth: 18 },
+                1: { cellWidth: 'auto' },
+                2: { cellWidth: 26, fontStyle: 'bold' },
+                3: { cellWidth: 20, halign: 'right', textColor: [46, 125, 50] },
+                4: { cellWidth: 20, halign: 'right', textColor: [198, 40, 40] },
+                5: { cellWidth: 21, halign: 'right', fontStyle: 'bold' }
+            },
+            alternateRowStyles: { fillColor: [248, 250, 252] }
+        });
+
+        let finalY = doc.lastAutoTable.finalY + 4;
+        if (finalY > 250) { doc.addPage(); finalY = 12; }
+
+        doc.setFontSize(8.5);
+        doc.setTextColor(33);
+        doc.text('Resumo da Conta Corrente do Atleta', 14, finalY);
+
+        const linhasResumo = [
+            ['Total Pago', `${totalPago.toFixed(2)} €`],
+            ['Total em Dívidas / Quotas', `${totalDebito.toFixed(2)} €`],
+            ['Saldo Atual do Atleta', `${(totalPago - totalDebito).toFixed(2)} €`]
+        ];
+
+        Object.keys(porMetodo).forEach(m => {
+            linhasResumo.push([`Total Pago via ${m}`, `${porMetodo[m].toFixed(2)} €`]);
+        });
+
+        doc.autoTable({
+            startY: finalY + 2.5,
+            head: [['Conceito', 'Valor']],
+            body: linhasResumo,
+            headStyles: { fillColor: [52, 73, 94], fontStyle: 'bold', fontSize: 7.2, cellPadding: 0.9 },
+            styles: { fontSize: 6.8, cellPadding: 0.8, minCellHeight: 3.8 },
+            columnStyles: {
+                0: { fontStyle: 'bold', cellWidth: 65 },
+                1: { halign: 'right', cellWidth: 30 }
+            }
+        });
+
+        const safeNome = nome.replace(/[^a-zA-Z0-9]/g, '_');
+        partilharFicheiro(doc.output('blob'), `ContaCorrente_${safeNome}_${hojeISO()}.pdf`, 'application/pdf');
     }
 
     async function exportarBackup() { 
@@ -2467,8 +4105,20 @@
             // Codifica adequadamente com encodeURIComponent para que & e espaços nunca cortem a mensagem
             const encodedText = encodeURIComponent(textoUniforme);
             let urlWeb = telefone ? `https://wa.me/${telefone}?text=${encodedText}` : `https://api.whatsapp.com/send?text=${encodedText}`;
-            window.open(urlWeb, '_blank');
-        } catch(e) { console.log("Erro ao abrir WhatsApp", e); }
+            
+            // Simular clique em <a> com rel="noopener noreferrer" para máxima compatibilidade em telemóveis e iframes
+            const link = document.createElement('a');
+            link.href = urlWeb;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => {
+                try { document.body.removeChild(link); } catch(err) {}
+            }, 300);
+        } catch(e) { 
+            console.log("Erro ao abrir WhatsApp", e); 
+        }
     }
 
     function abrirWhatsAppLink(contacto, texto) {
@@ -2835,13 +4485,18 @@
 
         // 2. Folha de Movimentos de Tesouraria
         const linhasTransacoes = transacoes.map(t => {
+            const isEntrada = t.tipo === 'entrada';
+            const isSaida = t.tipo === 'saida';
             return {
                 'ID': t.id,
                 'Data': t.data,
-                'Tipo': t.tipo === 'entrada' ? 'Receita / Pagamento' : (t.tipo === 'saida' ? 'Despesa' : 'Dívida / Quota Atleta'),
+                'Data Formatada': formatarDataPT(t.data),
                 'Descrição': t.descricao,
-                'Valor (€)': Number(t.valor.toFixed(2)),
                 'Método Pagamento': t.metodo || 'Outros',
+                'Tipo': isEntrada ? 'Receita / Pagamento' : (isSaida ? 'Despesa' : 'Dívida / Quota Atleta'),
+                'Entrada (€)': isEntrada ? Number(t.valor.toFixed(2)) : 0,
+                'Saída (€)': isSaida ? Number(t.valor.toFixed(2)) : 0,
+                'Valor (€)': Number(t.valor.toFixed(2)),
                 'Atleta Associado': t.atleta || ''
             };
         });
@@ -2894,4 +4549,3 @@
 </script>
 </body>
 </html>
-
